@@ -12,7 +12,7 @@ body {
 }
 
 #main {
-    height: calc(100% - 56px);
+    margin-top: 56px;
     overflow: auto;
     position: relative;
 }

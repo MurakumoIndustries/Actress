@@ -3,13 +3,19 @@ import _ from 'lodash';
 import page from 'page';
 import Ui from './ui.js';
 import Data from './data.js'
+import NProgress from 'nprogress'
+import './lib/jquery.unveil'
 
 var inited;
 
 var init = function (id) {
+    NProgress.start();
     clear();
+    NProgress.set(0.3);
     initControl();
+    NProgress.set(0.6);
     render(id);
+    NProgress.done();
 };
 var clear = function () {
     //clear main
@@ -23,15 +29,12 @@ var initControl = function () {
     inited = true;
 };
 var initAllActress = function () {
-    var allActress = Data.getAllActress();
+    var allActress = Data.getAll('actress');
     var template = require('../template/actress.html');
     var $actressContainer = $('<div class="container-fluid row">');
     var splitRegex = /[・|\s]/g;
-    var pathToCharas = require.context('../img/chara', true);
-    var pathToItems = require.context('../img/item', true);
-    var pathToSkills = require.context('../img/skill', true);
     _.each(allActress, function (actress, i) {
-        var chara = _.extend({}, Data.getChara(actress.charaId));
+        var chara = _.extend({}, Data.get('chara', actress.charaId));
         chara.spSkill = _.extend({}, Data.get('skillactive', chara.spSkillId));
         actress.longWeapon = _.extend({}, Data.get('weapon', actress.longWeaponId));
         actress.shortWeapon = _.extend({}, Data.get('weapon', actress.shortWeaponId));
@@ -45,9 +48,6 @@ var initAllActress = function () {
             splitRegex: splitRegex,
             Ui: Ui,
             Data: Data,
-            pathToCharas: pathToCharas,
-            pathToItems: pathToItems,
-            pathToSkills: pathToSkills,
         });
         $actressContainer.append(actressItem);
     });
@@ -59,6 +59,10 @@ var initAllActress = function () {
         var $this = $(this);
         toggle($this);
     });
+    setTimeout(function () {
+        //a little delay to unveil for better unveil effect
+        $('#main').find("img").unveil();
+    }, 100);
 };
 var render = function (id) {
     console.log("render", id);
@@ -86,8 +90,9 @@ var expand = function ($this) {
     $this.toggleClass('actress-detail');
     $this.find('.actress-header').fadeToggle(500, function () {
         $this.find('.actress-resume').toggle(500, function () {
-            $('#main').animate({
-                scrollTop: $('#main').scrollTop() + $this.position().top
+            $(window).trigger("lookup");
+            $('html, body').animate({
+                scrollTop: $this.position().top
             }, 500);
         });
     });
@@ -102,8 +107,8 @@ var hide = function ($this, noScroll) {
             if (noScroll) {
                 return;
             }
-            $('#main').animate({
-                scrollTop: $('#main').scrollTop() + $this.position().top
+            $('html, body').animate({
+                scrollTop: $this.position().top
             }, 500);
         });
     });

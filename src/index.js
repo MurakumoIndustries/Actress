@@ -14,31 +14,15 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 NProgress.start();
 
-import $ from "jquery";
-import _ from 'lodash';
 import Ui from './js/ui.js';
 import Router from './js/router.js';
 import Data from './js/data.js'
 
 NProgress.set(0.1);
 Ui.init();
-$.when(Data.init("actress"))
-    .then(function () {
-        NProgress.set(0.3);
-        $.when(Data.init("chara"))
-            .then(function () {
-                NProgress.set(0.5);
-                $.when(Data.init("skillactive"), Data.init("skillpassive"))
-                    .then(function () {
-                        NProgress.set(0.7);
-                        $.when(Data.init("weapon"), Data.init("equipment"))
-                            .then(function () {
-                                NProgress.set(0.9);
-                                Data.saveLastUpdate();
-                                NProgress.inc();
-                                Router.init();
-                                NProgress.done();
-                            });
-                    });
-            });
-    });
+NProgress.set(0.3);
+Data.init().then(function () {
+    NProgress.set(0.9);
+    Router.init();
+    NProgress.done();
+});

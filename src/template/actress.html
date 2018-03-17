@@ -2,7 +2,7 @@
     <div class="card" style="background:linear-gradient(135deg, <%=actress.imageColor %>, <%=actress.imageColor %> 15%, transparent 25%, transparent);">
         <div class="card-body p-1 actress-header">
             <h5 class="m-0">
-                <img src="<%=chara.battleIcon&&pathToCharas('./' + chara.battleIcon + '.png') %>" />
+                <img data-src="<%=chara.battleIcon&&('img/chara/' + chara.battleIcon + '.png') %>" />
                 <% if(splitRegex.test(actress.name)) { %>
                     <ruby>
                         <%= actress.name.split(splitRegex)[0] %>
@@ -38,7 +38,7 @@
         <div class="card-body p-1 actress-resume" style="display:none;">
             <div class="row">
                 <div class="col-12 col-sm-auto">
-                    <img class="mr-3" src="<%=chara.image&&pathToCharas('./' + chara.image + '.png') %>" />
+                    <img class="mr-3" data-src="<%=chara.image&&('img/chara/' + chara.image + '.png') %>" />
                     <div class="row">
                         <div class="col-auto">
                             <%=Ui.getText("cv") %>
@@ -161,7 +161,7 @@
             <div class="row">
                 <div class='col-12 col-md-6'>
                     <div class="media">
-                        <img class="mr-3" src="<%=chara.icon&&pathToCharas('./' + chara.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=chara.icon&&('img/chara/' + chara.icon + '.png') %>" />
                         <div class="media-body">
                             <div class="row">
                                 <div class="col-4 col-sm-3">
@@ -226,7 +226,7 @@
                         <hr>
                     </div>
                     <div class="media">
-                        <img class="mr-3" src="<%=chara.spSkill.icon&&pathToSkills('./' + chara.spSkill.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=chara.spSkill.icon&&('img/skill/' + chara.spSkill.icon + '.png') %>" />
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -274,7 +274,7 @@
                 </div>
                 <div class='col-12 col-md-6'>
                     <div class="media">
-                        <img class="mr-3" src="<%=actress.longWeapon.icon&&pathToItems('./' + actress.longWeapon.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=actress.longWeapon.icon&&('img/item/' + actress.longWeapon.icon + '.png') %>" />
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -310,7 +310,7 @@
                         <%=Ui.renderDesc(actress.longWeapon.desc) %>
                     </div>
                     <div class="media">
-                        <img class="mr-3" src="<%=actress.shortWeapon.icon&&pathToItems('./' + actress.shortWeapon.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=actress.shortWeapon.icon&&('img/item/' + actress.shortWeapon.icon + '.png') %>" />
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -346,7 +346,7 @@
                         <%=Ui.renderDesc(actress.shortWeapon.desc) %>
                     </div>
                     <div class="media">
-                        <img class="mr-3" src="<%=actress.arm.icon&&pathToItems('./' + actress.arm.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=actress.arm.icon&&('img/item/' + actress.arm.icon + '.png') %>" />
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -385,7 +385,7 @@
                         <%=Ui.renderDesc(actress.arm.desc) %>
                     </div>
                     <div class="media">
-                        <img class="mr-3" src="<%=actress.arm.activeSkill.icon&&pathToSkills('./' + actress.arm.activeSkill.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=actress.arm.activeSkill.icon&&('img/skill/' + actress.arm.activeSkill.icon + '.png') %>" />
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -421,7 +421,7 @@
                         </div>
                         <% }) %>
                             <div class="media">
-                                <img class="mr-3" src="<%=actress.leg.icon&&pathToItems('./' + actress.leg.icon + '.png') %>" />
+                                <img class="mr-3" data-src="<%=actress.leg.icon&&('img/item/' + actress.leg.icon + '.png') %>" />
                                 <div class="media-body">
                                     <div class='row'>
                                         <div class="col">
@@ -460,7 +460,7 @@
                                 <%=Ui.renderDesc(actress.leg.desc) %>
                             </div>
                             <div class="media">
-                                <img class="mr-3" src="<%=actress.leg.activeSkill.icon&&pathToSkills('./' + actress.leg.activeSkill.icon + '.png') %>" />
+                                <img class="mr-3" data-src="<%=actress.leg.activeSkill.icon&&('img/skill/' + actress.leg.activeSkill.icon + '.png') %>" />
                                 <div class="media-body">
                                     <div class='row'>
                                         <div class="col">

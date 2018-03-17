@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" title="Murakumo Industries Actress Resume" href="#">MI Actress Resume
             <sup>α</sup>
         </a>
@@ -23,6 +23,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <form class="form-inline">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-light active">
+                            <input type="radio" name="IsShowAllActress" id="IsShowAllActressTrue" autocomplete="off"> ShowAll
+                        </label>
+                        <label class="btn btn-light">
+                            <input type="radio" name="IsShowAllActress" id="IsShowAllActressFalse" autocomplete="off" checked> OnlyNamed
+                        </label>
+                    </div>
+                </form>
             </ul>
 
             <ul class="navbar-nav my-2 my-lg-0">
