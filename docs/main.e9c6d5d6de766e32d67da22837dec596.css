@@ -22,7 +22,7 @@ body {
 }
 
 #main {
-    margin-top: 56px;
+    padding-top: 56px;
     overflow: auto;
     position: relative;
 }

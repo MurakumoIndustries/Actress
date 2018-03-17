@@ -113,7 +113,7 @@ var expand = function ($this) {
         $this.find('.actress-resume').toggle(500, function () {
             $(window).trigger("lookup");
             $('html, body').animate({
-                scrollTop: $this.position().top
+                scrollTop: $this.position().top - 56    //remove padding
             }, 500);
         });
     });
@@ -129,7 +129,7 @@ var hide = function ($this, noScroll) {
                 return;
             }
             $('html, body').animate({
-                scrollTop: $this.position().top
+                scrollTop: $this.position().top - 56    //remove padding
             }, 500);
         });
     });
