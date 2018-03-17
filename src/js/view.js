@@ -26,6 +26,26 @@ var initControl = function () {
     if (inited) { return; }
     $('#version').text(Data.getVersion());
     initAllActress();
+    var showOnlyNamed = function () {
+        $('.actress-item').each(function (i, o) {
+            var name = $(o).data('name');
+            if (name.indexOf("アクトレス") >= 0) {
+                $(o).fadeOut(500);
+            }
+            else {
+                $(o).fadeIn(500);
+            }
+        })
+    }
+    $('input[type=radio][name=IsShowAllActress]').change(function () {
+        if (this.value == 'all') {
+            $('.actress-item').fadeIn(500);
+        }
+        else if (this.value == 'named') {
+            showOnlyNamed();
+        }
+    });
+    showOnlyNamed();
     inited = true;
 };
 var initAllActress = function () {
@@ -51,6 +71,7 @@ var initAllActress = function () {
         });
         $actressContainer.append(actressItem);
     });
+    $actressContainer.find('.actress-item').hide(); //hide on init
     $('#main').append($actressContainer);
     $('.actress-item').click(function (o) {
         if (window.getSelection().toString().length) {

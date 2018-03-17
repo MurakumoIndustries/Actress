@@ -25,11 +25,13 @@
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-light active">
-                            <input type="radio" name="IsShowAllActress" id="IsShowAllActressTrue" autocomplete="off"> ShowAll
-                        </label>
                         <label class="btn btn-light">
-                            <input type="radio" name="IsShowAllActress" id="IsShowAllActressFalse" autocomplete="off" checked> OnlyNamed
+                            <input type="radio" name="IsShowAllActress" id="IsShowAllActressTrue" value="all" autocomplete="off">
+                            <span data-lang="showall"></span>
+                        </label>
+                        <label class="btn btn-light active">
+                            <input type="radio" name="IsShowAllActress" id="IsShowAllActressFalse" value="named" autocomplete="off" checked>
+                            <span data-lang="onlynamed"></span>
                         </label>
                     </div>
                 </form>
