@@ -65,3 +65,9 @@ body {
 .attr-text.attr-collapse {}
 
 .attr-text.attr-theory {}
+
+.mini-icon{
+    right: 0;
+    top: 0;
+    position: absolute;
+}
