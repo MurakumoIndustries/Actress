@@ -162,8 +162,6 @@ var init = function () {
             $this.text(value);
         }
     });
-    //deal with bootstrap select
-    require('./lib/bootstrap-select-1.13.0-beta/js/i18n/defaults-' + currentLang.replace('-', '_'));
 };
 var renderAttrText = function (textList) {
     var text = "";

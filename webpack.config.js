@@ -42,6 +42,13 @@ module.exports = env => {
     module: {
       rules: [
         {
+          test: /\.(ttf|eot|woff|woff2)$/,
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[ext]',
+          },
+        },
+        {
           test: require.resolve('jquery'),
           use: [{
             loader: 'expose-loader',

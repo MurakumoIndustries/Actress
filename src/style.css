@@ -18,7 +18,7 @@ body {
 }
 
 .actress-item {
-    transition: all 0.5s ease-in-out,opacity 0ms;
+    transition: all 0.5s ease-in-out, opacity 0ms;
 }
 
 .actress-item.actress-detail {
@@ -66,8 +66,28 @@ body {
 
 .attr-text.attr-theory {}
 
-.mini-icon{
+.mini-icon {
     right: 0;
     top: 0;
     position: absolute;
+}
+
+/* icons */
+
+.icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: bottom;
+}
+
+.icon.icon-version {
+    width: 2.5rem;
+    height: 2.5rem;
+    opacity: 0.5;
+    vertical-align: middle;
+    background-image: url(./img/version.png);
 }
