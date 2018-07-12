@@ -275,7 +275,11 @@
                 </div>
                 <div class='col-12 col-md-6'>
                     <div class="media">
-                        <img class="mr-3" data-src="<%=actress.longWeapon.icon&&('../img/item/' + actress.longWeapon.icon + '.png') %>" />
+                        <div class="mr-3">
+                            <a target="_blank" href="../Gear/#!/weapon/<%=actress.longWeapon.id %>">
+                                <img class="mr-3" data-src="<%=actress.longWeapon.icon&&('../img/item/' + actress.longWeapon.icon + '.png') %>" />
+                            </a>
+                        </div>
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -311,7 +315,11 @@
                         <%=Ui.renderDesc(actress.longWeapon.desc) %>
                     </div>
                     <div class="media">
-                        <img class="mr-3" data-src="<%=actress.shortWeapon.icon&&('../img/item/' + actress.shortWeapon.icon + '.png') %>" />
+                            <div class="mr-3">
+                                <a target="_blank" href="../Gear/#!/weapon/<%=actress.shortWeapon.id %>">
+                                    <img class="mr-3" data-src="<%=actress.shortWeapon.icon&&('../img/item/' + actress.shortWeapon.icon + '.png') %>" />
+                                </a>
+                            </div>
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -347,7 +355,11 @@
                         <%=Ui.renderDesc(actress.shortWeapon.desc) %>
                     </div>
                     <div class="media">
-                        <img class="mr-3" data-src="<%=actress.arm.icon&&('../img/item/' + actress.arm.icon + '.png') %>" />
+                        <div class="mr-3">
+                            <a target="_blank" href="../Gear/#!/equipment/<%=actress.arm.id %>">
+                                <img class="mr-3" data-src="<%=actress.arm.icon&&('../img/item/' + actress.arm.icon + '.png') %>" />
+                            </a>
+                        </div>
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -386,7 +398,8 @@
                         <%=Ui.renderDesc(actress.arm.desc) %>
                     </div>
                     <div class="media">
-                        <img class="mr-3" data-src="<%=actress.arm.activeSkill.icon&&('../img/skill/' + actress.arm.activeSkill.icon + '.png') %>" />
+                        <img class="mr-3" data-src="<%=actress.arm.activeSkill.icon&&('../img/skill/' + actress.arm.activeSkill.icon + '.png') %>"
+                        />
                         <div class="media-body">
                             <div class='row'>
                                 <div class="col">
@@ -422,7 +435,11 @@
                         </div>
                         <% }) %>
                             <div class="media">
-                                <img class="mr-3" data-src="<%=actress.leg.icon&&('../img/item/' + actress.leg.icon + '.png') %>" />
+                                <div class="mr-3">
+                                    <a target="_blank" href="../Gear/#!/equipment/<%=actress.leg.id %>">
+                                        <img class="mr-3" data-src="<%=actress.leg.icon&&('../img/item/' + actress.leg.icon + '.png') %>" />
+                                    </a>
+                                </div>
                                 <div class="media-body">
                                     <div class='row'>
                                         <div class="col">
@@ -461,7 +478,8 @@
                                 <%=Ui.renderDesc(actress.leg.desc) %>
                             </div>
                             <div class="media">
-                                <img class="mr-3" data-src="<%=actress.leg.activeSkill.icon&&('../img/skill/' + actress.leg.activeSkill.icon + '.png') %>" />
+                                <img class="mr-3" data-src="<%=actress.leg.activeSkill.icon&&('../img/skill/' + actress.leg.activeSkill.icon + '.png') %>"
+                                />
                                 <div class="media-body">
                                     <div class='row'>
                                         <div class="col">
