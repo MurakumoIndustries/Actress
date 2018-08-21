@@ -1,0 +1,38 @@
+<div class="actress-item my-2 col-12 col-sm-6 col-md-4 col-lg-3" data-id='<%=actress.id %>' data-name='<%=actress.name %>'>
+    <div class="card" style="background:linear-gradient(135deg, <%=actress.imageColor %>, <%=actress.imageColor %> 15%, transparent 25%, transparent);">
+        <div class="card-body p-1 actress-header">
+            <h5 class="m-0">
+                <img src="<%=actress.battleIcon&&('../img/chara/' + actress.battleIcon + '.png') %>" />
+                <% if(splitRegex.test(actress.name)) { %>
+                    <ruby>
+                        <%= actress.name.split(splitRegex)[0] %>
+                            <rp>(</rp>
+                            <rt>
+                                <%= actress.ruby.split(splitRegex)[0] %>
+                            </rt>
+                            <rp>)</rp>
+                    </ruby>
+                    <span>
+                        <%= actress.name.match(splitRegex)[0] %>
+                    </span>
+                    <ruby>
+                        <%= actress.name.split(splitRegex)[1] %>
+                            <rp>(</rp>
+                            <rt>
+                                <%= actress.ruby.split(splitRegex)[1] %>
+                            </rt>
+                            <rp>)</rp>
+                    </ruby>
+                    <% } else { %>
+                        <ruby>
+                            <%= actress.name %>
+                                <rp>(</rp>
+                                <rt>
+                                    <%= actress.ruby %>
+                                </rt>
+                                <rp>)</rp>
+                        </ruby>
+                        <% } %>
+            </h5>
+        </div>
+    </div>

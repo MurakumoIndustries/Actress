@@ -67,9 +67,8 @@ body {
 .attr-text.attr-theory {}
 
 .mini-icon {
-    right: 0;
-    top: 0;
-    position: absolute;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 /* icons */

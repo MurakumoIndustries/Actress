@@ -1,0 +1,574 @@
+<div class="card-body p-1 actress-resume" id="actress-resume-<%=actress.id %>" style="display: none;">
+    <div class="row">
+        <div class="col-12 col-sm-auto">
+            <% _.each(charas,function(chara,i){ %>
+                <img id="chara-img-<%=chara.id %>" class="mr-3 chara-img" src="<%=chara.image&&('../img/chara/' + chara.image + '.png') %>" style="<%=chara.id==actress.first80CharaId?'':'display: none;' %>" />
+                <% }); %>
+                    <div class="row">
+                        <div class="col-auto">
+                            <%=Ui.getText("cv") %>
+                        </div>
+                        <div class="col">
+                            <%=actress.cv %>
+                        </div>
+                    </div>
+        </div>
+        <div class="col">
+            <div class="actress-resume-singleline">
+                <div class="row">
+                    <div class="col-4">
+                        <%=Ui.getText("roma") %>
+                    </div>
+                    <div class="col-8 text-right">
+                        <%=actress.roma %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <%=Ui.getText("ruby") %>
+                    </div>
+                    <div class="col-8 text-right">
+                        <%=actress.ruby %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <%=Ui.getText("name") %>
+                    </div>
+                    <div class="col-8 text-right">
+                        <%=actress.fullName %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-sm-2">
+                        <%=Ui.getText("birthday") %>
+                    </div>
+                    <div class="col-8 col-sm-4 col-lg-2 text-right">
+                        <%=actress.birthday %>
+                    </div>
+                    <div class="col-4 col-sm-2">
+                        <%=Ui.getText("age") %>
+                    </div>
+                    <div class="col-8 col-sm-4 col-lg-2 text-right">
+                        <%=actress.age %>
+                    </div>
+                    <div class="col-4 col-sm-2">
+                        <%=Ui.getText("height") %>
+                    </div>
+                    <div class="col-8 col-sm-4 col-lg-2 text-right">
+                        <%=actress.resumeHeight %>
+                    </div>
+                    <div class="col-4 col-sm-2">
+                        <%=Ui.getText("blood") %>
+                    </div>
+                    <div class="col-8 col-sm-4 col-lg-2 text-right">
+                        <%=actress.blood %>
+                    </div>
+                    <div class="col-4 col-sm-2">
+                        <%=Ui.getText("job") %>
+                    </div>
+                    <div class="col-8 col-sm-4 col-lg-2 text-right">
+                        <%=actress.job %>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-5 col-sm-3 col-lg-2">
+                        <%=Ui.getText("hobby") %>
+                    </div>
+                    <div class="col">
+                        <%=Ui.renderDesc(actress.hobby) %>
+                    </div>
+                </div>
+                <div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-5 col-sm-3 col-lg-2">
+                        <%=Ui.getText("goal") %>
+                    </div>
+                    <div class="col">
+                        <%=Ui.renderDesc(actress.goal) %>
+                    </div>
+                </div>
+                <div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-5 col-sm-3 col-lg-2">
+                        <%=Ui.getText("reason") %>
+                    </div>
+                    <div class="col">
+                        <%=Ui.renderDesc(actress.reason) %>
+                    </div>
+                </div>
+                <div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-5 col-sm-3 col-lg-2">
+                        <%=Ui.getText("appeal") %>
+                    </div>
+                    <div class="col">
+                        <%=Ui.renderDesc(actress.appeal) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <hr>
+    </div>
+    <div class="row">
+        <div class='col-12 col-md-6'>
+            <ul class="nav nav-tabs chara-tabs" role="tablist">
+                <% _.each(charas,function(chara,i){ %>
+                    <li class="nav-item">
+                        <div class="nav-link <%=chara.id==actress.first80CharaId?'active':'' %>" data-toggle="tab" data-target="#chara-tab-<%=chara.id %>" data-id="<%=chara.id %>" style="cursor: pointer;">
+                            <img class="mini-icon" src="<%=chara.miniIcon&&('../img/chara/' + chara.miniIcon + '.png') %>" />
+                        </div>
+                    </li>
+                    <% }); %>
+            </ul>
+            <div class="tab-content py-2">
+                <% _.each(charas,function(chara,i){ %>
+                    <div id="chara-tab-<%=chara.id %>" class="tab-pane fade <%=chara.id==actress.first80CharaId?'show active':'' %>">
+                        <div class="media">
+                            <img class="mr-3" src="<%=chara.icon&&('../img/chara/' + chara.icon + '.png') %>" />
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-4 col-sm-3">
+                                        Lv.
+                                    </div>
+                                    <div class="col">
+                                        <%=chara.initLv %>
+                                            <span>~</span>
+                                            <%=chara.maxLv %>
+                                                <span>( +
+                                                <%=chara.gradeupLimit %>
+                                                    )
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3">
+                                    HP
+                                </div>
+                                <div class="col">
+                                    <%=chara.hpMax %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3">
+                                    L.ATK
+                                </div>
+                                <div class="col-auto">
+                                    <%=chara.longAtkMax %>
+                                </div>
+                                <div class="col">
+                                    <%=Ui.renderAttrText(chara.longAttrMax) %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3">
+                                    S.ATK
+                                </div>
+                                <div class="col-auto">
+                                    <%=chara.shortAtkMax %>
+                                </div>
+                                <div class="col">
+                                    <%=Ui.renderAttrText(chara.shortAttrMax) %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 col-sm-3">
+                                    DEF
+                                </div>
+                                <div class="col">
+                                    <%=chara.defMax %>
+                                </div>
+                                <div class="col-4 col-sm-3">
+                                    SPD
+                                </div>
+                                <div class="col">
+                                    <%=chara.spdMax %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr>
+                    </div>
+                    <div class="media">
+                        <img class="mr-3" src="<%=chara.spSkill.icon&&('../img/skill/' + chara.spSkill.icon + '.png') %>" />
+                        <div class="media-body">
+                            <div class='row'>
+                                <div class="col">
+                                    <fieldset>
+                                        <legend>
+                                            <%=chara.spSkill.name %>
+                                        </legend>
+                                        <div>
+                                            <%=Ui.renderDesc(chara.spSkill.desc) %>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <hr>
+                    </div>
+                    <div class='row'>
+                        <div class="col">
+                            <fieldset>
+                                <legend>Passive</legend>
+                                <% _.each(chara.passiveSkills,function(o,i){
+                                    var pSkill=Data.get('skillpassive',o.id);
+                                    %>
+                                    <div class="row mb-1">
+                                        <div class="col-auto">
+                                            <span class='font-weight-light'>Lv.
+                                                <%=o.openLevel%>
+                                            </span>
+                                    </div>
+                                    <div class="col">
+                                        <h5>
+                                            <%=pSkill.name %>
+                                        </h5>
+                                        <div>
+                                            <%=Ui.renderDesc(pSkill.desc) %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                    </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+        <div class='col-12 col-md-6'>
+            <div class="row">
+                <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.longWeapon.length>1?'':'display:none;' %>">
+                    <% _.each(actress.longWeapon, function(longWeapon,i){ %>
+                        <li class="nav-item">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#longWeapon-tab-<%=longWeapon.id %>">
+                                <%=longWeapon.name %>
+                            </a>
+                        </li>
+                        <% }); %>
+                </ul>
+                <div class="col tab-content">
+                    <% _.each(actress.longWeapon, function(longWeapon,i){ %>
+                        <div id="longWeapon-tab-<%=longWeapon.id %>" class="tab-pane fade <%=i==0?'show active':'' %>">
+                            <div class="media">
+                                <div class="mr-3">
+                                    <a target="_blank" href="../Gear/#!/weapon/<%=longWeapon.id %>">
+                                                    <img class="mr-3" src="<%=longWeapon.icon&&('../img/item/' + longWeapon.icon + '.png') %>" />
+                                                </a>
+                                </div>
+                                <div class="media-body text-nowrap">
+                                    <div class='row'>
+                                        <div class="col">
+                                            <fieldset>
+                                                <legend>
+                                                    <%=longWeapon.name %>
+                                                </legend>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        COST
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=longWeapon.cost %>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        ATK
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <%=longWeapon.longAtkMax %>
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=Ui.renderAttrText(longWeapon.longAttrMax) %>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <%=Ui.renderDesc(longWeapon.desc) %>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+            <div>
+                <hr class="my-2">
+            </div>
+            <div class="row">
+                <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.shortWeapon.length>1?'':'display:none;' %>">
+                    <% _.each(actress.shortWeapon, function(shortWeapon,i){ %>
+                        <li class="nav-item">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#shortWeapon-tab-<%=shortWeapon.id %>">
+                                <%=shortWeapon.name %>
+                            </a>
+                        </li>
+                        <% }); %>
+                </ul>
+                <div class="col tab-content">
+                    <% _.each(actress.shortWeapon, function(shortWeapon,i){ %>
+                        <div id="shortWeapon-tab-<%=shortWeapon.id %>" class="tab-pane fade <%=i==0?'show active':'' %>">
+                            <div class="media">
+                                <div class="mr-3">
+                                    <a target="_blank" href="../Gear/#!/weapon/<%=shortWeapon.id %>">
+                                                    <img class="mr-3" src="<%=shortWeapon.icon&&('../img/item/' + shortWeapon.icon + '.png') %>" />
+                                                </a>
+                                </div>
+                                <div class="media-body text-nowrap">
+                                    <div class='row'>
+                                        <div class="col">
+                                            <fieldset>
+                                                <legend>
+                                                    <%=shortWeapon.name %>
+                                                </legend>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        COST
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=shortWeapon.cost %>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        ATK
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <%=shortWeapon.shortAtkMax %>
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=Ui.renderAttrText(shortWeapon.shortAttrMax) %>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <%=Ui.renderDesc(shortWeapon.desc) %>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+            <div>
+                <hr class="my-2">
+            </div>
+            <div class="row">
+                <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.arm.length>1?'':'display:none;' %>">
+                    <% _.each(actress.arm, function(arm,i){ %>
+                        <li class="nav-item">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#arm-tab-<%=arm.id %>">
+                                <%=arm.name %>
+                            </a>
+                        </li>
+                        <% }); %>
+                </ul>
+                <div class="col tab-content">
+                    <% _.each(actress.arm, function(arm,i){ %>
+                        <div id="arm-tab-<%=arm.id %>" class="tab-pane fade <%=i==0?'show active':'' %>">
+
+
+                            <div class="media">
+                                <div class="mr-3">
+                                    <a target="_blank" href="../Gear/#!/equipment/<%=arm.id %>">
+                                    <img class="mr-3" src="<%=arm.icon&&('../img/item/' + arm.icon + '.png') %>" />
+                                </a>
+                                </div>
+                                <div class="media-body text-nowrap">
+                                    <div class='row'>
+                                        <div class="col">
+                                            <fieldset>
+                                                <legend>
+                                                    <%=arm.name %>
+                                                </legend>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        HP
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=arm.hpMax %>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        DEF
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=arm.defMax %>
+                                                    </div>
+                                                    <div class="col-4 col-sm-3">
+                                                        SPD
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=arm.spdMax %>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <%=Ui.renderDesc(arm.desc) %>
+                            </div>
+                            <div class="media">
+                                <img class="mr-3" src="<%=arm.activeSkill.icon&&('../img/skill/' + arm.activeSkill.icon + '.png') %>" />
+                                <div class="media-body">
+                                    <div class='row'>
+                                        <div class="col">
+                                            <fieldset>
+                                                <legend>
+                                                    <%=arm.activeSkill.name %>
+                                                </legend>
+                                                <div>
+                                                    <%=Ui.renderDesc(arm.activeSkill.desc) %>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% _.each(arm.passiveSkills,function(o,i){
+                                var pSkill=Data.get('skillpassive',o.id);
+                                %>
+                                <div class="row mb-1">
+                                    <div class="col-auto">
+                                        <span class='font-weight-light'>Lv.
+                                        <%=o.openLevel%>
+                                    </span>
+                                    </div>
+                                    <div class="col">
+                                        <h5>
+                                            <%=pSkill.name %>
+                                        </h5>
+                                        <div>
+                                            <%=Ui.renderDesc(pSkill.desc) %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+            <div>
+                <hr class="my-2">
+            </div>
+            <div class="row">
+                <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.leg.length>1?'':'display:none;' %>">
+                    <% _.each(actress.leg, function(leg,i){ %>
+                        <li class="nav-item">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#leg-tab-<%=leg.id %>">
+                                <%=leg.name %>
+                            </a>
+                        </li>
+                        <% }); %>
+                </ul>
+                <div class="col tab-content">
+                    <% _.each(actress.leg, function(leg,i){ %>
+                        <div id="leg-tab-<%=leg.id %>" class="tab-pane fade <%=i==0?'show active':'' %>">
+                            <div class="media">
+                                <div class="mr-3">
+                                    <a target="_blank" href="../Gear/#!/equipment/<%=leg.id %>">
+                                                <img class="mr-3" src="<%=leg.icon&&('../img/item/' + leg.icon + '.png') %>" />
+                                            </a>
+                                </div>
+                                <div class="media-body text-nowrap">
+                                    <div class='row'>
+                                        <div class="col">
+                                            <fieldset>
+                                                <legend>
+                                                    <%=leg.name %>
+                                                </legend>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        HP
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=leg.hpMax %>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4 col-sm-3">
+                                                        DEF
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=leg.defMax %>
+                                                    </div>
+                                                    <div class="col-4 col-sm-3">
+                                                        SPD
+                                                    </div>
+                                                    <div class="col">
+                                                        <%=leg.spdMax %>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <%=Ui.renderDesc(leg.desc) %>
+                            </div>
+                            <div class="media">
+                                <img class="mr-3" src="<%=leg.activeSkill.icon&&('../img/skill/' + leg.activeSkill.icon + '.png') %>" />
+                                <div class="media-body">
+                                    <div class='row'>
+                                        <div class="col">
+                                            <fieldset>
+                                                <legend>
+                                                    <%=leg.activeSkill.name %>
+                                                </legend>
+                                                <div>
+                                                    <%=Ui.renderDesc(leg.activeSkill.desc) %>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% _.each(leg.passiveSkills,function(o,i){
+                                var pSkill=Data.get('skillpassive',o.id);
+                                %>
+                                <div class="row mb-1">
+                                    <div class="col-auto">
+                                        <span class='font-weight-light'>Lv.
+                                                    <%=o.openLevel%>
+                                                </span>
+                                    </div>
+                                    <div class="col">
+                                        <h5>
+                                            <%=pSkill.name %>
+                                        </h5>
+                                        <div>
+                                            <%=Ui.renderDesc(pSkill.desc) %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>

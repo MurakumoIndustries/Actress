@@ -4,7 +4,7 @@ import page from 'page';
 import Ui from './ui.js';
 import Data from './data.js'
 import NProgress from 'nprogress'
-import './lib/jquery.unveil'
+//import './lib/jquery.unveil'
 
 var inited;
 
@@ -50,31 +50,25 @@ var initControl = function () {
 };
 var initAllActress = function () {
     var allActress = Data.getAll('actress');
-    var template = require('../template/actress.html');
     var $actressContainer = $('<div class="container-fluid row">');
+
+    var template = require('../template/actressCard.html');
     var splitRegex = /[・|\s]/g;
     _.each(allActress, function (actress, i) {
-        var chara = _.extend({}, Data.get('chara', actress.charaId));
-        chara.spSkill = _.extend({}, Data.get('skillactive', chara.spSkillId));
-        actress.longWeapon = _.extend({}, Data.get('weapon', actress.longWeaponId));
-        actress.shortWeapon = _.extend({}, Data.get('weapon', actress.shortWeaponId));
-        actress.arm = _.extend({}, Data.get('equipment', actress.armEquipmentId));
-        actress.arm.activeSkill = _.extend({}, Data.get('skillactive', actress.arm.activeSkill));
-        actress.leg = _.extend({}, Data.get('equipment', actress.legEquipmentId));
-        actress.leg.activeSkill = _.extend({}, Data.get('skillactive', actress.leg.activeSkill));
         var actressItem = template({
             actress: actress,
-            chara: chara,
-            splitRegex: splitRegex,
-            Ui: Ui,
-            Data: Data,
+            splitRegex: splitRegex
         });
         $actressContainer.append(actressItem);
     });
+
     $actressContainer.find('.actress-item').hide(); //hide on init
     $('#main').append($actressContainer);
     $('.actress-item').click(function (o) {
         if (window.getSelection().toString().length) {
+            return;
+        }
+        if ($(o.target).parents('.nav-item').length) {
             return;
         }
         var $this = $(this);
@@ -82,7 +76,7 @@ var initAllActress = function () {
     });
     setTimeout(function () {
         //a little delay to unveil for better unveil effect
-        $('#main').find("img").unveil();
+        //$('#main').find("img").unveil();
     }, 100);
 };
 var render = function (id) {
@@ -108,12 +102,64 @@ var expandById = function (id) {
 };
 var expand = function ($this) {
     hideAll(true);
+    //check if actress resume exists
+    if ($this.find('.actress-resume').length == 0) {
+        var template = require('../template/actressResume.html');
+        var actress = _.extend({}, Data.get('actress', $this.data('id')));
+        var charas = [];
+        _.each(Data.getAll('chara'), function (o, i) {
+            if (o.actressId == actress.id) {
+                var chara = _.extend({}, o);
+                chara.spSkill = _.extend({}, Data.get('skillactive', chara.spSkillId));
+                charas.push(chara);
+                if (chara.maxLv >= 80 && !actress.first80CharaId) {
+                    actress.first80CharaId = chara.id;
+                }
+            }
+        });
+
+        actress.longWeapon = [];
+        actress.shortWeapon = [];
+        actress.arm = [];
+        actress.leg = [];
+        _.each(actress.longWeaponId, function (o, i) {
+            actress.longWeapon.push(_.extend({}, Data.get('weapon', o)));
+        });
+        _.each(actress.shortWeaponId, function (o, i) {
+            actress.shortWeapon.push(_.extend({}, Data.get('weapon', o)));
+        });
+        _.each(actress.armEquipmentId, function (o, i) {
+            var arm = _.extend({}, Data.get('equipment', o));
+            arm.activeSkill = _.extend({}, Data.get('skillactive', arm.activeSkill));
+            actress.arm.push(arm);
+        });
+        _.each(actress.legEquipmentId, function (o, i) {
+            var leg = _.extend({}, Data.get('equipment', o));
+            leg.activeSkill = _.extend({}, Data.get('skillactive', leg.activeSkill));
+            actress.leg.push(leg);
+        });
+
+        var actressResume = template({
+            actress: actress,
+            charas: charas,
+            Ui: Ui,
+            Data: Data,
+        });
+        $this.find('.card').append(actressResume);
+
+        $('#actress-resume-' + actress.id + ' .chara-tabs [data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var charaId = $(e.target).data('id');
+            $('#actress-resume-' + actress.id + ' .chara-img:not(#chara-img-' + charaId + ')').hide();
+            $('#actress-resume-' + actress.id + ' #chara-img-' + charaId).fadeIn(250);
+        })
+    }
+
     $this.toggleClass('actress-detail');
-    $this.find('.actress-header').fadeToggle(500, function () {
-        $this.find('.actress-resume').toggle(500, function () {
+    $this.find('.actress-header').fadeOut(500, function () {
+        $this.find('.actress-resume').show(500, function () {
             $(window).trigger("lookup");
             $('html, body').animate({
-                scrollTop: $this.position().top - 56    //remove padding
+                scrollTop: $this.position().top - 56 //remove padding
             }, 500);
         });
     });
@@ -123,13 +169,13 @@ var hide = function ($this, noScroll) {
         noScroll = false;
     }
     $this.toggleClass('actress-detail');
-    $this.find('.actress-resume').toggle(500, function () {
-        $this.find('.actress-header').fadeToggle(500, function () {
+    $this.find('.actress-resume').hide(500, function () {
+        $this.find('.actress-header').fadeIn(500, function () {
             if (noScroll) {
                 return;
             }
             $('html, body').animate({
-                scrollTop: $this.position().top - 56    //remove padding
+                scrollTop: $this.position().top - 56 //remove padding
             }, 500);
         });
     });
