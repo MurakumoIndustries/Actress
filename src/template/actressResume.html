@@ -257,7 +257,7 @@
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.longWeapon.length>1?'':'display:none;' %>">
                     <% _.each(actress.longWeapon, function(longWeapon,i){ %>
                         <li class="nav-item">
-                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#longWeapon-tab-<%=longWeapon.id %>">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#longWeapon-tab-<%=longWeapon.id %>" style="cursor: pointer;">
                                 <%=longWeapon.name %>
                             </a>
                         </li>
@@ -317,7 +317,7 @@
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.shortWeapon.length>1?'':'display:none;' %>">
                     <% _.each(actress.shortWeapon, function(shortWeapon,i){ %>
                         <li class="nav-item">
-                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#shortWeapon-tab-<%=shortWeapon.id %>">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#shortWeapon-tab-<%=shortWeapon.id %>" style="cursor: pointer;">
                                 <%=shortWeapon.name %>
                             </a>
                         </li>
@@ -377,7 +377,7 @@
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.arm.length>1?'':'display:none;' %>">
                     <% _.each(actress.arm, function(arm,i){ %>
                         <li class="nav-item">
-                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#arm-tab-<%=arm.id %>">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#arm-tab-<%=arm.id %>" style="cursor: pointer;">
                                 <%=arm.name %>
                             </a>
                         </li>
@@ -478,7 +478,7 @@
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.leg.length>1?'':'display:none;' %>">
                     <% _.each(actress.leg, function(leg,i){ %>
                         <li class="nav-item">
-                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#leg-tab-<%=leg.id %>">
+                            <a class="nav-link <%=i==0?'active':'' %>" data-toggle="tab" data-target="#leg-tab-<%=leg.id %>" style="cursor: pointer;">
                                 <%=leg.name %>
                             </a>
                         </li>
