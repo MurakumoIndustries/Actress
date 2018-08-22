@@ -107,6 +107,14 @@ body {
     height: 2.5rem;
 }
 
+.another-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    filter: drop-shadow(1px 1px 1px black);
+    height: 3rem;
+}
+
 /* icons */
 
 .icon {

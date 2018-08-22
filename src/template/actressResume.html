@@ -139,7 +139,8 @@
                     <div id="chara-tab-<%=chara.id %>" class="tab-pane fade <%=chara.id==actress.first80CharaId?'show active':'' %>">
                         <div class="media">
                             <img class="mr-3" src="<%=chara.icon&&('../img/chara/' + chara.icon + '.png') %>" />
-                            <div class="media-body">
+                            <div class="media-body position-relative">
+                                <img class="another-icon" src="<%=chara.anotherIcon&&('../img/another/' + chara.anotherIcon + '.png') %>" />
                                 <div class="row">
                                     <div class="col-4 col-sm-3">
                                         Lv.
@@ -253,7 +254,7 @@
             </div>
         </div>
         <div class='col-12 col-md-6'>
-            <div class="row">
+            <div class="form-row">
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.longWeapon.length>1?'':'display:none;' %>">
                     <% _.each(actress.longWeapon, function(longWeapon,i){ %>
                         <li class="nav-item">
@@ -313,7 +314,7 @@
             <div>
                 <hr class="my-2">
             </div>
-            <div class="row">
+            <div class="form-row">
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.shortWeapon.length>1?'':'display:none;' %>">
                     <% _.each(actress.shortWeapon, function(shortWeapon,i){ %>
                         <li class="nav-item">
@@ -373,7 +374,7 @@
             <div>
                 <hr class="my-2">
             </div>
-            <div class="row">
+            <div class="form-row">
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.arm.length>1?'':'display:none;' %>">
                     <% _.each(actress.arm, function(arm,i){ %>
                         <li class="nav-item">
@@ -474,7 +475,7 @@
             <div>
                 <hr class="my-2">
             </div>
-            <div class="row">
+            <div class="form-row">
                 <ul class="col-3 nav nav-pills flex-column" role="tablist" style="<%=actress.leg.length>1?'':'display:none;' %>">
                     <% _.each(actress.leg, function(leg,i){ %>
                         <li class="nav-item">
