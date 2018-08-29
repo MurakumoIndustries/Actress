@@ -115,6 +115,18 @@ data["cv"] = {
     "en-US": "Voice",
     "zh-CN": "CV",
 };
+data["count"] = {
+    "ja-JP": "回数",
+    "zh-TW": "次數",
+    "en-US": "Count",
+    "zh-CN": "次数",
+};
+data["duration"] = {
+    "ja-JP": "持続期間",
+    "zh-TW": "持續時間",
+    "en-US": "Duration",
+    "zh-CN": "持续时间",
+};
 
 
 
