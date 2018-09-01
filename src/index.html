@@ -20,15 +20,14 @@
             <span class="d-none d-sm-inline-block">Resume</span>
             <sup>α</sup>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <form class="form-inline">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <div class="btn-group btn-group-toggle mr-1" data-toggle="buttons">
                         <label class="btn btn-light">
                             <input type="radio" name="IsShowAllActress" id="IsShowAllActressTrue" value="all" autocomplete="off">
                             <span data-lang="showall"></span>
@@ -36,6 +35,24 @@
                         <label class="btn btn-light active">
                             <input type="radio" name="IsShowAllActress" id="IsShowAllActressFalse" value="named" autocomplete="off" checked>
                             <span data-lang="onlynamed"></span>
+                        </label>
+                    </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-light active">
+                            <input type="radio" name="ActressOrder" value="default" autocomplete="off" checked>
+                            <span data-lang="default"></span>
+                        </label>
+                        <label class="btn btn-light">
+                            <input type="radio" name="ActressOrder" value="age" autocomplete="off">
+                            <span data-lang="age"></span>
+                        </label>
+                        <label class="btn btn-light">
+                            <input type="radio" name="ActressOrder" value="birthday" autocomplete="off">
+                            <span data-lang="birthday"></span>
+                        </label>
+                        <label class="btn btn-light">
+                            <input type="radio" name="ActressOrder" value="height" autocomplete="off">
+                            <span data-lang="height"></span>
                         </label>
                     </div>
                 </form>
@@ -87,6 +104,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114331235-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
+
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 

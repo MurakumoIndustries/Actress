@@ -1,8 +1,7 @@
 import $ from "jquery";
 import _ from 'lodash';
 
-var supportedLang = [
-    {
+var supportedLang = [{
         key: 'ja-JP',
         text: '日本語'
     },
@@ -27,6 +26,8 @@ data["clear"] = { "ja-JP": "", "zh-TW": "清空", "en-US": "Clear", "zh-CN": "�
 
 data["showall"] = { "ja-JP": "全アクトレス", "zh-TW": "所有角色", "en-US": "All Actress", "zh-CN": "所有角色" };
 data["onlynamed"] = { "ja-JP": "実装済み", "zh-TW": "已實裝角色", "en-US": "Only Implemented", "zh-CN": "已实装角色" };
+
+data["default"] = { "ja-JP": "デフォルト", "zh-TW": "默認", "en-US": "Default", "zh-CN": "默认" };
 
 data["currentversion"] = { "ja-JP": "バージョン：", "zh-TW": "當前版本：", "en-US": "Current Ver.:", "zh-CN": "当前版本：" };
 data["externallink"] = { "ja-JP": "外部リンク", "zh-TW": "外部鏈接", "en-US": "External Links", "zh-CN": "外部链接" };
@@ -128,6 +129,21 @@ data["duration"] = {
     "zh-CN": "持续时间",
 };
 
+data["month"] = {
+    1: { "ja-JP": "1月", "zh-TW": "一月", "en-US": "January", "zh-CN": "一月" },
+    2: { "ja-JP": "2月", "zh-TW": "二月", "en-US": "February", "zh-CN": "二月" },
+    3: { "ja-JP": "3月", "zh-TW": "三月", "en-US": "March", "zh-CN": "三月" },
+    4: { "ja-JP": "4月", "zh-TW": "四月", "en-US": "April", "zh-CN": "四月" },
+    5: { "ja-JP": "5月", "zh-TW": "五月", "en-US": "May", "zh-CN": "五月" },
+    6: { "ja-JP": "6月", "zh-TW": "六月", "en-US": "June", "zh-CN": "六月" },
+    7: { "ja-JP": "7月", "zh-TW": "七月", "en-US": "July", "zh-CN": "七月" },
+    8: { "ja-JP": "8月", "zh-TW": "八月", "en-US": "August", "zh-CN": "八月" },
+    9: { "ja-JP": "9月", "zh-TW": "九月", "en-US": "September", "zh-CN": "九月" },
+    10: { "ja-JP": "10月", "zh-TW": "十月", "en-US": "October", "zh-CN": "十月" },
+    11: { "ja-JP": "11月", "zh-TW": "十一月", "en-US": "November", "zh-CN": "十一月" },
+    12: { "ja-JP": "12月", "zh-TW": "十二月", "en-US": "December", "zh-CN": "十二月" },
+};
+
 
 
 data[""] = {
@@ -137,12 +153,15 @@ data[""] = {
     "zh-CN": "",
 };
 
-var getText = function (key) {
+var getText = function (key, key2) {
     if (!data[key]) {
         console.log("ui language data missing:" + key);
         return key;
     }
-    return data[key][getLang()] || data[key]['en-US'];
+    if (key2 === undefined) {
+        return data[key][getLang()] || data[key]['en-US'];
+    }
+    return data[key][key2][getLang()] || data[key][key2]['en-US'];
 };
 var getLang = function () {
     if (!currentLang) {
@@ -178,7 +197,8 @@ var init = function () {
 var renderAttrText = function (textList) {
     var text = "";
     var attrList = ["normal", "thunder", "gravity", "fire", "ice",
-        "light", "collapse", "theory", "nothing"];
+        "light", "collapse", "theory", "nothing"
+    ];
     _.each(textList, function (o, i) {
         if (o > 0) {
             text += '<span class="attr-text attr-' + attrList[i] + '">' + o + '</span>';
@@ -190,7 +210,7 @@ var renderDesc = function (text) {
     if (!text) {
         return text;
     }
-    return text.replace(/\n/g,'<br />');
+    return text.replace(/\n/g, '<br />');
 };
 
 export {
