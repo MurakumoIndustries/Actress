@@ -34,35 +34,41 @@ var init = function (forceInit) {
                     data[key] = jsondata;
                 });
             }
-            promises.push(import(
-                /* webpackChunkName: "jsondata" */
-                '../data/actress.json').then(jsondata => {
-                    return savedata('actress', jsondata);
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/actress.json').then(jsondata => {
+                    return savedata('actress', jsondata.default);
                 }));
-            promises.push(import(
-                /* webpackChunkName: "jsondata" */
-                '../data/chara.json').then(jsondata => {
-                    return savedata('chara', jsondata);
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/chara.json').then(jsondata => {
+                    return savedata('chara', jsondata.default);
                 }));
-            promises.push(import(
-                /* webpackChunkName: "jsondata" */
-                '../data/weapon.json').then(jsondata => {
-                    return savedata('weapon', jsondata);
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/weapon.json').then(jsondata => {
+                    return savedata('weapon', jsondata.default);
                 }));
-            promises.push(import(
-                /* webpackChunkName: "jsondata" */
-                '../data/equipment.json').then(jsondata => {
-                    return savedata('equipment', jsondata);
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/equipment.json').then(jsondata => {
+                    return savedata('equipment', jsondata.default);
                 }));
-            promises.push(import(
-                /* webpackChunkName: "jsondata" */
-                '../data/skillactive.json').then(jsondata => {
-                    return savedata('skillactive', jsondata);
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/skillactive.json').then(jsondata => {
+                    return savedata('skillactive', jsondata.default);
                 }));
-            promises.push(import(
-                /* webpackChunkName: "jsondata" */
-                '../data/skillpassive.json').then(jsondata => {
-                    return savedata('skillpassive', jsondata);
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/skillpassive.json').then(jsondata => {
+                    return savedata('skillpassive', jsondata.default);
                 }));
             return Promise.all(promises).then(() => {
                 return saveLastUpdate();
