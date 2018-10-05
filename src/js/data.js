@@ -2,7 +2,7 @@ import localForage from "localforage";
 
 var data = {};
 
-const version = 21451;
+const version = 21478;
 var getVersion = function () { return version; };
 
 const baseKey = "MI_Actress_";
@@ -77,7 +77,7 @@ var isDataOutdated = function () {
         lastUpdate = data;
         return import('../data/lastUpdate.json').then(data => {
             var local = lastUpdate;
-            var remote = data;
+            var remote = data.default;
             var isLatest = new Date(local).getTime() >= new Date(remote).getTime();
             lastUpdate = remote;
             if (!local) {

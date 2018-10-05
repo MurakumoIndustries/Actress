@@ -208,7 +208,7 @@ var expand = function ($this) {
         _.each(Data.getAll('chara'), function (o, i) {
             if (o.actressId == actress.id) {
                 var chara = _.extend({}, o);
-                chara.spSkill = _.extend({}, Data.get('skillactive', chara.spSkillId));
+                chara.spSkill = _.extend({}, Data.get('skillactive', chara.defaultSpSkillId));
                 charas.push(chara);
                 if (chara.maxLv >= 80 && !actress.first80CharaId) {
                     actress.first80CharaId = chara.id;

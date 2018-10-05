@@ -1,45 +1,45 @@
 {
-  "name": "Actress",
-  "version": "1.0.0",
-  "description": "Murakumo Industries|Actress List",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --env.production=false --progress --colors --watch",
-    "build": "webpack --env.production --progress --colors --display-error-details"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MurakumoIndustries/Actress.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MurakumoIndustries/Actress/issues"
-  },
-  "homepage": "https://github.com/MurakumoIndustries/Actress#readme",
-  "devDependencies": {
-    "clean-webpack-plugin": "^0.1.18",
-    "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.9",
-    "expose-loader": "^0.7.5",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
-    "html-webpack-plugin": "^2.30.1",
-    "style-loader": "^0.20.2",
-    "uglifyjs-webpack-plugin": "^1.1.8",
-    "underscore-template-loader": "^0.8.0",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.11.0"
-  },
-  "dependencies": {
-    "bootstrap": "^4.1.3",
-    "jquery": "^3.3.1",
-    "localforage": "^1.5.6",
-    "lodash": "^4.17.5",
-    "nprogress": "^0.2.0",
-    "page": "^1.8.3",
-    "popper.js": "^1.12.9"
-  }
+    "name": "Actress",
+    "version": "1.0.0",
+    "description": "Murakumo Industries|Actress List",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "webpack --env.NODE_ENV=development --progress --colors --watch",
+        "build": "webpack --env.NODE_ENV=production --progress --colors --display-error-details"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MurakumoIndustries/Actress.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MurakumoIndustries/Actress/issues"
+    },
+    "homepage": "https://github.com/MurakumoIndustries/Actress#readme",
+    "devDependencies": {
+        "clean-webpack-plugin": "^0.1.18",
+        "copy-webpack-plugin": "^4.5.1",
+        "css-loader": "^1.0.0",
+        "expose-loader": "^0.7.5",
+        "file-loader": "^2.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.4.3",
+        "style-loader": "^0.23.0",
+        "underscore-template-loader": "^1.0.0",
+        "url-loader": "^1.1.1",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.2"
+    },
+    "dependencies": {
+        "bootstrap": "^4.1.3",
+        "jquery": "^3.3.1",
+        "localforage": "^1.5.6",
+        "lodash": "^4.17.11",
+        "nprogress": "^0.2.0",
+        "page": "^1.10.2",
+        "popper.js": "^1.14.4"
+    }
 }
