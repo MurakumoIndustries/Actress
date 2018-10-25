@@ -327,6 +327,25 @@
                         <div>
                             <%=Ui.renderDesc(longWeapon.desc) %>
                         </div>
+                        <% _.each(longWeapon.passiveSkills,function(o,i){
+                                var pSkill=Data.get('skillpassive',o.id);
+                                %>
+                        <div class="form-row">
+                            <div class="col-auto">
+                                <span class='font-weight-light'>Lv.
+                                    <%=o.openLevel%>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <h5>
+                                    <%=pSkill.name %>
+                                </h5>
+                                <div>
+                                    <%=Ui.renderDesc(pSkill.desc) %>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
                     </div>
                     <% }); %>
                 </div>
@@ -387,6 +406,25 @@
                         <div>
                             <%=Ui.renderDesc(shortWeapon.desc) %>
                         </div>
+                        <% _.each(shortWeapon.passiveSkills,function(o,i){
+                                var pSkill=Data.get('skillpassive',o.id);
+                                %>
+                        <div class="form-row">
+                            <div class="col-auto">
+                                <span class='font-weight-light'>Lv.
+                                    <%=o.openLevel%>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <h5>
+                                    <%=pSkill.name %>
+                                </h5>
+                                <div>
+                                    <%=Ui.renderDesc(pSkill.desc) %>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
                     </div>
                     <% }); %>
                 </div>
