@@ -1,15 +1,16 @@
 <div class="card-body p-1 actress-resume" id="actress-resume-<%=actress.id %>" style="display: none;">
-    <div class="row">
+    <% _.each(charas,function(chara,i){
+        var exactress=Data.get('exactress',chara.exActressId) || actress;
+         %>
+    <div class="row chara-resume" id="chara-resume-<%=chara.id %>" style="<%=chara.id==actress.first80CharaId?'':'display: none;' %>">
         <div class="col-12 col-sm-auto">
-            <% _.each(charas,function(chara,i){ %>
-            <img id="chara-img-<%=chara.id %>" class="mr-3 chara-img" src="<%=chara.image&&('../img/chara/' + chara.image + '.png') %>" style="<%=chara.id==actress.first80CharaId?'':'display: none;' %>" />
-            <% }); %>
+            <img class="mr-3" src="<%=chara.image&&('../img/chara/' + chara.image + '.png') %>" />
             <div class="row">
                 <div class="col-auto">
                     <%=Ui.getText("cv") %>
                 </div>
                 <div class="col">
-                    <%=actress.cv %>
+                    <%=exactress.cv %>
                 </div>
             </div>
         </div>
@@ -36,7 +37,7 @@
                         <%=Ui.getText("name") %>
                     </div>
                     <div class="col-8 text-right">
-                        <%=actress.fullName %>
+                        <%=exactress.fullName %>
                     </div>
                 </div>
                 <div class="row">
@@ -44,31 +45,31 @@
                         <%=Ui.getText("birthday") %>
                     </div>
                     <div class="col-8 col-sm-4 col-lg-2 text-right">
-                        <%=actress.birthday %>
+                        <%=exactress.birthday %>
                     </div>
                     <div class="col-4 col-sm-2">
                         <%=Ui.getText("age") %>
                     </div>
                     <div class="col-8 col-sm-4 col-lg-2 text-right">
-                        <%=actress.age %>
+                        <%=exactress.age %>
                     </div>
                     <div class="col-4 col-sm-2">
                         <%=Ui.getText("height") %>
                     </div>
                     <div class="col-8 col-sm-4 col-lg-2 text-right">
-                        <%=actress.resumeHeight %>
+                        <%=exactress.resumeHeight %>
                     </div>
                     <div class="col-4 col-sm-2">
                         <%=Ui.getText("blood") %>
                     </div>
                     <div class="col-8 col-sm-4 col-lg-2 text-right">
-                        <%=actress.blood %>
+                        <%=exactress.blood %>
                     </div>
                     <div class="col-4 col-sm-2">
                         <%=Ui.getText("job") %>
                     </div>
                     <div class="col-8 col-sm-4 col-lg-2 text-right">
-                        <%=actress.job %>
+                        <%=exactress.job %>
                     </div>
                 </div>
             </div>
@@ -81,7 +82,7 @@
                         <%=Ui.getText("hobby") %>
                     </div>
                     <div class="col">
-                        <%=Ui.renderDesc(actress.hobby) %>
+                        <%=Ui.renderDesc(exactress.hobby) %>
                     </div>
                 </div>
                 <div>
@@ -92,7 +93,7 @@
                         <%=Ui.getText("goal") %>
                     </div>
                     <div class="col">
-                        <%=Ui.renderDesc(actress.goal) %>
+                        <%=Ui.renderDesc(exactress.goal) %>
                     </div>
                 </div>
                 <div>
@@ -103,7 +104,7 @@
                         <%=Ui.getText("reason") %>
                     </div>
                     <div class="col">
-                        <%=Ui.renderDesc(actress.reason) %>
+                        <%=Ui.renderDesc(exactress.reason) %>
                     </div>
                 </div>
                 <div>
@@ -114,12 +115,13 @@
                         <%=Ui.getText("appeal") %>
                     </div>
                     <div class="col">
-                        <%=Ui.renderDesc(actress.appeal) %>
+                        <%=Ui.renderDesc(exactress.appeal) %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <% }); %>
     <div>
         <hr>
     </div>
@@ -132,7 +134,9 @@
                 </div>
             </div>
             <ul class="nav nav-tabs chara-tabs" role="tablist">
-                <% _.each(charas,function(chara,i){ %>
+                <% _.each(charas,function(chara,i){
+                    if(!chara.id){return;}
+                     %>
                 <li class="nav-item">
                     <div class="nav-link <%=chara.id==actress.first80CharaId?'active':'' %>" data-toggle="tab" data-target="#chara-tab-<%=chara.id %>" data-id="<%=chara.id %>" style="cursor: pointer;">
                         <img class="mini-icon" src="<%=chara.miniIcon&&('../img/chara/' + chara.miniIcon + '.png') %>" />
@@ -141,7 +145,9 @@
                 <% }); %>
             </ul>
             <div class="tab-content py-2">
-                <% _.each(charas,function(chara,i){ %>
+                <% _.each(charas,function(chara,i){
+                    if(!chara.id){return;}
+                     %>
                 <div id="chara-tab-<%=chara.id %>" class="tab-pane fade <%=chara.id==actress.first80CharaId?'show active':'' %>">
                     <div class="media">
                         <img class="mr-3" src="<%=chara.icon&&('../img/chara/' + chara.icon + '.png') %>" />

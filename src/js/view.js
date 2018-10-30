@@ -66,6 +66,15 @@ var initControl = function () {
 };
 var initAllActress = function (groupType) {
     var actressList = Data.getAll('actress');
+    _.each(actressList, function (actress, i) {
+        actress.exactress = {};
+        _.each(Data.getAll('chara'), function (chara, i) {
+            if (chara.actressId == actress.id && chara.exActressId) {
+                actress.exactress = Data.get('exactress', chara.exActressId);
+                return false;
+            }
+        });
+    });
     var $actressContainer = $('<div class="container-fluid">');
     var template = require('../template/actressCard.html');
     var splitRegex = /[・|\s]/g;
@@ -73,10 +82,10 @@ var initAllActress = function (groupType) {
     switch (groupType) {
         case 'age':
             {
-                var ageList = _.groupBy(actressList, 'age');
+                var ageList = _.groupBy(actressList, function (o) { return o.exactress.age || o.age; });
                 _.each(ageList, function (group, age) {
                     if (isNaN(Number(age)) == false) {
-                        group = _.orderBy(group, [function (o) { return new Date(o.birthday) }], ['desc']);
+                        group = _.orderBy(group, [function (o) { return new Date(o.exactress.birthday || o.birthday) }], ['desc']);
                     }
                     if (age == 29) {
                         age = "<span style='text-decoration-line: line-through;'>" + age + '</span>21';
@@ -98,14 +107,14 @@ var initAllActress = function (groupType) {
         case 'birthday':
             {
                 var monthList = _.groupBy(actressList, function (o) {
-                    if (isNaN(o.age) && o.birthday == "1/1") {
+                    if (isNaN(o.exactress.age || o.age) && (o.exactress.birthday || o.birthday) == "1/1") {
                         return "？？？";
                     }
-                    var month = new Date(o.birthday).getMonth() + 1;
+                    var month = new Date(o.exactress.birthday || o.birthday).getMonth() + 1;
                     return isNaN(month) ? "？？？" : month;
                 });
                 _.each(monthList, function (group, month) {
-                    group = _.orderBy(group, [function (o) { return new Date(o.birthday) }], ['asc']);
+                    group = _.orderBy(group, [function (o) { return new Date(o.exactress.birthday || o.birthday) }], ['asc']);
                     var monthText = isNaN(month) ? month : Ui.getText('month', month);
                     var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + monthText + '</legend>');
                     var $container = $('<div class="row">');
@@ -124,7 +133,29 @@ var initAllActress = function (groupType) {
         case 'height':
             {
                 var heightList = _.groupBy(actressList, function (o) {
-                    return isNaN(o.resumeHeight) ? "？？？" : Math.floor(o.resumeHeight / 5);
+                    return isNaN(o.exactress.resumeHeight || o.resumeHeight) ? "？？？" : Math.floor((o.exactress.resumeHeight || o.resumeHeight) / 5);
+                });
+                _.each(heightList, function (group, height) {
+                    group = _.orderBy(group, ['resumeHeight'], ['asc']);
+                    var heightText = isNaN(height) ? height : height * 5 + "+";
+                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + heightText + '</legend>');
+                    var $container = $('<div class="row">');
+                    _.each(group, function (actress, i) {
+                        var actressItem = template({
+                            actress: actress,
+                            splitRegex: splitRegex
+                        });
+                        $container.append(actressItem);
+                    });
+                    $fieldset.append($container);
+                    $actressContainer.append($fieldset);
+                });
+                break;
+            }
+        case 'modelheight':
+            {
+                var heightList = _.groupBy(actressList, function (o) {
+                    return isNaN(o.exactress.modelHeight || o.modelHeight) ? "？？？" : Math.floor((o.exactress.modelHeight || o.modelHeight) * 100 / 5);
                 });
                 _.each(heightList, function (group, height) {
                     group = _.orderBy(group, ['resumeHeight'], ['asc']);
@@ -145,13 +176,22 @@ var initAllActress = function (groupType) {
             }
         default:
             {
-                $actressContainer.addClass('row');
-                _.each(actressList, function (actress, i) {
-                    var actressItem = template({
-                        actress: actress,
-                        splitRegex: splitRegex
+                var defaultList = _.groupBy(actressList, function (o) {
+                    return (o.collaborationId > 0) ? 1 : 0;
+                });
+                _.each(defaultList, function (group, isCollabo) {
+                    group = _.orderBy(group, ['collaborationId'], ['asc']);
+                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + Ui.getText(isCollabo == 0 ? "originalchara" : "collabochara") + '</legend>');
+                    var $container = $('<div class="row">');
+                    _.each(group, function (actress, i) {
+                        var actressItem = template({
+                            actress: actress,
+                            splitRegex: splitRegex
+                        });
+                        $container.append(actressItem);
                     });
-                    $actressContainer.append(actressItem);
+                    $fieldset.append($container);
+                    $actressContainer.append($fieldset);
                 });
                 break;
             }
@@ -215,6 +255,9 @@ var expand = function ($this) {
                 }
             }
         });
+        if (charas.length <= 0) {
+            charas = [{}];
+        }
 
         actress.longWeapon = [];
         actress.shortWeapon = [];
@@ -247,8 +290,8 @@ var expand = function ($this) {
 
         $('#actress-resume-' + actress.id + ' .chara-tabs [data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var charaId = $(e.target).data('id');
-            $('#actress-resume-' + actress.id + ' .chara-img:not(#chara-img-' + charaId + ')').hide();
-            $('#actress-resume-' + actress.id + ' #chara-img-' + charaId).fadeIn(250);
+            $('#actress-resume-' + actress.id + ' .chara-resume:not(#chara-resume-' + charaId + ')').hide();
+            $('#actress-resume-' + actress.id + ' #chara-resume-' + charaId).fadeIn(250);
         })
     }
 

@@ -2,7 +2,7 @@ import localForage from "localforage";
 
 var data = {};
 
-const version = 21579;
+const version = 21614;
 var getVersion = function () { return version; };
 
 const baseKey = "MI_Actress_";
@@ -20,6 +20,7 @@ var init = function (forceInit) {
                 });
             };
             promises.push(loaddata('actress'));
+            promises.push(loaddata('exactress'));
             promises.push(loaddata('chara'));
             promises.push(loaddata('equipment'));
             promises.push(loaddata('skillactive'));
@@ -39,6 +40,12 @@ var init = function (forceInit) {
                     /* webpackChunkName: "jsondata" */
                     '../data/actress.json').then(jsondata => {
                     return savedata('actress', jsondata.default);
+                }));
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/exactress.json').then(jsondata => {
+                    return savedata('exactress', jsondata.default);
                 }));
             promises.push(
                 import(
