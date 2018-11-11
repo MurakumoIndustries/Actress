@@ -260,6 +260,22 @@ var initAllActress = function (groupType) {
                 .commit();
                 break;
             }
+        case 'cv':
+            {
+                _.chain(actressList)
+                .groupBy(function (o) { return o.exactress.cv || o.cv; })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, cv) {
+                    if (cv == "CHARA VOICE") {
+                        cv = "？？？";
+                    }
+                    renderGroup(cv, group);
+                })
+                .commit();
+                break;
+            }
         default:
             {
                 _.chain(actressList)
