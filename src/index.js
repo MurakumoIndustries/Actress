@@ -1,6 +1,8 @@
 import 'popper.js'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-select'
+import 'bootstrap-select/dist/css/bootstrap-select.min.css'
 
 import './fonts/material-icons.css'
 import './style.css'

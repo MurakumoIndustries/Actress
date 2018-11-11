@@ -57,7 +57,7 @@ var initControl = function () {
     });
     IsShowAllActressChange();
 
-    $('input[type=radio][name=ActressOrder]').change(function () {
+    $('#ActressOrder').change(function () {
         initAllActress(this.value);
         IsShowAllActressChange();
     });
@@ -79,120 +79,196 @@ var initAllActress = function (groupType) {
     var template = require('../template/actressCard.html');
     var splitRegex = /[・|\s]/g;
 
+    var renderGroup = function (label, list) {
+        var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + label + '</legend>');
+        var $container = $('<div class="row">');
+        _.each(list, function (actress, i) {
+            var actressItem = template({
+                actress: actress,
+                splitRegex: splitRegex
+            });
+            $container.append(actressItem);
+        });
+        $fieldset.append($container);
+        $actressContainer.append($fieldset);
+    };
+
     switch (groupType) {
+        case 'weapon':
+            {
+                _.chain(actressList)
+                .groupBy(function (actress) {
+                    var goodLWeapon = 999;
+                    var goodSWeapon = 999;
+                    _.each(Data.getAll('chara'), function (chara, i) {
+                        if (chara.actressId == actress.id && chara.maxLv >= 80) {
+                            goodLWeapon = chara.goodLWeapon;
+                            goodSWeapon = chara.goodSWeapon;
+                            return false;
+                        }
+                    });
+                    return goodSWeapon * 1000 + goodLWeapon;
+                })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, weapon) {
+                    weapon = Number(weapon);
+                    var weaponText = "？？？";
+                    if (weapon == 999999) {
+
+                    }
+                    else if (weapon / 1000 >= 1) {
+                        weaponText = Ui.getText('weaponS', Math.floor(weapon / 1000));
+                    }
+                    else if (weapon > 0) {
+                        weaponText = Ui.getText('weaponL', weapon);
+                    }
+                    renderGroup(weaponText, group);
+                })
+                .commit();
+                break;
+            }
+        case 'attribute':
+            {
+                _.chain(actressList)
+                .groupBy(function (actress) {
+                    var goodAttr = 999;
+                    _.each(Data.getAll('chara'), function (chara, i) {
+                        if (chara.actressId == actress.id && chara.maxLv >= 80) {
+                            goodAttr = chara.goodAttr;
+                            return false;
+                        }
+                    });
+                    return goodAttr;
+                })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, attr) {
+                    attr = Number(attr);
+                    var attrText = "？？？";
+                    if (attr > 4 && attr < 255) {
+                        attrText = Ui.getText('attribute', Number(attr));
+                    }
+                    renderGroup(attrText, group);
+                })
+                .commit();
+                break;
+            }
+        case 'gojyuon':
+            {
+                _.chain(actressList)
+                .groupBy(function (o) { return o.reading[0]; })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, katakana) {
+                    renderGroup(katakana, group);
+                })
+                .commit();
+                break;
+            }
         case 'age':
             {
-                var ageList = _.groupBy(actressList, function (o) { return o.exactress.age || o.age; });
-                _.each(ageList, function (group, age) {
+                _.chain(actressList)
+                .groupBy(function (o) { return o.exactress.age || o.age; })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, age) {
                     if (isNaN(Number(age)) == false) {
                         group = _.orderBy(group, [function (o) { return new Date(o.exactress.birthday || o.birthday) }], ['desc']);
                     }
                     if (age == 29) {
                         age = "<span style='text-decoration-line: line-through;'>" + age + '</span>21';
                     }
-                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + age + '</legend>');
-                    var $container = $('<div class="row">');
-                    _.each(group, function (actress, i) {
-                        var actressItem = template({
-                            actress: actress,
-                            splitRegex: splitRegex
-                        });
-                        $container.append(actressItem);
-                    });
-                    $fieldset.append($container);
-                    $actressContainer.append($fieldset);
-                });
+                    renderGroup(age, group);
+                })
+                .commit();
+                break;
+            }
+        case 'blood':
+            {
+                _.chain(actressList)
+                .groupBy(function (o) { return o.exactress.blood || o.blood; })
+                .toPairs()
+                .orderBy(function (o) {
+                    var order = {
+                        "A": 1,
+                        "B": 2,
+                        "O": 3,
+                        "AB": 4,
+                    }
+                    return order[(o[0] + "").toUpperCase()] || 99;
+                })
+                .fromPairs()
+                .each(function (group, blood) {
+                    renderGroup(blood, group);
+                })
+                .commit();
                 break;
             }
         case 'birthday':
             {
-                var monthList = _.groupBy(actressList, function (o) {
+                _.chain(actressList)
+                .groupBy(function (o) {
                     if (isNaN(o.exactress.age || o.age) && (o.exactress.birthday || o.birthday) == "1/1") {
                         return "？？？";
                     }
                     var month = new Date(o.exactress.birthday || o.birthday).getMonth() + 1;
                     return isNaN(month) ? "？？？" : month;
-                });
-                _.each(monthList, function (group, month) {
+                })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, month) {
                     group = _.orderBy(group, [function (o) { return new Date(o.exactress.birthday || o.birthday) }], ['asc']);
                     var monthText = isNaN(month) ? month : Ui.getText('month', month);
-                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + monthText + '</legend>');
-                    var $container = $('<div class="row">');
-                    _.each(group, function (actress, i) {
-                        var actressItem = template({
-                            actress: actress,
-                            splitRegex: splitRegex
-                        });
-                        $container.append(actressItem);
-                    });
-                    $fieldset.append($container);
-                    $actressContainer.append($fieldset);
-                });
+                    renderGroup(monthText, group);
+                })
+                .commit();
                 break;
             }
         case 'height':
             {
-                var heightList = _.groupBy(actressList, function (o) {
-                    return isNaN(o.exactress.resumeHeight || o.resumeHeight) ? "？？？" : Math.floor((o.exactress.resumeHeight || o.resumeHeight) / 5);
-                });
-                _.each(heightList, function (group, height) {
+                _.chain(actressList)
+                .groupBy(function (o) { return isNaN(o.exactress.resumeHeight || o.resumeHeight) ? "？？？" : Math.floor((o.exactress.resumeHeight || o.resumeHeight) / 5); })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, height) {
                     group = _.orderBy(group, ['resumeHeight'], ['asc']);
                     var heightText = isNaN(height) ? height : height * 5 + "+";
-                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + heightText + '</legend>');
-                    var $container = $('<div class="row">');
-                    _.each(group, function (actress, i) {
-                        var actressItem = template({
-                            actress: actress,
-                            splitRegex: splitRegex
-                        });
-                        $container.append(actressItem);
-                    });
-                    $fieldset.append($container);
-                    $actressContainer.append($fieldset);
-                });
+                    renderGroup(heightText, group);
+                })
+                .commit();
                 break;
             }
         case 'modelheight':
             {
-                var heightList = _.groupBy(actressList, function (o) {
-                    return isNaN(o.exactress.modelHeight || o.modelHeight) ? "？？？" : Math.floor((o.exactress.modelHeight || o.modelHeight) * 100 / 5);
-                });
-                _.each(heightList, function (group, height) {
+                _.chain(actressList)
+                .groupBy(function (o) { return isNaN(o.exactress.modelHeight || o.modelHeight) ? "？？？" : Math.floor((o.exactress.modelHeight || o.modelHeight) * 100 / 5); })
+                .toPairs()
+                .orderBy(o => o[0])
+                .fromPairs()
+                .each(function (group, height) {
                     group = _.orderBy(group, ['resumeHeight'], ['asc']);
                     var heightText = isNaN(height) ? height : height * 5 + "+";
-                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + heightText + '</legend>');
-                    var $container = $('<div class="row">');
-                    _.each(group, function (actress, i) {
-                        var actressItem = template({
-                            actress: actress,
-                            splitRegex: splitRegex
-                        });
-                        $container.append(actressItem);
-                    });
-                    $fieldset.append($container);
-                    $actressContainer.append($fieldset);
-                });
+                    renderGroup(heightText, group);
+                })
+                .commit();
                 break;
             }
         default:
             {
-                var defaultList = _.groupBy(actressList, function (o) {
-                    return (o.collaborationId > 0) ? 1 : 0;
-                });
-                _.each(defaultList, function (group, isCollabo) {
+                _.chain(actressList)
+                .groupBy(function (o) { return (o.collaborationId > 0) ? 1 : 0; })
+                .each(function (group, isCollabo) {
                     group = _.orderBy(group, ['collaborationId'], ['asc']);
-                    var $fieldset = $('<fieldset class="w-100"><legend class="text-black-50 m-0" style="font-size:1.25rem">' + Ui.getText(isCollabo == 0 ? "originalchara" : "collabochara") + '</legend>');
-                    var $container = $('<div class="row">');
-                    _.each(group, function (actress, i) {
-                        var actressItem = template({
-                            actress: actress,
-                            splitRegex: splitRegex
-                        });
-                        $container.append(actressItem);
-                    });
-                    $fieldset.append($container);
-                    $actressContainer.append($fieldset);
-                });
+                    renderGroup(Ui.getText(isCollabo == 0 ? "originalchara" : "collabochara"), group);
+                })
+                .commit();
                 break;
             }
     }
