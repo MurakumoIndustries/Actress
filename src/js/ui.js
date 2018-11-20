@@ -132,6 +132,12 @@ data["duration"] = {
     "en-US": "Duration",
     "zh-CN": "持续时间",
 };
+data["geartype"] = {
+    "ja-JP": "ギア種別",
+    "zh-TW": "裝備類型",
+    "en-US": "Gear Type",
+    "zh-CN": "装备类型",
+};
 
 data["month"] = {
     1: { "ja-JP": "1月", "zh-TW": "一月", "en-US": "January", "zh-CN": "一月" },
@@ -160,6 +166,7 @@ data["weaponS"] = {
     2: { "ja-JP": "ハンマー", "zh-TW": "錘", "en-US": "Hammer", "zh-CN": "锤子" },
     3: { "ja-JP": "ランス", "zh-TW": "長槍", "en-US": "Spear", "zh-CN": "长枪" },
     4: { "ja-JP": "片手剣", "zh-TW": "單手劍", "en-US": "Dagger", "zh-CN": "单手剑" },
+    5: { "ja-JP": "ハンドガン", "zh-TW": "手槍", "en-US": "Handgun", "zh-CN": "手枪" },
 };
 
 data["attribute"] = {
@@ -167,17 +174,18 @@ data["attribute"] = {
     "zh-TW": "屬性",
     "en-US": "Attribute",
     "zh-CN": "属性",
-    1: { "ja-JP": "", "zh-TW": "", "en-US": "Blow", "zh-CN": "" },
-    2: { "ja-JP": "", "zh-TW": "", "en-US": "Slash", "zh-CN": "" },
-    3: { "ja-JP": "", "zh-TW": "", "en-US": "Bullet", "zh-CN": "" },
-    4: { "ja-JP": "", "zh-TW": "", "en-US": "Beam", "zh-CN": "" },
+    0: { "ja-JP": "打撃", "zh-TW": "打擊", "en-US": "Blow", "zh-CN": "打击" },
+    1: { "ja-JP": "斬撃", "zh-TW": "斬擊", "en-US": "Slash", "zh-CN": "斩击" },
+    2: { "ja-JP": "実弾", "zh-TW": "實彈", "en-US": "Bullet", "zh-CN": "实弹" },
+    3: { "ja-JP": "エネルギー", "zh-TW": "能量", "en-US": "Beam", "zh-CN": "能量" },
+    4: { "ja-JP": "無", "zh-TW": "無", "en-US": "Normal", "zh-CN": "无" },
     5: { "ja-JP": "電撃", "zh-TW": "電擊", "en-US": "Thunder", "zh-CN": "电击" },
     6: { "ja-JP": "重力", "zh-TW": "重力", "en-US": "Gravity", "zh-CN": "重力" },
     7: { "ja-JP": "焼夷", "zh-TW": "燒夷", "en-US": "Fire", "zh-CN": "烧夷" },
     8: { "ja-JP": "冷撃", "zh-TW": "冷擊", "en-US": "Ice", "zh-CN": "冷击" },
-    9: { "ja-JP": "", "zh-TW": "", "en-US": "Light", "zh-CN": "" },
-    10: { "ja-JP": "", "zh-TW": "", "en-US": "Collapse", "zh-CN": "" },
-    11: { "ja-JP": "", "zh-TW": "", "en-US": "Theory", "zh-CN": "" },
+    9: { "ja-JP": "撃光", "zh-TW": "", "en-US": "Light", "zh-CN": "" },
+    10: { "ja-JP": "崩壊", "zh-TW": "", "en-US": "Collapse", "zh-CN": "" },
+    11: { "ja-JP": "理論", "zh-TW": "", "en-US": "Theory", "zh-CN": "" },
 };
 
 

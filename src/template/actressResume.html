@@ -269,6 +269,15 @@
                                         <div>
                                             <%=Ui.renderDesc(pSkill.desc) %>
                                         </div>
+                                        <% if(isExperimentalMode){
+                                            _.each(pSkill.detailList,function(text){ %>
+                                        <div>
+                                            <small class="text-black-50">
+                                                <%=text %>
+                                            </small>
+                                        </div>
+                                        <% });
+                                    } %>
                                     </div>
                                 </div>
                                 <% }) %>
@@ -306,6 +315,17 @@
                                             <legend>
                                                 <%=longWeapon.name %>
                                             </legend>
+                                            <div class="row">
+                                                <div class="col-4 col-sm-3">
+                                                    <%=Ui.getText('geartype') %>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <%=Ui.getText('weaponL',longWeapon.type) %>
+                                                </div>
+                                                <div class="col">
+                                                    <%=Ui.getText('attribute',longWeapon.attribute1st) %>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-4 col-sm-3">
                                                     COST
@@ -349,6 +369,15 @@
                                 <div>
                                     <%=Ui.renderDesc(pSkill.desc) %>
                                 </div>
+                                <% if(isExperimentalMode){
+                                    _.each(pSkill.detailList,function(text){ %>
+                                <div>
+                                    <small class="text-black-50">
+                                        <%=text %>
+                                    </small>
+                                </div>
+                                <% });
+                            } %>
                             </div>
                         </div>
                         <% }) %>
@@ -385,6 +414,17 @@
                                             <legend>
                                                 <%=shortWeapon.name %>
                                             </legend>
+                                            <div class="row">
+                                                <div class="col-4 col-sm-3">
+                                                    <%=Ui.getText('geartype') %>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <%=Ui.getText('weaponS',shortWeapon.type) %>
+                                                </div>
+                                                <div class="col">
+                                                    <%=Ui.getText('attribute',shortWeapon.attribute1st) %>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-4 col-sm-3">
                                                     COST
@@ -428,6 +468,15 @@
                                 <div>
                                     <%=Ui.renderDesc(pSkill.desc) %>
                                 </div>
+                                <% if(isExperimentalMode){
+                                    _.each(pSkill.detailList,function(text){ %>
+                                <div>
+                                    <small class="text-black-50">
+                                        <%=text %>
+                                    </small>
+                                </div>
+                                <% });
+                            } %>
                             </div>
                         </div>
                         <% }) %>
@@ -529,6 +578,15 @@
                                 <div>
                                     <%=Ui.renderDesc(pSkill.desc) %>
                                 </div>
+                                <% if(isExperimentalMode){
+                                    _.each(pSkill.detailList,function(text){ %>
+                                <div>
+                                    <small class="text-black-50">
+                                        <%=text %>
+                                    </small>
+                                </div>
+                                <% });
+                            } %>
                             </div>
                         </div>
                         <% }) %>
@@ -628,6 +686,15 @@
                                 <div>
                                     <%=Ui.renderDesc(pSkill.desc) %>
                                 </div>
+                                <% if(isExperimentalMode){
+                                    _.each(pSkill.detailList,function(text){ %>
+                                <div>
+                                    <small class="text-black-50">
+                                        <%=text %>
+                                    </small>
+                                </div>
+                                <% });
+                            } %>
                             </div>
                         </div>
                         <% }) %>

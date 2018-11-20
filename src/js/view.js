@@ -4,7 +4,7 @@ import page from 'page';
 import Ui from './ui.js';
 import Data from './data.js'
 import NProgress from 'nprogress'
-//import './lib/jquery.unveil'
+import Konami from 'Konami'
 
 var inited;
 
@@ -62,8 +62,20 @@ var initControl = function () {
         IsShowAllActressChange();
     });
 
+    new Konami(function () {
+        setIsExperimentalMode(!getIsExperimentalMode());
+        location.reload();
+    });
+
     inited = true;
 };
+var getIsExperimentalMode = function () {
+    return localStorage["ExperimentalMode"] === "true" || sessionStorage["ExperimentalMode"] === "true";
+};
+var setIsExperimentalMode = function (value) {
+    sessionStorage["ExperimentalMode"] = value;
+};
+
 var initAllActress = function (groupType) {
     var actressList = Data.getAll('actress');
     _.each(actressList, function (actress, i) {
@@ -377,6 +389,7 @@ var expand = function ($this) {
             charas: charas,
             Ui: Ui,
             Data: Data,
+            isExperimentalMode: getIsExperimentalMode(),
         });
         $this.find('.card').append(actressResume);
 

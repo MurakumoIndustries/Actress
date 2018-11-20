@@ -1818,6 +1818,11 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
+konami@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/konami/-/konami-1.6.2.tgz#022a52efc23ba74c5b457cf2755af71386f28b29"
+  integrity sha512-6wljx0YS4Opt7HWiaZFfL2rxn17pqvEFZLyHxeGHgb64QwrS8oRkxYkV22kyciVzs3yqQFKWHqsEvLxuhuQlag==
+
 lcid@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
