@@ -2,7 +2,7 @@ import localForage from "localforage";
 
 var data = {};
 
-const version = 21741;
+const version = 21788;
 var getVersion = function () { return version; };
 
 const baseKey = "MI_Actress_";
