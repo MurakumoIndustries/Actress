@@ -166,7 +166,7 @@ data["weaponS"] = {
     2: { "ja-JP": "ハンマー", "zh-TW": "錘", "en-US": "Hammer", "zh-CN": "锤子" },
     3: { "ja-JP": "ランス", "zh-TW": "長槍", "en-US": "Spear", "zh-CN": "长枪" },
     4: { "ja-JP": "片手剣", "zh-TW": "單手劍", "en-US": "Dagger", "zh-CN": "单手剑" },
-    5: { "ja-JP": "ハンドガン", "zh-TW": "手槍", "en-US": "Handgun", "zh-CN": "手枪" },
+    5: { "ja-JP": "拳銃", "zh-TW": "手槍", "en-US": "Handgun", "zh-CN": "手枪" },
 };
 
 data["attribute"] = {
