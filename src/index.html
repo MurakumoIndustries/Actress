@@ -63,9 +63,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle py-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon icon-version"></i>
-                        <span id="version"></span>
+                        <div class="d-inline-block" style="vertical-align: middle;">
+                            <div id="server"></div>
+                            <div class="m-0" style="font-size: 0.75rem;line-height:0.75rem;" id="version"></div>
+                        </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
+                        <h6 class="dropdown-header" data-lang="server">Server</h6>
+                        <div class="dropdown-divider" id="serverDivider"></div>
                         <h6 class="dropdown-header" data-lang="externallink">Link</h6>
                         <a class="dropdown-item" href="https://colopl.co.jp/alicegearaegis/" target="_blank" data-lang="officalsite">OfficalSite</a>
                         <a class="dropdown-item" href="https://alice.colopl.jp/news/show" target="_blank" data-lang="officalannouncement">Offical Announcement</a>

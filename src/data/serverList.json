@@ -1,0 +1,15 @@
+{
+    "pyramid": {
+        "id": "pyramid",
+        "name": "Pyramid",
+        "folder": "pyramid",
+        "version": "21997",
+        "isDefault": true
+    },
+    "sonet": {
+        "id": "sonet",
+        "name": "TESTTESTTEST",
+        "folder": "sonet",
+        "version": "TEST"
+    }
+}

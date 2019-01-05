@@ -1,21 +1,38 @@
 import localForage from "localforage";
+import serverList from "../data/serverList.json";
+
+const baseKey = "MI_Actress_";
+const lastUpdateKey = baseKey + "LastUpdate";
+const serverKey = baseKey + "Server";
 
 var data = {};
 
-const version = 21996;
-var getVersion = function () { return version; };
-
-const baseKey = "MI_Actress_";
-const lastUpdateKey = "lastUpdate_MI_Actress";
+var getAllServers = function () {
+    return serverList;
+}
+var getDefaultServer = function () {
+    return _.find(getAllServers(), function (o) { return o.isDefault });
+}
+var getCurrentServer = function () {
+    return JSON.parse(localStorage.getItem(serverKey) || JSON.stringify(getDefaultServer()));
+}
+var setCurrentServer = function (id) {
+    var server = getAllServers()[id] || getDefaultServer();
+    localStorage.setItem(serverKey, JSON.stringify(server));
+}
 
 var init = function (forceInit) {
     forceInit = !!forceInit;
+    var folder = getCurrentServer().folder;
+    var store = localForage.createInstance({
+        name: baseKey + folder
+    });
     return isDataOutdated().then(function (needForceUpdate) {
         var promises = [];
         if (!forceInit && !needForceUpdate) {
             console.log("All data cached. ");
             var loaddata = function (key) {
-                return localForage.getItem(baseKey + key).then(json => {
+                return store.getItem(baseKey + key).then(json => {
                     data[key] = JSON.parse(json);
                 });
             };
@@ -28,57 +45,57 @@ var init = function (forceInit) {
             promises.push(loaddata('weapon'));
             return Promise.all(promises);
         }
-        return localForage.clear().then(() => {
-            var savedata = function (key, jsondata) {
-                return localForage.setItem(baseKey + key, JSON.stringify(jsondata), function () {
-                    console.log("Get data from web. ", key);
+        return store.clear().then(() => {
+            var savedata = function (key, server, jsondata) {
+                return store.setItem(baseKey + key, JSON.stringify(jsondata), function () {
+                    console.log("Get data from web. ", server, key);
                     data[key] = jsondata;
                 });
             }
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/actress.json').then(jsondata => {
-                    return savedata('actress', jsondata.default);
+                    '../data/' + folder + '/actress.json').then(jsondata => {
+                    return savedata('actress', folder, jsondata.default);
                 }));
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/exactress.json').then(jsondata => {
-                    return savedata('exactress', jsondata.default);
+                    '../data/' + folder + '/exactress.json').then(jsondata => {
+                    return savedata('exactress', folder, jsondata.default);
                 }));
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/chara.json').then(jsondata => {
-                    return savedata('chara', jsondata.default);
+                    '../data/' + folder + '/chara.json').then(jsondata => {
+                    return savedata('chara', folder, jsondata.default);
                 }));
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/weapon.json').then(jsondata => {
-                    return savedata('weapon', jsondata.default);
+                    '../data/' + folder + '/weapon.json').then(jsondata => {
+                    return savedata('weapon', folder, jsondata.default);
                 }));
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/equipment.json').then(jsondata => {
-                    return savedata('equipment', jsondata.default);
+                    '../data/' + folder + '/equipment.json').then(jsondata => {
+                    return savedata('equipment', folder, jsondata.default);
                 }));
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/skillactive.json').then(jsondata => {
-                    return savedata('skillactive', jsondata.default);
+                    '../data/' + folder + '/skillactive.json').then(jsondata => {
+                    return savedata('skillactive', folder, jsondata.default);
                 }));
             promises.push(
                 import(
                     /* webpackChunkName: "jsondata" */
-                    '../data/skillpassive.json').then(jsondata => {
-                    return savedata('skillpassive', jsondata.default);
+                    '../data/' + folder + '/skillpassive.json').then(jsondata => {
+                    return savedata('skillpassive', folder, jsondata.default);
                 }));
             return Promise.all(promises).then(() => {
-                return saveLastUpdate();
+                return store.setItem(lastUpdateKey, lastUpdate)
             });
         });
     });
@@ -86,9 +103,13 @@ var init = function (forceInit) {
 
 var lastUpdate;
 var isDataOutdated = function () {
-    return localForage.getItem(lastUpdateKey).then(function (data) {
+    var folder = getCurrentServer().folder;
+    var store = localForage.createInstance({
+        name: baseKey + folder
+    });
+    return store.getItem(lastUpdateKey).then(function (data) {
         lastUpdate = data;
-        return import('../data/lastUpdate.json').then(data => {
+        return import('../data/' + folder + '/lastUpdate.json').then(data => {
             var local = lastUpdate;
             var remote = data.default;
             var isLatest = new Date(local).getTime() >= new Date(remote).getTime();
@@ -99,9 +120,6 @@ var isDataOutdated = function () {
             return isLatest == false;
         });
     });
-};
-var saveLastUpdate = function () {
-    return localForage.setItem(lastUpdateKey, lastUpdate)
 };
 
 var getAll = function (type) {
@@ -116,19 +134,14 @@ var get = function (type, id) {
     return _.find(getAll(type), function (o) { return o.id == id });
 };
 
-export {
-    getVersion,
+const Data = {
+    getAllServers,
+    getCurrentServer,
+    setCurrentServer,
     init,
-    isDataOutdated,
-    saveLastUpdate,
     getAll,
     get
 };
-export default {
-    getVersion,
-    init,
-    isDataOutdated,
-    saveLastUpdate,
-    getAll,
-    get
-};
+
+export { Data };
+export default Data;
