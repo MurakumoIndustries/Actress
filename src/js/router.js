@@ -34,22 +34,24 @@ var init = function () {
         var serverPage = function (ctx) {
             console.log("route:server", ctx);
             Data.setCurrentServer(ctx.params.server);
-            Data.init(true);
             page.redirect('/');
         };
         page('/server/:server', serverPage);
         page.exit('/server/:server', function () {
-            location.reload();
+            Data.init().then(function () {
+                location.reload()
+            });
         });
 
         var forceInitPage = function (ctx) {
             console.log("route:forceInit", ctx);
-            Data.init(true);
             page.redirect('/');
         };
         page('/init/force', forceInitPage);
         page.exit('/init/force', function () {
-            location.reload();
+            Data.init(true).then(function () {
+                location.reload()
+            });
         });
 
         page('/', function () {
