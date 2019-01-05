@@ -3,6 +3,7 @@ import _ from 'lodash';
 import page from 'page';
 import Ui from './ui.js';
 import { Data } from './data.js'
+import NProgress from 'nprogress'
 
 var init = function () {
     import(
@@ -38,7 +39,9 @@ var init = function () {
         };
         page('/server/:server', serverPage);
         page.exit('/server/:server', function () {
+            NProgress.start();
             Data.init().then(function () {
+                NProgress.done();
                 location.reload()
             });
         });
@@ -49,7 +52,9 @@ var init = function () {
         };
         page('/init/force', forceInitPage);
         page.exit('/init/force', function () {
-            Data.init(true).then(function () {
+            NProgress.start();
+            Data.init().then(function () {
+                NProgress.done();
                 location.reload()
             });
         });

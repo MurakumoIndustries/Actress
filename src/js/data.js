@@ -30,7 +30,7 @@ var init = function (forceInit) {
     return isDataOutdated().then(function (needForceUpdate) {
         var promises = [];
         if (!forceInit && !needForceUpdate) {
-            console.log("All data cached. ");
+            console.log("All data cached. ", folder);
             var loaddata = function (key) {
                 return store.getItem(baseKey + key).then(json => {
                     data[key] = JSON.parse(json);
