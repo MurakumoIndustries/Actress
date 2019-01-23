@@ -8,8 +8,8 @@
     },
     "sonet": {
         "id": "sonet",
-        "name": "TESTTESTTEST",
+        "name": "So-net",
         "folder": "sonet",
-        "version": "TEST"
+        "version": "7"
     }
 }

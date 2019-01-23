@@ -94,25 +94,25 @@ data["job"] = {
 };
 data["hobby"] = {
     "ja-JP": "趣味・特技",
-    "zh-TW": "興趣特長",
+    "zh-TW": "興趣",
     "en-US": "Hobbies & Skills",
     "zh-CN": "特长爱好",
 };
 data["goal"] = {
     "ja-JP": "将来の目標",
-    "zh-TW": "將來的目標",
+    "zh-TW": "未來的目標",
     "en-US": "Future Goal",
     "zh-CN": "将来的目标",
 };
 data["reason"] = {
     "ja-JP": "アクトレスを志した理由",
-    "zh-TW": "求職理由",
+    "zh-TW": "想當Actress的理由",
     "en-US": "Reason for Application",
     "zh-CN": "求职理由",
 };
 data["appeal"] = {
     "ja-JP": "自己PR",
-    "zh-TW": "自我介紹",
+    "zh-TW": "自我展現",
     "en-US": "Personal Statement",
     "zh-CN": "自我介绍",
 };
@@ -136,7 +136,7 @@ data["duration"] = {
 };
 data["geartype"] = {
     "ja-JP": "ギア種別",
-    "zh-TW": "裝備類型",
+    "zh-TW": "武裝種別",
     "en-US": "Gear Type",
     "zh-CN": "装备类型",
 };
@@ -156,16 +156,16 @@ data["month"] = {
     12: { "ja-JP": "12月", "zh-TW": "十二月", "en-US": "December", "zh-CN": "十二月" },
 };
 
-data["weapon"] = { "ja-JP": "武装", "zh-TW": "武器", "en-US": "Weapon", "zh-CN": "武器" }
+data["weapon"] = { "ja-JP": "武装", "zh-TW": "武裝", "en-US": "Weapon", "zh-CN": "武器" }
 data["weaponL"] = {
     1: { "ja-JP": "ライフル", "zh-TW": "步槍", "en-US": "Rifle", "zh-CN": "步枪" },
     2: { "ja-JP": "バズーカ", "zh-TW": "火箭筒", "en-US": "Bazooka", "zh-CN": "火箭筒" },
     3: { "ja-JP": "デュアル", "zh-TW": "雙槍", "en-US": "Twin", "zh-CN": "双枪" },
-    4: { "ja-JP": "スナイパー", "zh-TW": "狙擊", "en-US": "Sniper", "zh-CN": "狙击" },
+    4: { "ja-JP": "スナイパー", "zh-TW": "狙擊槍", "en-US": "Sniper", "zh-CN": "狙击" },
 };
 data["weaponS"] = {
     1: { "ja-JP": "両手剣", "zh-TW": "雙手劍", "en-US": "Sword", "zh-CN": "双手剑" },
-    2: { "ja-JP": "ハンマー", "zh-TW": "錘", "en-US": "Hammer", "zh-CN": "锤子" },
+    2: { "ja-JP": "ハンマー", "zh-TW": "大鎚", "en-US": "Hammer", "zh-CN": "锤子" },
     3: { "ja-JP": "ランス", "zh-TW": "長槍", "en-US": "Spear", "zh-CN": "长枪" },
     4: { "ja-JP": "片手剣", "zh-TW": "單手劍", "en-US": "Dagger", "zh-CN": "单手剑" },
     5: { "ja-JP": "拳銃", "zh-TW": "手槍", "en-US": "Handgun", "zh-CN": "手枪" },
@@ -183,11 +183,11 @@ data["attribute"] = {
     4: { "ja-JP": "無", "zh-TW": "無", "en-US": "Normal", "zh-CN": "无" },
     5: { "ja-JP": "電撃", "zh-TW": "電擊", "en-US": "Thunder", "zh-CN": "电击" },
     6: { "ja-JP": "重力", "zh-TW": "重力", "en-US": "Gravity", "zh-CN": "重力" },
-    7: { "ja-JP": "焼夷", "zh-TW": "燒夷", "en-US": "Fire", "zh-CN": "烧夷" },
-    8: { "ja-JP": "冷撃", "zh-TW": "冷擊", "en-US": "Ice", "zh-CN": "冷击" },
-    9: { "ja-JP": "撃光", "zh-TW": "", "en-US": "Light", "zh-CN": "" },
-    10: { "ja-JP": "崩壊", "zh-TW": "", "en-US": "Collapse", "zh-CN": "" },
-    11: { "ja-JP": "理論", "zh-TW": "", "en-US": "Theory", "zh-CN": "" },
+    7: { "ja-JP": "焼夷", "zh-TW": "燃燒", "en-US": "Fire", "zh-CN": "烧夷" },
+    8: { "ja-JP": "冷撃", "zh-TW": "冷凍", "en-US": "Ice", "zh-CN": "冷击" },
+    9: { "ja-JP": "撃光", "zh-TW": "擊光", "en-US": "Light", "zh-CN": "" },
+    10: { "ja-JP": "崩壊", "zh-TW": "崩壞", "en-US": "Collapse", "zh-CN": "" },
+    11: { "ja-JP": "理論", "zh-TW": "理論", "en-US": "Theory", "zh-CN": "" },
 };
 
 

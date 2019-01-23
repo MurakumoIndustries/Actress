@@ -38,7 +38,7 @@ var initControl = function () {
     var showOnlyNamed = function () {
         $('.actress-item').each(function (i, o) {
             var name = $(o).data('name');
-            if (name.indexOf("アクトレス") >= 0) {
+            if (name.indexOf("アクトレス") >= 0 || name.indexOf("Actress") >= 0) {
                 $(o).fadeOut(500, function () {
                     if ($(o).siblings('.actress-item:visible').length < 1) {
                         $(o).parents('fieldset:first').fadeOut(500);
