@@ -14,11 +14,16 @@ var getDefaultServer = function () {
     return _.find(getAllServers(), function (o) { return o.isDefault });
 }
 var getCurrentServer = function () {
-    return JSON.parse(localStorage.getItem(serverKey) || JSON.stringify(getDefaultServer()));
+    var currentServerID = localStorage.getItem(serverKey);
+    if (!currentServerID) {
+        return getDefaultServer();
+    }
+    var current = _.find(getAllServers(), function (o) { return o.id == currentServerID });
+    return current || getDefaultServer();
 }
 var setCurrentServer = function (id) {
     var server = getAllServers()[id] || getDefaultServer();
-    localStorage.setItem(serverKey, JSON.stringify(server));
+    localStorage.setItem(serverKey, server.id);
 }
 
 var init = function (forceInit) {
