@@ -128,6 +128,12 @@ data["count"] = {
     "en-US": "Count",
     "zh-CN": "次数",
 };
+data["needPoint"] = {
+    "ja-JP": "必要な結合粒子",
+    "zh-TW": "結合粒子需求量",
+    "en-US": "Particle Required",
+    "zh-CN": "结合粒子需求量",
+};
 data["duration"] = {
     "ja-JP": "持続期間",
     "zh-TW": "持續時間",

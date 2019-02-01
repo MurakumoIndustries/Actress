@@ -223,13 +223,17 @@
                                     <fieldset>
                                         <legend>
                                             <%=chara.spSkill.name %>
+                                            <span class="float-right">
+                                                <% var activateLimit=(chara.spSkill.activateLimit==-1?"∞":chara.spSkill.activateLimit) %>
+                                                <%=activateLimit %>/<%=activateLimit %>
+                                            </span>
                                         </legend>
                                         <div class="row">
                                             <div class="col-auto">
-                                                <%=Ui.getText("count") %>
+                                                <%=Ui.getText("needPoint") %>
                                             </div>
                                             <div class="col">
-                                                <%=(chara.spSkill.activateLimit==-1?"∞":chara.spSkill.activateLimit) %>
+                                                <%=chara.spSkill.needPoint %>
                                             </div>
                                             <div class="col-auto">
                                                 <%=Ui.getText("duration") %>
