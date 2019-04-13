@@ -196,6 +196,12 @@ data["attribute"] = {
     11: { "ja-JP": "理論", "zh-TW": "理論", "en-US": "Theory", "zh-CN": "" },
 };
 
+data["gear"] = {
+    "ja-JP": "ギア",
+    "zh-TW": "武裝",
+    "en-US": "Gear",
+    "zh-CN": "装备",
+};
 
 
 data[""] = {
@@ -224,6 +230,14 @@ var getLang = function () {
         setLang();
     }
     return currentLang;
+};
+var getLangText = function () {
+    if (!currentLang) {
+        setLang();
+    }
+    return _.find(supportedLang, function (o) {
+        return o.key == currentLang;
+    }).text;
 };
 var setLang = function (lang) {
     lang = lang || localStorage["uilang"] || navigator.language || navigator.browserLanguage;
@@ -269,21 +283,16 @@ var renderDesc = function (text) {
     return text.replace(/\n/g, '<br />');
 };
 
-export {
+const Ui = {
     supportedLang,
     getText,
     getLang,
+    getLangText,
     setLang,
     init,
     renderAttrText,
     renderDesc,
 };
-export default {
-    supportedLang,
-    getText,
-    getLang,
-    setLang,
-    init,
-    renderAttrText,
-    renderDesc,
-};
+
+export { Ui };
+export default Ui;

@@ -1,45 +1,10 @@
-html {
-    height: 100%;
-}
-
 body {
     font-family: -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
-    height: 100%;
 }
 
-.panel-heading {
-    cursor: pointer;
-}
-
-#main {
-    padding-top: 56px;
-    overflow: auto;
-    position: relative;
-}
-
-.actress-item {
-    transition: all 0.5s ease-in-out, opacity 0ms;
-}
-
-.actress-item.actress-detail {
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-
-.actress-item .card {
-    min-height: 4.5rem;
-}
-
-.actress-item .actress-header {
-    white-space: nowrap;
-}
-
-.actress-resume {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.actress-resume .actress-resume-singleline {
-    white-space: nowrap;
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .attr-text.attr-normal {}
@@ -65,63 +30,3 @@ body {
 .attr-text.attr-collapse {}
 
 .attr-text.attr-theory {}
-
-.mini-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-}
-
-.another-icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-    filter: drop-shadow(1px 1px 1px black);
-    height: 3rem;
-}
-
-.name-plate-container {
-    background: linear-gradient(to bottom, transparent 27.5%, black 27.5%, black 45%, rgba(1, 1, 1, 0.75) 45%);
-    width: 100%;
-    margin: 0.5rem 1rem;
-}
-
-.name-plate {
-    width: 100%;
-    height: 5rem;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-}
-
-@media (min-width: 1024px) {
-    .name-plate {
-        height: 7.5rem;
-    }
-}
-
-/* icons */
-
-.icon {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    vertical-align: bottom;
-}
-
-.icon.icon-version {
-    width: 2.5rem;
-    height: 2.5rem;
-    opacity: 0.5;
-    vertical-align: middle;
-    background-image: url(./img/version.png);
-}
-
-.icon.icon-murakumo {
-    width: 2.5rem;
-    height: 2.5rem;
-    vertical-align: middle;
-    background-image: url(./img/murakumo.png);
-}

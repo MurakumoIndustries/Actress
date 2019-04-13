@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -30,6 +31,11 @@ module.exports = env => {
                 //chunks: 'all'
             }
         },
+        resolve: {
+            alias: env.NODE_ENV !== 'production' ? {
+                'vue$': 'vue/dist/vue.esm.js'
+            } : {}
+        },
         module: {
             rules: [{
                     test: /\.(ttf|eot|woff|woff2)$/,
@@ -39,18 +45,9 @@ module.exports = env => {
                     },
                 },
                 {
-                    test: require.resolve('jquery'),
-                    use: [{
-                        loader: 'expose-loader',
-                        options: 'jQuery'
-                    }, {
-                        loader: 'expose-loader',
-                        options: '$'
-                    }]
-                },
-                {
                     test: /\.css$/,
-                    use: [{
+                    use: [
+                        env.NODE_ENV !== 'production' ? 'vue-style-loader' : {
                             loader: MiniCssExtractPlugin.loader,
                             options: {
                                 // you can specify a publicPath here
@@ -71,23 +68,21 @@ module.exports = env => {
                     }]
                 },
                 {
-                    test: /\.(tpl|html)$/,
-                    include: [
-                        path.resolve(__dirname, "src/template")
-                    ],
-                    use: [{
-                        loader: 'underscore-template-loader',
-                        options: {
-                            globalLodash: true,
-                            root: '/assets/img',
-                            parseDynamicRoutes: true,
-                        }
-                    }]
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
+                    options: {
+                        loaders: {
+                            
+                        },
+                        extractCSS: true,
+                        // other vue-loader options go here
+                    }
                 }
             ]
         },
         plugins: [
             new CleanWebpackPlugin(['docs'], { exclude: ['.nojekyll'] }),
+            new VueLoaderPlugin(),
             new HtmlWebpackPlugin({
                 template: './src/index.html'
             }),
