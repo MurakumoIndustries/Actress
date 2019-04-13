@@ -314,6 +314,7 @@
 import { Data } from "../js/data.js";
 import { Event } from "../js/event.js";
 import $ from "jquery";
+import page from "page";
 
 import Gear from "./Gear.vue";
 
@@ -355,6 +356,9 @@ export default {
 
             $vm.$nextTick(function() {
                 $($vm.$el).modal("show");
+                $($vm.$el).on("hide.bs.modal", function() {
+                    page.show("/");
+                });
             });
         });
     },
