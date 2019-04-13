@@ -75,6 +75,9 @@
 .modal-content[data-v-6a6ae046] {
     background: rgba(255, 255, 255, 0.75);
 }
+.actress-resume .chara-tabs[data-v-6a6ae046] {
+    background: rgba(255, 255, 255, 0.75);
+}
 .actress-resume .close[data-v-6a6ae046] {
     position: absolute;
     right: 0;

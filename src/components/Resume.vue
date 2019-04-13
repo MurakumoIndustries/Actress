@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="actress-resume">
-                    <ul class="nav nav-tabs chara-tabs">
+                    <ul class="nav sticky-top nav-tabs chara-tabs">
                         <li class="nav-item" v-for="chara in charas" v-bind:key="chara.id">
                             <div
                                 v-bind:class="['py-1','px-2','nav-link',{'active':currentTabId==chara.id}]"
@@ -370,6 +370,10 @@ export default {
 </script>
 <style scoped>
 .modal-content {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.actress-resume .chara-tabs {
     background: rgba(255, 255, 255, 0.75);
 }
 
