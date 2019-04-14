@@ -45,6 +45,8 @@
         "offline-plugin": "^5.0.6",
         "page": "^1.10.2",
         "popper.js": "^1.14.4",
-        "vue": "^2.6.10"
+        "vue": "^2.6.10",
+        "workbox-routing": "^4.2.0",
+        "workbox-strategies": "^4.2.0"
     }
 }

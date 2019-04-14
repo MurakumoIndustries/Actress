@@ -18,13 +18,14 @@ import Router from './js/router.js';
 import Data from './js/data.js'
 
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-OfflinePluginRuntime.install();
 
 NProgress.set(0.1);
 Ui.init();
 Vue.prototype.Ui = Ui;
 NProgress.set(0.3);
 Data.init().then(function () {
+    NProgress.set(0.6);
+    OfflinePluginRuntime.install();
     NProgress.set(0.9);
     Router.init();
     NProgress.done();

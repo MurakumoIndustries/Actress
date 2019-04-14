@@ -45,6 +45,7 @@ module.exports = env => {
             ServiceWorker: {
                 cacheName: "MI_Actress",
                 events: true,
+                entry: path.join(__dirname, './src/js/sw-img.js')
             }
         }));
     }
