@@ -42,6 +42,10 @@ module.exports = env => {
         plugins.push(new OfflinePlugin({
             appShell: '/Actress/',
             autoUpdate: true,
+            ServiceWorker: {
+                cacheName: "MI_Actress",
+                events: true,
+            }
         }));
     }
 
