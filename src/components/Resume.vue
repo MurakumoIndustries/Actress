@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="actress-resume">
-                    <ul class="nav sticky-top nav-tabs chara-tabs">
+                    <ul class="nav sticky-top nav-tabs chara-tabs pr-0 mr-0">
                         <li class="nav-item" v-for="chara in charas" v-bind:key="chara.id">
                             <div
                                 v-bind:class="['py-1','px-2','nav-link',{'active':currentTabId==chara.id}]"
@@ -329,8 +329,8 @@ export default {
     created: function() {
         var $vm = this;
         Event.$on("render", function(id) {
-            $vm.actress = Data.get("actress", id);
-            if (!$vm.actress) {
+            $vm.actress = Data.get("actress", id) || {};
+            if (!$vm.actress || !$vm.actress.id) {
                 return;
             }
             $vm.charas = [];

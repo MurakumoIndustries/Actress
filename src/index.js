@@ -17,6 +17,9 @@ import Ui from './js/ui.js';
 import Router from './js/router.js';
 import Data from './js/data.js'
 
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+OfflinePluginRuntime.install();
+
 NProgress.set(0.1);
 Ui.init();
 Vue.prototype.Ui = Ui;

@@ -84,11 +84,13 @@
                             class="dropdown-item"
                             href="https://colopl.co.jp/alicegearaegis/"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >{{Ui.getText("officalsite")}}</a>
                         <a
                             class="dropdown-item"
                             href="https://alice.colopl.jp/news/show"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >{{Ui.getText("officalannouncement")}}</a>
                     </ul>
                 </li>

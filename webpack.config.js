@@ -4,6 +4,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OfflinePlugin = require('offline-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = env => {
     console.log('NODE_ENV: ', env.NODE_ENV) // true
@@ -12,6 +14,35 @@ module.exports = env => {
     }
     else {
         console.log("debug");
+    }
+    var plugins = [
+        new CleanWebpackPlugin(['docs'], { exclude: ['.nojekyll'] }),
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].[contenthash].css",
+            chunkFilename: "[id].[contenthash].css"
+        }),
+    ];
+    if (env.NODE_ENV === 'production') {
+        plugins.push(new OfflinePlugin({
+            appShell: '/Actress/',
+            autoUpdate: true,
+        }));
+        plugins.push(
+            new WebpackPwaManifest({
+                short_name: "MI|Actress",
+                short_name: "MI|Actress",
+                theme_color: "#FAFAFA",
+                background_color: '#FAFAFA',
+                icons: [{
+                    src: path.resolve('./src/img/murakumo.png'),
+                    sizes: [96, 128, 192, 256, 384, 512, 1024] // multiple sizes
+                }]
+            })
+        );
     }
 
     return {
@@ -72,7 +103,7 @@ module.exports = env => {
                     loader: 'vue-loader',
                     options: {
                         loaders: {
-                            
+
                         },
                         extractCSS: true,
                         // other vue-loader options go here
@@ -80,16 +111,6 @@ module.exports = env => {
                 }
             ]
         },
-        plugins: [
-            new CleanWebpackPlugin(['docs'], { exclude: ['.nojekyll'] }),
-            new VueLoaderPlugin(),
-            new HtmlWebpackPlugin({
-                template: './src/index.html'
-            }),
-            new MiniCssExtractPlugin({
-                filename: "[name].[contenthash].css",
-                chunkFilename: "[id].[contenthash].css"
-            }),
-        ]
+        plugins: plugins
     }
 };
