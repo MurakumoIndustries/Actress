@@ -27,13 +27,9 @@ module.exports = env => {
         }),
     ];
     if (env.NODE_ENV === 'production') {
-        plugins.push(new OfflinePlugin({
-            appShell: '/Actress/',
-            autoUpdate: true,
-        }));
         plugins.push(
             new WebpackPwaManifest({
-                short_name: "MI|Actress",
+                name: "MI|Actress",
                 short_name: "MI|Actress",
                 theme_color: "#FAFAFA",
                 background_color: '#FAFAFA',
@@ -43,6 +39,10 @@ module.exports = env => {
                 }]
             })
         );
+        plugins.push(new OfflinePlugin({
+            appShell: '/Actress/',
+            autoUpdate: true,
+        }));
     }
 
     return {
