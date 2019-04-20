@@ -85,13 +85,25 @@
                             href="https://colopl.co.jp/alicegearaegis/"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >{{Ui.getText("officalsite")}}</a>
+                        >
+                            <span class="mr-4">{{Ui.getText("officalsite")}}</span>
+                            <i
+                                class="material-icons text-black-50"
+                                style="position:absolute;right:1rem;"
+                            >open_in_new</i>
+                        </a>
                         <a
                             class="dropdown-item"
                             href="https://alice.colopl.jp/news/show"
                             target="_blank"
                             rel="noopener noreferrer"
-                        >{{Ui.getText("officalannouncement")}}</a>
+                        >
+                            <span class="mr-4">{{Ui.getText("officalannouncement")}}</span>
+                            <i
+                                class="material-icons text-black-50"
+                                style="position:absolute;right:1rem;"
+                            >open_in_new</i>
+                        </a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
