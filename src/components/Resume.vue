@@ -329,8 +329,12 @@ export default {
     created: function() {
         var $vm = this;
         Event.$on("render", function(id) {
+            var isModelShow = !!($vm.actress && $vm.actress.id);
             $vm.actress = Data.get("actress", id) || {};
             if (!$vm.actress || !$vm.actress.id) {
+                if (isModelShow) {
+                    $($vm.$el).modal("hide");
+                }
                 return;
             }
             $vm.charas = [];
