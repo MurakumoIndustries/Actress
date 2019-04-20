@@ -25,21 +25,17 @@ module.exports = env => {
             filename: "[name].[contenthash].css",
             chunkFilename: "[id].[contenthash].css"
         }),
-    ];
-    if (env.NODE_ENV === 'production') {
-        plugins.push(
-            new WebpackPwaManifest({
-                name: "MI|Actress",
-                short_name: "MI|Actress",
-                theme_color: "#FAFAFA",
-                background_color: '#FAFAFA',
-                icons: [{
-                    src: path.resolve('./src/img/murakumo.png'),
-                    sizes: [96, 128, 192, 256, 384, 512, 1024] // multiple sizes
-                }]
-            })
-        );
-        plugins.push(new OfflinePlugin({
+        new WebpackPwaManifest({
+            name: "MI|Actress",
+            short_name: "MI|Actress",
+            theme_color: "#FAFAFA",
+            background_color: '#FAFAFA',
+            icons: [{
+                src: path.resolve('./src/img/murakumo.png'),
+                sizes: [96, 128, 192, 256, 384, 512, 1024] // multiple sizes
+            }]
+        }),
+        new OfflinePlugin({
             appShell: '/Actress/',
             autoUpdate: true,
             ServiceWorker: {
@@ -47,8 +43,8 @@ module.exports = env => {
                 events: true,
                 entry: path.join(__dirname, './src/js/sw-img.js')
             }
-        }));
-    }
+        })
+    ];
 
     return {
         mode: env.NODE_ENV || 'production',

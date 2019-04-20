@@ -1,4 +1,3 @@
-import $ from "jquery";
 import _ from 'lodash';
 
 var supportedLang = [{
@@ -246,23 +245,20 @@ var setLang = function (lang) {
     }
     currentLang = lang;
     localStorage["uilang"] = lang;
-    $('#currentLang').text(_.find(supportedLang, function (o) {
-        return o.key == lang;
-    }).text);
 };
 var init = function () {
-    $('[data-lang]').each(function () {
-        var $this = $(this);
-        var key = $this.data("lang");
-        var value = getText(key);
-        var target = $this.data("lang-target");
-        if (target) {
-            $this.attr(target, value);
-        }
-        else {
-            $this.text(value);
-        }
-    });
+    //$('[data-lang]').each(function () {
+    //    var $this = $(this);
+    //    var key = $this.data("lang");
+    //    var value = getText(key);
+    //    var target = $this.data("lang-target");
+    //    if (target) {
+    //        $this.attr(target, value);
+    //    }
+    //    else {
+    //        $this.text(value);
+    //    }
+    //});
 };
 var renderAttrText = function (textList) {
     var text = "";

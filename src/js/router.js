@@ -1,4 +1,3 @@
-import $ from "jquery";
 import _ from 'lodash';
 import page from 'page';
 import Ui from './ui.js';

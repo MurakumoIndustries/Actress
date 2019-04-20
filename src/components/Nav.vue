@@ -104,13 +104,16 @@
                         aria-expanded="false"
                     >
                         <i class="material-icons">language</i>
-                        <span id="currentLang">{{Ui.getLangText()}}</span>
+                        <span id="currentLang">{{langText}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#!/lang/ja-JP">日本語</a>
-                        <a class="dropdown-item" href="#!/lang/zh-TW">正體中文</a>
-                        <a class="dropdown-item" href="#!/lang/en-US">English</a>
-                        <a class="dropdown-item" href="#!/lang/zh-CN">简体中文</a>
+                        <a
+                            v-for="lang in Ui.supportedLang"
+                            v-bind:key="lang.key"
+                            class="dropdown-item"
+                            v-bind:href="'#!/lang/'+lang.key"
+                            @click="langText=lang.text"
+                        >{{lang.text}}</a>
                     </ul>
                 </li>
             </ul>
@@ -121,12 +124,15 @@
 <script>
 import { Data } from "../js/data.js";
 import { Event } from "../js/event.js";
+import { Ui } from "../js/ui.js";
 import $ from "jquery";
 
 export default {
     data: function() {
+        var langText = Ui.getLangText();
         return {
-            actressOrder: "default"
+            actressOrder: "default",
+            langText: langText
         };
     },
     mounted: function() {
