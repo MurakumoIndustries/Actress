@@ -202,6 +202,20 @@ data["gear"] = {
     "zh-CN": "装备",
 };
 
+data["costume"] = {
+    "ja-JP": "コスチューム",
+    "zh-TW": "衣裝",
+    "en-US": "Costume",
+    "zh-CN": "服装",
+};
+
+data["accessory"] = {
+    "ja-JP": "アクセサリー",
+    "zh-TW": "飾品",
+    "en-US": "Accessory",
+    "zh-CN": "饰品",
+};
+
 
 data[""] = {
     "ja-JP": "",

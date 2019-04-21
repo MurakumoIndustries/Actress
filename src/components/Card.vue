@@ -5,7 +5,10 @@
             v-bind:style="{background:'linear-gradient(135deg, '+actress.imageColor+', '+actress.imageColor+' 2rem, transparent 4rem, transparent)'}"
         >
             <div class="access-denied" v-if="isAccessDenied"></div>
-            <div class="card-body p-1 actress-header" @click="showResume(actress.id)">
+            <div
+                :class="['card-body p-1',{'access-denied-mask':isAccessDenied}]"
+                @click="showResume(actress.id)"
+            >
                 <h5 class="m-0">
                     <img
                         style="width:72px;height:72px;"
@@ -116,18 +119,6 @@ export default {
     min-height: 4.5rem;
     position: relative;
     cursor: pointer;
-}
-
-.actress-item .card .access-denied {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.9;
-    position: absolute;
-    z-index: 999;
-    background-image: url(../img/accessDenied.png);
-    cursor: not-allowed;
 }
 
 .actress-item .actress-header {

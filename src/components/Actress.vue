@@ -10,7 +10,7 @@
                 />
             </div>
         </fieldset>
-        <Resume/>
+        <Detail/>
     </div>
 </template>
 
@@ -20,7 +20,7 @@ import { Event } from "../js/event.js";
 import { Ui } from "../js/ui.js";
 
 import Card from "./Card.vue";
-import Resume from "./Resume.vue";
+import Detail from "./Detail.vue";
 
 export default {
     data: function() {
@@ -357,7 +357,7 @@ export default {
     },
     components: {
         Card,
-        Resume
+        Detail
     }
 };
 </script>

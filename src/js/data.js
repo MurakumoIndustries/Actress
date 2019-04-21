@@ -44,10 +44,12 @@ var init = function (forceInit) {
             promises.push(loaddata('actress'));
             promises.push(loaddata('exactress'));
             promises.push(loaddata('chara'));
+            promises.push(loaddata('weapon'));
             promises.push(loaddata('equipment'));
             promises.push(loaddata('skillactive'));
             promises.push(loaddata('skillpassive'));
-            promises.push(loaddata('weapon'));
+            promises.push(loaddata('costume'));
+            promises.push(loaddata('accessory'));
             return Promise.all(promises);
         }
         return store.clear().then(() => {
@@ -98,6 +100,18 @@ var init = function (forceInit) {
                     /* webpackChunkName: "jsondata" */
                     '../data/' + folder + '/skillpassive.json').then(jsondata => {
                     return savedata('skillpassive', folder, jsondata.default);
+                }));
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/' + folder + '/costume.json').then(jsondata => {
+                    return savedata('costume', folder, jsondata.default);
+                }));
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/' + folder + '/accessory.json').then(jsondata => {
+                    return savedata('accessory', folder, jsondata.default);
                 }));
             return Promise.all(promises).then(() => {
                 return store.setItem(lastUpdateKey, lastUpdate)
