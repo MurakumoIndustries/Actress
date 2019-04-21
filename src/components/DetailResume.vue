@@ -28,7 +28,10 @@
                         <div class="col-4 col-lg-2">{{Ui.getText("age")}}</div>
                         <div class="col-8 col-lg-2 text-right">{{chara.exactress.age}}</div>
                         <div class="col-4 col-lg-2">{{Ui.getText("height")}}</div>
-                        <div class="col-8 col-lg-2 text-right">{{chara.exactress.resumeHeight}}</div>
+                        <div class="col-8 col-lg-2 text-right">
+                            {{chara.exactress.resumeHeight}}
+                            {{Ui.getText('heightunit')}}
+                        </div>
                         <div class="col-4 col-lg-2">{{Ui.getText("blood")}}</div>
                         <div class="col-8 col-lg-2 text-right">{{chara.exactress.blood}}</div>
                         <div class="col-4 col-lg-2">{{Ui.getText("job")}}</div>

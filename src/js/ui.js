@@ -74,10 +74,16 @@ data["age"] = {
     "zh-CN": "年龄",
 };
 data["height"] = {
-    "ja-JP": "身長（cm）",
-    "zh-TW": "身高（cm）",
-    "en-US": "Height(cm)",
-    "zh-CN": "身高（cm）",
+    "ja-JP": "身長",
+    "zh-TW": "身高",
+    "en-US": "Height",
+    "zh-CN": "身高",
+};
+data["heightunit"] = {
+    "ja-JP": "cm",
+    "zh-TW": "cm",
+    "en-US": "cm",
+    "zh-CN": "cm",
 };
 data["blood"] = {
     "ja-JP": "血液型",
