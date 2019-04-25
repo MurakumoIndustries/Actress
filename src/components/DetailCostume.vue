@@ -42,6 +42,9 @@ export default {
     },
     methods: {
         isAccessDenied: function(costume) {
+            if (this.isExperimentalMode()) {
+                return false;
+            }
             return (
                 costume.name.indexOf("コスチューム") >= 0 ||
                 costume.name.indexOf("衣裝") >= 0

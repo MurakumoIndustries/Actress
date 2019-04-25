@@ -62,6 +62,9 @@ export default {
             return this.actress.name.match(splitRegex)[0];
         },
         isAccessDenied: function() {
+            if (this.isExperimentalMode()) {
+                return false;
+            }
             return (
                 this.actress.name.indexOf("アクトレス") >= 0 ||
                 this.actress.name.indexOf("Actress") >= 0

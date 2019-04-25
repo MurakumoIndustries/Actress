@@ -48,6 +48,9 @@ export default {
     },
     methods: {
         isAccessDenied: function(accessory) {
+            if (this.isExperimentalMode()) {
+                return false;
+            }
             return (
                 accessory.name.indexOf("アクセサリー") >= 0 ||
                 accessory.name.indexOf("飾品") >= 0
