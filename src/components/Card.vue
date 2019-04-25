@@ -9,7 +9,7 @@
                 :class="['card-body p-1',{'access-denied-mask':isAccessDenied}]"
                 @click="showResume(actress.id)"
             >
-                <h5 class="m-0">
+                <h5 class="m-0 text-nowrap">
                     <img
                         style="width:72px;height:72px;"
                         v-bind:src="actress.battleIcon&&('../img/chara/' + actress.battleIcon + '.png')"
