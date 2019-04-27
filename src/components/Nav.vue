@@ -104,6 +104,12 @@
                                 style="position:absolute;right:1rem;"
                             >open_in_new</i>
                         </a>
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            href="#"
+                            @click="toggleCache()"
+                        >{{Ui.getText(cacheDisabled?"enablecache":"disablecache")}}</a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -163,12 +169,36 @@ export default {
             Event.$emit("change-actress-order", newVal);
         }
     },
+    methods: {
+        toggleCache: function() {
+            if (this.cacheDisabled) {
+                localStorage["MI_Disable_Cache"] = false;
+                location.reload();
+                return;
+            }
+            if (!confirm(Ui.getText("disablecachewarning"))) {
+                return;
+            }
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.getRegistration().then(function(registration) {
+                    registration &&
+                        registration.unregister().then(function(r) {
+                            localStorage["MI_Disable_Cache"] = true;
+                            location.reload();
+                        });
+                });
+            }
+        }
+    },
     computed: {
         currentServer: function() {
             return Data.getCurrentServer();
         },
         allServers: function() {
             return Data.getAllServers();
+        },
+        cacheDisabled: function() {
+            return localStorage["MI_Disable_Cache"] === "true";
         }
     }
 };

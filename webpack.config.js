@@ -42,7 +42,8 @@ module.exports = env => {
                 cacheName: "MI_Actress",
                 events: true,
                 entry: path.join(__dirname, './src/js/sw-img.js')
-            }
+            },
+            AppCache: false,
         })
     ];
 

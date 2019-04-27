@@ -41,7 +41,7 @@ var init = function () {
             NProgress.start();
             Data.init().then(function () {
                 NProgress.done();
-                location.reload()
+                location.reload();
             });
         });
 
