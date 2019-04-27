@@ -44,7 +44,7 @@ data["server"] = { "ja-JP": "サーバー", "zh-TW": "伺服器", "en-US": "Serv
 data["disablecache"] = { "ja-JP": "キャッシュを無効化", "zh-TW": "停用快取", "en-US": "Disable Cache", "zh-CN": "禁用缓存", };
 data["enablecache"] = { "ja-JP": "キャッシュを有効化", "zh-TW": "啟用快取", "en-US": "Enable Cache", "zh-CN": "启用缓存", };
 data["disablecachewarning"]={
-    "ja-JP": "キャッシュを無効にすると、ページの読み込みが遅くなります。無効になっていますか？",
+    "ja-JP": "キャッシュを無効化にすると、ページの読み込みが遅くなります。無効化にしますか？",
     "zh-TW": "停用快取會使網頁載入變慢，是否確認停用？",
     "en-US": "Disabling caching will cause the page to load slowly, CONFIRM?",
     "zh-CN": "禁用缓存会导致网页加载缓慢，是否确认禁用？"
