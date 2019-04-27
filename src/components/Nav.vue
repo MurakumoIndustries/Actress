@@ -172,7 +172,7 @@ export default {
     methods: {
         toggleCache: function() {
             if (this.cacheDisabled) {
-                localStorage["MI_Disable_Cache"] = false;
+                localStorage["MI_Actress_Disable_Cache"] = false;
                 location.reload();
                 return;
             }
@@ -183,7 +183,7 @@ export default {
                 navigator.serviceWorker.getRegistration().then(function(registration) {
                     registration &&
                         registration.unregister().then(function(r) {
-                            localStorage["MI_Disable_Cache"] = true;
+                            localStorage["MI_Actress_Disable_Cache"] = true;
                             location.reload();
                         });
                 });
@@ -198,7 +198,7 @@ export default {
             return Data.getAllServers();
         },
         cacheDisabled: function() {
-            return localStorage["MI_Disable_Cache"] === "true";
+            return localStorage["MI_Actress_Disable_Cache"] === "true";
         }
     }
 };

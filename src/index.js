@@ -25,7 +25,7 @@ Vue.prototype.Ui = Ui;
 NProgress.set(0.3);
 Data.init().then(function () {
     NProgress.set(0.6);
-    if (localStorage["MI_Disable_Cache"] !== "true") {
+    if (localStorage["MI_Actress_Disable_Cache"] !== "true") {
         OfflinePluginRuntime.install();
         console.log('PWA Enabled!');
     }
