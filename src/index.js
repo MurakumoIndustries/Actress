@@ -26,11 +26,7 @@ NProgress.set(0.3);
 Data.init().then(function () {
     NProgress.set(0.6);
     if (localStorage["MI_Actress_Disable_Cache"] !== "true") {
-        OfflinePluginRuntime.install({
-            onUpdateReady: function () {
-                OfflinePluginRuntime.applyUpdate();
-            }
-        });
+        OfflinePluginRuntime.install();
         console.log('PWA Enabled!');
     }
     NProgress.set(0.9);
