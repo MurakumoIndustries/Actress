@@ -35,7 +35,7 @@
                         <div class="col-4 col-lg-2">{{Ui.getText("blood")}}</div>
                         <div class="col-8 col-lg-2 text-right">{{chara.exactress.blood}}</div>
                         <div class="col-4 col-lg-2">{{Ui.getText("job")}}</div>
-                        <div class="col-8 col-lg-2 text-right">{{chara.exactress.job}}</div>
+                        <div class="col-8 col-lg-6 text-right">{{chara.exactress.job}}</div>
                     </div>
                 </div>
                 <div class="d-none d-lg-block">
