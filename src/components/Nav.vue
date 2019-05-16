@@ -4,8 +4,8 @@
             <i class="icon icon-murakumo"></i>
         </a>
         <a class="navbar-brand" title="Murakumo Industries Actress Resume" href="#">
-            <span class="d-none d-sm-inline-block">Murakumo Industries</span>
-            <span class="d-sm-none">MI</span>
+            <span class="d-none d-md-inline-block">Murakumo Industries</span>
+            <span class="d-md-none">MI</span>
             <span>Actress</span>
             <span class="d-none d-sm-inline-block">Resume</span>
             <sup>α</sup>
