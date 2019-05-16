@@ -137,28 +137,28 @@
                 </div>
             </div>
             <hr>
-            <div class="media">
+            <div class="media" v-for="spSkill in chara.spSkills" v-bind:key="spSkill.id">
                 <img
                     class="mr-3"
-                    v-bind:src="chara.spSkill.icon&&('../img/skill/' + chara.spSkill.icon + '.png')"
+                    v-bind:src="spSkill.icon&&('../img/skill/' + spSkill.icon + '.png')"
                 >
                 <div class="media-body">
                     <div class="row">
                         <div class="col">
                             <fieldset>
                                 <legend>
-                                    {{chara.spSkill.name}}
+                                    {{spSkill.name}}
                                     <span
                                         class="float-right"
-                                    >{{activateLimit(chara.spSkill.activateLimit)}}/{{activateLimit(chara.spSkill.activateLimit)}}</span>
+                                    >{{activateLimit(spSkill.activateLimit)}}/{{activateLimit(spSkill.activateLimit)}}</span>
                                 </legend>
                                 <div class="row">
                                     <div class="col-auto">{{Ui.getText("needPoint")}}</div>
-                                    <div class="col">{{chara.spSkill.needPoint}}</div>
+                                    <div class="col">{{spSkill.needPoint}}</div>
                                     <div class="col-auto">{{Ui.getText("duration")}}</div>
-                                    <div class="col">{{chara.spSkill.effectTime}}s</div>
+                                    <div class="col">{{spSkill.effectTime}}s</div>
                                 </div>
-                                <div class="mb-1" v-html="Ui.renderDesc(chara.spSkill.desc)"></div>
+                                <div class="mb-1" v-html="Ui.renderDesc(spSkill.desc)"></div>
                             </fieldset>
                         </div>
                     </div>

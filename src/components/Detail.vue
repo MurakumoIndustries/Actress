@@ -136,10 +136,18 @@ export default {
                     var chara = _.extend({}, o);
                     chara.exactress =
                         Data.get("exactress", chara.exActressId) || $vm.actress;
-                    chara.spSkill = _.extend(
-                        {},
-                        Data.get("skillactive", chara.defaultSpSkillId)
-                    );
+                    chara.spSkills = [];
+                    if (chara.spSkillIds) {
+                        _.each(chara.spSkillIds, function(id) {
+                            chara.spSkills.push(Data.get("skillactive", id));
+                        });
+                    }
+                    if (chara.defaultSpSkillId) {
+                        chara.spSkills.push(
+                            Data.get("skillactive", chara.defaultSpSkillId)
+                        );
+                    }
+
                     _.each(chara.passiveSkills, function(o, i) {
                         o.skill = Data.get("skillpassive", o.id);
                     });
