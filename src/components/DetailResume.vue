@@ -146,17 +146,16 @@
                     <div class="row">
                         <div class="col">
                             <fieldset>
-                                <legend>
-                                    {{spSkill.name}}
-                                    <span
-                                        class="float-right"
-                                    >{{activateLimit(spSkill.activateLimit)}}/{{activateLimit(spSkill.activateLimit)}}</span>
-                                </legend>
-                                <div class="row">
-                                    <div class="col-auto">{{Ui.getText("needPoint")}}</div>
-                                    <div class="col">{{spSkill.needPoint}}</div>
-                                    <div class="col-auto">{{Ui.getText("duration")}}</div>
-                                    <div class="col">{{spSkill.effectTime}}s</div>
+                                <legend>{{spSkill.name}}</legend>
+                                <div class="row mb-1">
+                                    <div
+                                        class="col text-center"
+                                        v-for="param in paramDescList(spSkill.paramDesc)"
+                                        :key="JSON.stringify(param)"
+                                    >{{param[0]}}：{{param[1]}}</div>
+                                    <div
+                                        class="col text-center"
+                                    >{{Ui.getText("needPoint")}}：{{spSkill.needPoint}}</div>
                                 </div>
                                 <div class="mb-1" v-html="Ui.renderDesc(spSkill.desc)"></div>
                             </fieldset>
@@ -198,8 +197,11 @@ export default {
         chara: Object
     },
     methods: {
-        activateLimit: function(o) {
-            return o == -1 ? "∞" : o;
+        //activateLimit: function(o) {
+        //    return o == -1 ? "∞" : o;
+        //},
+        paramDescList: function(paramDesc) {
+            return JSON.parse(paramDesc.replace(/'/g, '"'));
         }
     }
 };
