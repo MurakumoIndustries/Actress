@@ -149,12 +149,12 @@
                                 <legend>{{spSkill.name}}</legend>
                                 <div class="row mb-1">
                                     <div
-                                        class="col text-center"
+                                        class="col-12 col-sm-6 col-lg-4 text-center"
                                         v-for="param in paramDescList(spSkill.paramDesc)"
                                         :key="JSON.stringify(param)"
                                     >{{param[0]}}：{{param[1]}}</div>
                                     <div
-                                        class="col text-center"
+                                        class="col-12 col-sm-6 col-lg-4 text-center"
                                     >{{Ui.getText("needPoint")}}：{{spSkill.needPoint}}</div>
                                 </div>
                                 <div class="mb-1" v-html="Ui.renderDesc(spSkill.desc)"></div>
