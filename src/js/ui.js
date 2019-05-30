@@ -148,10 +148,10 @@ data["needPoint"] = {
     "zh-CN": "结合粒子需求量",
 };
 data["duration"] = {
-    "ja-JP": "持続期間",
-    "zh-TW": "持續時間",
+    "ja-JP": "時間",
+    "zh-TW": "時間",
     "en-US": "Duration",
-    "zh-CN": "持续时间",
+    "zh-CN": "时间",
 };
 data["geartype"] = {
     "ja-JP": "ギア種別",

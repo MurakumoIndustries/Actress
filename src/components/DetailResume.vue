@@ -150,7 +150,7 @@
                                 <div class="row mb-1">
                                     <div
                                         class="col-12 col-sm-6 col-lg-4 text-center"
-                                        v-for="param in paramDescList(spSkill.paramDesc)"
+                                        v-for="param in paramDescList(spSkill)"
                                         :key="JSON.stringify(param)"
                                     >{{param[0]}}：{{param[1]}}</div>
                                     <div
@@ -197,11 +197,26 @@ export default {
         chara: Object
     },
     methods: {
-        //activateLimit: function(o) {
-        //    return o == -1 ? "∞" : o;
-        //},
-        paramDescList: function(paramDesc) {
-            return JSON.parse(paramDesc.replace(/'/g, '"'));
+        activateLimit: function(o) {
+            return o == -1 ? "∞" : o;
+        },
+        paramDescList: function(spSkill) {
+            var $vm = this;
+            if (!spSkill.paramDesc) {
+                return [
+                    [
+                        $vm.Ui.getText("count"),
+                        $vm.activateLimit(spSkill.activateLimit)
+                    ],
+                    [$vm.Ui.getText("duration"), spSkill.effectTime + "秒間"]
+                ];
+            }
+            var list = JSON.parse(spSkill.paramDesc.replace(/'/g, '"'));
+            _.each(list, function(o) {
+                o[0] = o[0].replace("回数", $vm.Ui.getText("count"));
+                o[0] = o[0].replace("時間", $vm.Ui.getText("duration"));
+            });
+            return list;
         }
     }
 };
