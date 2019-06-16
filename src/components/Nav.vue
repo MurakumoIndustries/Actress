@@ -45,7 +45,7 @@
             <ul class="navbar-nav my-0">
                 <li class="nav-item dropdown">
                     <a
-                        class="nav-link dropdown-toggle py-0"
+                        class="nav-link dropdown-toggle"
                         href="#"
                         role="button"
                         data-toggle="dropdown"
@@ -53,7 +53,10 @@
                         aria-expanded="false"
                     >
                         <i class="icon icon-version"></i>
-                        <div class="d-inline-block" style="vertical-align: middle;">
+                        <div
+                            class="d-inline-block"
+                            style="vertical-align: top; height: 0; margin-top: -0.325rem;    padding-right: 0.25rem;"
+                        >
                             <div id="server">{{currentServer.name}}</div>
                             <div
                                 class="m-0"
@@ -178,13 +181,15 @@ export default {
                 return;
             }
             if ("serviceWorker" in navigator) {
-                navigator.serviceWorker.getRegistration().then(function(registration) {
-                    registration &&
-                        registration.unregister().then(function(r) {
-                            localStorage["MI_Actress_Disable_Cache"] = true;
-                            location.reload();
-                        });
-                });
+                navigator.serviceWorker
+                    .getRegistration()
+                    .then(function(registration) {
+                        registration &&
+                            registration.unregister().then(function(r) {
+                                localStorage["MI_Actress_Disable_Cache"] = true;
+                                location.reload();
+                            });
+                    });
             }
         }
     },
@@ -213,6 +218,8 @@ export default {
 .icon.icon-version {
     width: 2.5rem;
     height: 2.5rem;
+    margin-top: -0.5rem;
+    margin-bottom: -0.5rem;
     opacity: 0.5;
     background-image: url(../img/version.png);
 }
