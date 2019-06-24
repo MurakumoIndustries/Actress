@@ -13,6 +13,7 @@
                                 <img
                                     class="mini-icon"
                                     v-bind:src="chara.miniIcon&&('../img/chara/' + chara.miniIcon + '.png')"
+                                    @error="miniIconAlt"
                                 >
                                 <img
                                     v-if="chara.anotherIcon"
@@ -166,6 +167,16 @@ export default {
                 });
             });
         });
+    },
+    methods: {
+        miniIconAlt: function(event) {
+            var oldSrc = event.target.src;
+            var newSrc = oldSrc.substring(0, oldSrc.length - 6) + "00.png";
+            if (oldSrc == newSrc) {
+                return;
+            }
+            event.target.src = newSrc;
+        }
     },
     components: {
         DetailResume,
