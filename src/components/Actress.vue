@@ -336,7 +336,17 @@ export default {
                         .each(function(group, isCollabo) {
                             group = _.orderBy(
                                 group,
-                                ["collaborationId"],
+                                [function(o){
+                                    switch(o.collaborationId)
+                                    {
+                                        case 4115405917:return 1;
+                                        case 1816481255:return 2;
+                                        case 457342321:return 3;
+                                        case 2233919698:return 4;
+                                        case 4062304324:return 5;
+                                        default:return 999;
+                                    }
+                                }],
                                 ["asc"]
                             );
                             groupList.push({
