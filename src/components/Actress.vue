@@ -208,6 +208,25 @@ export default {
                         .commit();
                     break;
                 }
+                case "job": {
+                    _.chain($vm.actressList)
+                        .groupBy(function(o) {
+                            return o.exactress.job || o.job || "？？？";
+                        })
+                        .toPairs()
+                        .orderBy(function(o) {
+                            return o[0];
+                        })
+                        .fromPairs()
+                        .each(function(group, job) {
+                            groupList.push({
+                                label: job,
+                                actresses: group
+                            });
+                        })
+                        .commit();
+                    break;
+                }
                 case "birthday": {
                     _.chain($vm.actressList)
                         .groupBy(function(o) {
@@ -336,17 +355,24 @@ export default {
                         .each(function(group, isCollabo) {
                             group = _.orderBy(
                                 group,
-                                [function(o){
-                                    switch(o.collaborationId)
-                                    {
-                                        case 4115405917:return 1;
-                                        case 1816481255:return 2;
-                                        case 457342321:return 3;
-                                        case 2233919698:return 4;
-                                        case 4062304324:return 5;
-                                        default:return 999;
+                                [
+                                    function(o) {
+                                        switch (o.collaborationId) {
+                                            case 4115405917:
+                                                return 1;
+                                            case 1816481255:
+                                                return 2;
+                                            case 457342321:
+                                                return 3;
+                                            case 2233919698:
+                                                return 4;
+                                            case 4062304324:
+                                                return 5;
+                                            default:
+                                                return 999;
+                                        }
                                     }
-                                }],
+                                ],
                                 ["asc"]
                             );
                             groupList.push({

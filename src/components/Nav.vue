@@ -28,10 +28,12 @@
                     <select class="selectpicker" v-model="actressOrder">
                         <option value="default">{{Ui.getText("default")}}</option>
                         <option value="gojyuon">{{Ui.getText("gojyuon")}}</option>
+                        <option data-divider="true"></option>
                         <option value="birthday">{{Ui.getText("birthday")}}</option>
                         <option value="age">{{Ui.getText("age")}}</option>
                         <option value="height">{{Ui.getText("height")}}</option>
                         <option value="blood">{{Ui.getText("blood")}}</option>
+                        <option value="job">{{Ui.getText("job")}}</option>
                         <option data-divider="true"></option>
                         <option value="weapon">{{Ui.getText("weapon")}}</option>
                         <option value="attribute">{{Ui.getText("attribute")}}</option>
@@ -41,7 +43,7 @@
                     </select>
                 </li>
             </ul>
-
+            
             <ul class="navbar-nav my-0">
                 <li class="nav-item dropdown">
                     <a
