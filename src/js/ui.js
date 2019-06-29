@@ -209,6 +209,34 @@ data["attribute"] = {
     11: { "ja-JP": "理論", "zh-TW": "理論", "en-US": "Theory", "zh-CN": "" },
 };
 
+data["spdtype"] = {
+    "ja-JP": "機動タイプ",
+    "zh-TW": "機動類型",
+    "en-US": "SPD Type",
+    "zh-CN": "机动类型",
+};
+
+data["spdtypelight"] = {
+    "ja-JP": "高機動",
+    "zh-TW": "高機動",
+    "en-US": "Light",
+    "zh-CN": "高机动",
+};
+
+data["spdtypebalance"] = {
+    "ja-JP": "バランス",
+    "zh-TW": "平衡",
+    "en-US": "Balance",
+    "zh-CN": "平衡",
+};
+
+data["spdtypeheavy"] = {
+    "ja-JP": "重装",
+    "zh-TW": "重裝",
+    "en-US": "Heavy",
+    "zh-CN": "重装",
+};
+
 data["gear"] = {
     "ja-JP": "ギア",
     "zh-TW": "武裝",

@@ -37,6 +37,7 @@
                         <option data-divider="true"></option>
                         <option value="weapon">{{Ui.getText("weapon")}}</option>
                         <option value="attribute">{{Ui.getText("attribute")}}</option>
+                        <option value="spdtype">{{Ui.getText("spdtype")}}</option>
                         <option data-divider="true"></option>
                         <option value="modelheight">{{Ui.getText("modelheight")}}</option>
                         <option value="cv">{{Ui.getText("cv")}}</option>

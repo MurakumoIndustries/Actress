@@ -72,10 +72,9 @@ export default {
                             return goodSWeapon * 1000 + goodLWeapon;
                         })
                         .toPairs()
-                        .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, weapon) {
-                            weapon = Number(weapon);
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var weapon = Number(group[0]);
                             var weaponText = "？？？";
                             if (weapon == 999999) {
                             } else if (weapon / 1000 >= 1) {
@@ -88,7 +87,7 @@ export default {
                             }
                             groupList.push({
                                 label: weaponText,
-                                actresses: group
+                                actresses: group[1]
                             });
                         })
                         .commit();
@@ -110,10 +109,9 @@ export default {
                             return goodAttr;
                         })
                         .toPairs()
-                        .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, attr) {
-                            attr = Number(attr);
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var attr = Number(group[0]);
                             var attrText = "？？？";
                             if (attr > 4 && attr < 255) {
                                 attrText = Ui.getText(
@@ -123,7 +121,7 @@ export default {
                             }
                             groupList.push({
                                 label: attrText,
-                                actresses: group
+                                actresses: group[1]
                             });
                         })
                         .commit();
@@ -136,11 +134,10 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, katakana) {
+                        .each(function(group) {
                             groupList.push({
-                                label: katakana,
-                                actresses: group
+                                label: group[0],
+                                actresses: group[1]
                             });
                         })
                         .commit();
@@ -152,12 +149,13 @@ export default {
                             return o.exactress.age || o.age || "？？？";
                         })
                         .toPairs()
-                        .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, age) {
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var age = group[0];
+                            var list = group[1];
                             if (isNaN(Number(age)) == false) {
-                                group = _.orderBy(
-                                    group,
+                                list = _.orderBy(
+                                    list,
                                     [
                                         function(o) {
                                             return new Date(
@@ -177,7 +175,7 @@ export default {
                             }
                             groupList.push({
                                 label: age,
-                                actresses: group
+                                actresses: list
                             });
                         })
                         .commit();
@@ -198,11 +196,10 @@ export default {
                             };
                             return order[(o[0] + "").toUpperCase()] || 99;
                         })
-                        .fromPairs()
-                        .each(function(group, blood) {
+                        .each(function(group) {
                             groupList.push({
-                                label: blood,
-                                actresses: group
+                                label: group[0],
+                                actresses: group[1]
                             });
                         })
                         .commit();
@@ -214,14 +211,11 @@ export default {
                             return o.exactress.job || o.job || "？？？";
                         })
                         .toPairs()
-                        .orderBy(function(o) {
-                            return o[0];
-                        })
-                        .fromPairs()
-                        .each(function(group, job) {
+                        .orderBy(o => o[0])
+                        .each(function(group) {
                             groupList.push({
-                                label: job,
-                                actresses: group
+                                label: group[0],
+                                actresses: group[1]
                             });
                         })
                         .commit();
@@ -243,11 +237,10 @@ export default {
                             return isNaN(month) ? "？？？" : month;
                         })
                         .toPairs()
-                        .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, month) {
-                            group = _.orderBy(
-                                group,
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var list = _.orderBy(
+                                group[1],
                                 [
                                     function(o) {
                                         return new Date(
@@ -257,12 +250,12 @@ export default {
                                 ],
                                 ["asc"]
                             );
-                            var monthText = isNaN(month)
-                                ? month
-                                : Ui.getText("month", month);
+                            var monthText = isNaN(group[0])
+                                ? group[0]
+                                : Ui.getText("month", group[0]);
                             groupList.push({
                                 label: monthText,
-                                actresses: group
+                                actresses: list
                             });
                         })
                         .commit();
@@ -281,16 +274,18 @@ export default {
                                   );
                         })
                         .toPairs()
-                        .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, height) {
-                            group = _.orderBy(group, ["resumeHeight"], ["asc"]);
-                            var heightText = isNaN(height)
-                                ? height
-                                : height * 5 + "+";
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var heightText = isNaN(group[0])
+                                ? group[0]
+                                : group[0] * 5 + "+";
                             groupList.push({
                                 label: heightText,
-                                actresses: group
+                                actresses: _.orderBy(
+                                    group[1],
+                                    ["resumeHeight"],
+                                    ["asc"]
+                                )
                             });
                         })
                         .commit();
@@ -311,16 +306,18 @@ export default {
                                   );
                         })
                         .toPairs()
-                        .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, height) {
-                            group = _.orderBy(group, ["resumeHeight"], ["asc"]);
-                            var heightText = isNaN(height)
-                                ? height
-                                : height * 5 + "+";
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var heightText = isNaN(group[0])
+                                ? group[0]
+                                : group[0] * 5 + "+";
                             groupList.push({
                                 label: heightText,
-                                actresses: group
+                                actresses: _.orderBy(
+                                    group[1],
+                                    ["modelHeight"],
+                                    ["asc"]
+                                )
                             });
                         })
                         .commit();
@@ -337,11 +334,48 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => o[0])
-                        .fromPairs()
-                        .each(function(group, cv) {
+                        .each(function(group) {
                             groupList.push({
-                                label: cv,
-                                actresses: group
+                                label: group[0],
+                                actresses: group[1]
+                            });
+                        })
+                        .commit();
+                    break;
+                }
+                case "spdtype": {
+                    _.chain($vm.actressList)
+                        .groupBy(function(o) {
+                            if (!(o.legEquipmentId && o.legEquipmentId[0])) {
+                                return 0;
+                            }
+                            var leg = _.extend(
+                                {},
+                                Data.get("equipment", o.legEquipmentId[0])
+                            );
+                            return leg.spdMax;
+                        })
+                        .toPairs()
+                        .orderBy([o => Number(o[0])], ["desc"])
+                        .each(function(group) {
+                            var spd = group[0];
+                            switch (Number(spd)) {
+                                case 280:
+                                    spd = Ui.getText("spdtypelight");
+                                    break;
+                                case 240:
+                                    spd = Ui.getText("spdtypebalance");
+                                    break;
+                                case 200:
+                                    spd = Ui.getText("spdtypeheavy");
+                                    break;
+                                case 0:
+                                    spd = "？？？";
+                                    break;
+                            }
+                            groupList.push({
+                                label: spd,
+                                actresses: group[1]
                             });
                         })
                         .commit();

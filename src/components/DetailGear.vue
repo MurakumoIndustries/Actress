@@ -202,8 +202,6 @@
                                         <div class="row">
                                             <div class="col-3">DEF</div>
                                             <div class="col">{{arm.defMax}}</div>
-                                            <div class="col-3">SPD</div>
-                                            <div class="col">{{arm.spdMax}}</div>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -287,6 +285,19 @@
                                         <div class="row">
                                             <div class="col-3">HP</div>
                                             <div class="col">{{leg.hpMax}}</div>
+                                            <div class="col-3">{{Ui.getText("spdtype")}}</div>
+                                            <div
+                                                class="col"
+                                                v-if="leg.spdMax==200"
+                                            >{{Ui.getText('spdtypeheavy')}}</div>
+                                            <div
+                                                class="col"
+                                                v-if="leg.spdMax==240"
+                                            >{{Ui.getText('spdtypebalance')}}</div>
+                                            <div
+                                                class="col"
+                                                v-if="leg.spdMax==280"
+                                            >{{Ui.getText('spdtypelight')}}</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-3">DEF</div>
