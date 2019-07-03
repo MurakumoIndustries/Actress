@@ -10,7 +10,7 @@
                 />
             </div>
         </fieldset>
-        <Detail/>
+        <Detail />
     </div>
 </template>
 
@@ -62,7 +62,8 @@ export default {
                             _.each(Data.getAll("chara"), function(chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
-                                    chara.maxLv >= 80
+                                    chara.rare >= 4 &&
+                                    !chara.anotherIcon
                                 ) {
                                     goodLWeapon = chara.goodLWeapon;
                                     goodSWeapon = chara.goodSWeapon;
@@ -100,7 +101,8 @@ export default {
                             _.each(Data.getAll("chara"), function(chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
-                                    chara.maxLv >= 80
+                                    chara.rare >= 4 &&
+                                    !chara.anotherIcon
                                 ) {
                                     goodAttr = chara.goodAttr;
                                     return false;

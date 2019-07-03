@@ -14,12 +14,12 @@
                                     class="mini-icon"
                                     v-bind:src="chara.miniIcon&&('../img/chara/' + chara.miniIcon + '.png')"
                                     @error="miniIconAlt"
-                                >
+                                />
                                 <img
                                     v-if="chara.anotherIcon"
                                     class="another-icon"
                                     v-bind:src="'../img/another/' + chara.anotherIcon + '.png'"
-                                >
+                                />
                             </div>
                         </li>
                         <li class="nav-item">
@@ -153,12 +153,16 @@ export default {
                         o.skill = Data.get("skillpassive", o.id);
                     });
                     $vm.charas.push(chara);
-                    if (chara.maxLv >= 80 && !$vm.actress.first80CharaId) {
-                        $vm.actress.first80CharaId = chara.id;
+                    if (
+                        chara.rare >= 4 &&
+                        !chara.anotherIcon &&
+                        !$vm.actress.firstRare4CharaId
+                    ) {
+                        $vm.actress.firstRare4CharaId = chara.id;
                     }
                 }
             });
-            $vm.currentTabId = $vm.actress.first80CharaId;
+            $vm.currentTabId = $vm.actress.firstRare4CharaId;
 
             $vm.$nextTick(function() {
                 $($vm.$el).modal("show");
@@ -170,8 +174,9 @@ export default {
     },
     methods: {
         miniIconAlt: function(event) {
+            var $vm = this;
             var oldSrc = event.target.src;
-            var newSrc = oldSrc.substring(0, oldSrc.length - 6) + "00.png";
+            var newSrc = "../img/chara/" + $vm.actress.miniIcon + ".png";
             if (oldSrc == newSrc) {
                 return;
             }

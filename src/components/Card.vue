@@ -10,10 +10,7 @@
                 @click="showResume(actress.id)"
             >
                 <h5 class="m-0 text-nowrap">
-                    <img
-                        style="width:72px;height:72px;"
-                        v-bind:src="actress.battleIcon&&('../img/chara/' + actress.battleIcon + '.png')"
-                    >
+                    <img style="width:72px;height:72px;" v-bind:src="cardIconPath" />
 
                     <ruby v-if="isNeedSplit">
                         {{SplitedName[0]}}
@@ -40,6 +37,7 @@
     </div>
 </template>
 <script>
+import { Data } from "../js/data.js";
 import { Event } from "../js/event.js";
 
 var splitRegex = /[・|\s]/g;
@@ -69,6 +67,22 @@ export default {
                 this.actress.name.indexOf("アクトレス") >= 0 ||
                 this.actress.name.indexOf("Actress") >= 0
             );
+        },
+        cardIconPath: function() {
+            var $vm = this;
+            var cardIcon = (
+                _.find(Data.getAll("chara"), function(chara) {
+                    return (
+                        chara.actressId == $vm.actress.id &&
+                        chara.rare >= 4 &&
+                        !chara.anotherIcon
+                    );
+                }) || {}
+            ).battleIcon;
+            if (!cardIcon) {
+                return "";
+            }
+            return "../img/chara/" + cardIcon + ".png";
         }
     },
     methods: {
