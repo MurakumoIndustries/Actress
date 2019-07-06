@@ -1,34 +1,37 @@
 <template>
     <div class="actress-card" v-bind:data-id="actress.id" v-bind:data-name="actress.name">
         <div class="card">
-            <div class="access-denied" v-if="isAccessDenied"></div>
             <div
-                :class="['card-body p-0',{'access-denied-mask':isAccessDenied}]"
                 v-bind:style="{background:'linear-gradient(135deg, '+actress.imageColor+', '+actress.imageColor+' 2rem, transparent 4rem, transparent)'}"
-                @click="showResume(actress.id)"
             >
-                <h5 class="m-0 text-nowrap">
-                    <img class="card-icon" v-bind:src="cardIconPath" />
-                    <ruby v-if="isNeedSplit">
-                        {{SplitedName[0]}}
-                        <rp>(</rp>
-                        <rt>{{SplitedRuby[0]}}</rt>
-                        <rp>)</rp>
-                    </ruby>
-                    <span v-if="isNeedSplit">{{SplitMark}}</span>
-                    <ruby v-if="isNeedSplit">
-                        {{SplitedName[1]}}
-                        <rp>(</rp>
-                        <rt>{{SplitedRuby[1]}}</rt>
-                        <rp>)</rp>
-                    </ruby>
-                    <ruby v-else>
-                        {{actress.name}}
-                        <rp>(</rp>
-                        <rt>{{actress.ruby}}</rt>
-                        <rp>)</rp>
-                    </ruby>
-                </h5>
+                <div class="access-denied" v-if="isAccessDenied"></div>
+                <div
+                    :class="['card-body p-0',{'access-denied-mask':isAccessDenied}]"
+                    @click="showResume(actress.id)"
+                >
+                    <h5 class="m-0 text-nowrap">
+                        <img class="card-icon" v-bind:src="cardIconPath" />
+                        <ruby v-if="isNeedSplit">
+                            {{SplitedName[0]}}
+                            <rp>(</rp>
+                            <rt>{{SplitedRuby[0]}}</rt>
+                            <rp>)</rp>
+                        </ruby>
+                        <span v-if="isNeedSplit">{{SplitMark}}</span>
+                        <ruby v-if="isNeedSplit">
+                            {{SplitedName[1]}}
+                            <rp>(</rp>
+                            <rt>{{SplitedRuby[1]}}</rt>
+                            <rp>)</rp>
+                        </ruby>
+                        <ruby v-else>
+                            {{actress.name}}
+                            <rp>(</rp>
+                            <rt>{{actress.ruby}}</rt>
+                            <rp>)</rp>
+                        </ruby>
+                    </h5>
+                </div>
             </div>
         </div>
     </div>
