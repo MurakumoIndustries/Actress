@@ -2,7 +2,9 @@
     <div>
         <div class="row">
             <div class="col-12 col-sm-auto">
-                <img v-bind:src="chara.image&&('../img/chara/' + chara.image + '.png')">
+                <div class="chara-img-container">
+                    <img v-bind:src="chara.image&&('../img/chara/' + chara.image + '.png')" />
+                </div>
                 <div class="row">
                     <div class="col-4 col-sm-auto">{{Ui.getText("cv")}}</div>
                     <div class="col text-right">{{chara.exactress.cv}}</div>
@@ -39,23 +41,23 @@
                     </div>
                 </div>
                 <div class="d-none d-lg-block">
-                    <hr>
+                    <hr />
                     <div>
                         <div class="row">
                             <div class="col-3">{{Ui.getText("hobby")}}</div>
                             <div class="col" v-html="Ui.renderDesc(chara.exactress.hobby)"></div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="row">
                             <div class="col-3">{{Ui.getText("goal")}}</div>
                             <div class="col" v-html="Ui.renderDesc(chara.exactress.goal)"></div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="row">
                             <div class="col-3">{{Ui.getText("reason")}}</div>
                             <div class="col" v-html="Ui.renderDesc(chara.exactress.reason)"></div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="row">
                             <div class="col-3">{{Ui.getText("appeal")}}</div>
                             <div class="col" v-html="Ui.renderDesc(chara.exactress.appeal)"></div>
@@ -65,23 +67,23 @@
             </div>
         </div>
         <div class="d-lg-none">
-            <hr>
+            <hr />
             <div>
                 <div class="row">
                     <div class="col-3">{{Ui.getText("hobby")}}</div>
                     <div class="col" v-html="Ui.renderDesc(chara.exactress.hobby)"></div>
                 </div>
-                <hr>
+                <hr />
                 <div class="row">
                     <div class="col-3">{{Ui.getText("goal")}}</div>
                     <div class="col" v-html="Ui.renderDesc(chara.exactress.goal)"></div>
                 </div>
-                <hr>
+                <hr />
                 <div class="row">
                     <div class="col-3">{{Ui.getText("reason")}}</div>
                     <div class="col" v-html="Ui.renderDesc(chara.exactress.reason)"></div>
                 </div>
-                <hr>
+                <hr />
                 <div class="row">
                     <div class="col-3">{{Ui.getText("appeal")}}</div>
                     <div class="col" v-html="Ui.renderDesc(chara.exactress.appeal)"></div>
@@ -96,10 +98,10 @@
                 ></div>
             </div>
         </div>
-        <hr>
+        <hr />
         <div>
             <div class="media">
-                <img class="mr-3" v-bind:src="chara.icon&&('../img/chara/' + chara.icon + '.png')">
+                <img class="mr-3" v-bind:src="chara.icon&&('../img/chara/' + chara.icon + '.png')" />
                 <div class="media-body">
                     <div class="row">
                         <div class="col-3">Lv.</div>
@@ -136,12 +138,12 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr />
             <div class="media" v-for="spSkill in chara.spSkills" v-bind:key="spSkill.id">
                 <img
                     class="mr-3"
                     v-bind:src="spSkill.icon&&('../img/skill/' + spSkill.icon + '.png')"
-                >
+                />
                 <div class="media-body">
                     <div class="row">
                         <div class="col">
@@ -163,7 +165,7 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr />
             <div>
                 <div
                     v-for="pSkill in chara.passiveSkills"
@@ -211,7 +213,7 @@ export default {
                     [$vm.Ui.getText("duration"), spSkill.effectTime + "秒間"]
                 ];
             }
-            var list = JSON.parse(spSkill.paramDesc.replace(/'/g, '"'));
+            var list = JSON.parse(spSkill.paramDesc.replace("{0}", spSkill.activateLimit).replace(/'/g, '"'));
             _.each(list, function(o) {
                 o[0] = o[0].replace("回数", $vm.Ui.getText("count"));
                 o[0] = o[0].replace("時間", $vm.Ui.getText("duration"));
@@ -222,6 +224,19 @@ export default {
 };
 </script>
 <style scoped>
+.chara-img-container {
+    border: 2px solid rgb(144, 144, 144);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 2px 0px;
+    min-width: 192px;
+    min-height: 360px;
+    box-sizing: content-box;
+}
+.chara-img-container > img {
+    border-radius: 10px;
+}
+
 .name-plate-container {
     background: linear-gradient(
         to bottom,

@@ -13,7 +13,7 @@
                                 <img
                                     class="mini-icon"
                                     v-bind:src="chara.miniIcon&&('../img/chara/' + chara.miniIcon + '.png')"
-                                    @error="miniIconAlt"
+                                    @error.once="miniIconAlt"
                                 />
                                 <img
                                     v-if="chara.anotherIcon"
@@ -175,11 +175,7 @@ export default {
     methods: {
         miniIconAlt: function(event) {
             var $vm = this;
-            var oldSrc = event.target.src;
             var newSrc = "../img/chara/" + $vm.actress.miniIcon + ".png";
-            if (oldSrc == newSrc) {
-                return;
-            }
             event.target.src = newSrc;
         }
     },

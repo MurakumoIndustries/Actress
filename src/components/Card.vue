@@ -1,17 +1,16 @@
 <template>
-    <div class="actress-item" v-bind:data-id="actress.id" v-bind:data-name="actress.name">
+    <div class="actress-card" v-bind:data-id="actress.id" v-bind:data-name="actress.name">
         <div
             class="card"
             v-bind:style="{background:'linear-gradient(135deg, '+actress.imageColor+', '+actress.imageColor+' 2rem, transparent 4rem, transparent)'}"
         >
             <div class="access-denied" v-if="isAccessDenied"></div>
             <div
-                :class="['card-body p-1',{'access-denied-mask':isAccessDenied}]"
+                :class="['card-body p-0',{'access-denied-mask':isAccessDenied}]"
                 @click="showResume(actress.id)"
             >
                 <h5 class="m-0 text-nowrap">
-                    <img style="width:72px;height:72px;" v-bind:src="cardIconPath" />
-
+                    <img class="card-icon" v-bind:src="cardIconPath" />
                     <ruby v-if="isNeedSplit">
                         {{SplitedName[0]}}
                         <rp>(</rp>
@@ -94,52 +93,46 @@ export default {
 };
 </script>
 <style scoped>
-.actress-item {
+.actress-card {
     transition: all 0.5s ease-in-out;
     width: 100%;
     display: inline-block;
     padding: 0 0.5rem;
     margin: 0.5rem 0;
     position: relative;
+    cursor: pointer;
 }
 
 @media (min-width: 576px) {
-    .actress-item {
+    .actress-card {
         width: 50%;
     }
 }
 
 @media (min-width: 768px) {
-    .actress-item {
+    .actress-card {
         width: 33.33333333%;
     }
 }
 
 @media (min-width: 992px) {
-    .actress-item {
+    .actress-card {
         width: 25%;
     }
 }
 
 @media (min-width: 1366px) {
-    .actress-item {
+    .actress-card {
         width: 20%;
     }
 }
 
-.actress-item.actress-detail {
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-
-.actress-item .card {
-    min-height: 4.5rem;
-    position: relative;
-    cursor: pointer;
-}
-
-.actress-item .actress-header {
-    white-space: nowrap;
+.actress-card .card-icon {
+    width: 72px;
+    height: 72px;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    box-sizing: content-box;
+    border-radius: 0.25rem 0 0 0.25rem;
 }
 </style>
 
