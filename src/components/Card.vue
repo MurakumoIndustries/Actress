@@ -1,12 +1,10 @@
 <template>
     <div class="actress-card" v-bind:data-id="actress.id" v-bind:data-name="actress.name">
-        <div
-            class="card"
-            v-bind:style="{background:'linear-gradient(135deg, '+actress.imageColor+', '+actress.imageColor+' 2rem, transparent 4rem, transparent)'}"
-        >
+        <div class="card">
             <div class="access-denied" v-if="isAccessDenied"></div>
             <div
                 :class="['card-body p-0',{'access-denied-mask':isAccessDenied}]"
+                v-bind:style="{background:'linear-gradient(135deg, '+actress.imageColor+', '+actress.imageColor+' 2rem, transparent 4rem, transparent)'}"
                 @click="showResume(actress.id)"
             >
                 <h5 class="m-0 text-nowrap">
