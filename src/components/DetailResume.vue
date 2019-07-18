@@ -29,7 +29,10 @@
                         <div class="col-8 col-lg-2 text-right">{{chara.exactress.birthday}}</div>
                         <div class="col-4 col-lg-2">{{Ui.getText("age")}}</div>
                         <div class="col-8 col-lg-2 text-right">{{chara.exactress.age}}</div>
-                        <div class="col-4 col-lg-2">{{Ui.getText("height")}}</div>
+                        <div
+                            class="col-4 col-lg-2"
+                            :title="Ui.getText('modelheight')+':'+chara.exactress.modelHeight"
+                        >{{Ui.getText("height")}}</div>
                         <div class="col-8 col-lg-2 text-right">
                             {{chara.exactress.resumeHeight}}
                             {{Ui.getText('heightunit')}}
@@ -213,7 +216,11 @@ export default {
                     [$vm.Ui.getText("duration"), spSkill.effectTime + "秒間"]
                 ];
             }
-            var list = JSON.parse(spSkill.paramDesc.replace("{0}", spSkill.activateLimit).replace(/'/g, '"'));
+            var list = JSON.parse(
+                spSkill.paramDesc
+                    .replace("{0}", spSkill.activateLimit)
+                    .replace(/'/g, '"')
+            );
             _.each(list, function(o) {
                 o[0] = o[0].replace("回数", $vm.Ui.getText("count"));
                 o[0] = o[0].replace("時間", $vm.Ui.getText("duration"));

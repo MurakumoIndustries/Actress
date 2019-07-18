@@ -8,9 +8,15 @@
             >
                 <div class="card">
                     <div class="access-denied" v-if="isAccessDenied(accessory)"></div>
-                    <div
-                        :class="['card-header',{'access-denied-mask':isAccessDenied(accessory)}]"
-                    >{{accessory.name}}</div>
+                    <div :class="['card-header',{'access-denied-mask':isAccessDenied(accessory)}]">
+                        <span>{{accessory.name}}</span>
+                        <span class="accessory-nameplate text-black-50">
+                            <ruby>
+                                <rb>{{accessory.nameplateName}}</rb>
+                                <rt>{{accessory.nameplateNameRuby}}</rt>
+                            </ruby>
+                        </span>
+                    </div>
                     <div
                         :class="['card-body py-2',{'access-denied-mask':isAccessDenied(accessory)}]"
                     >
@@ -19,7 +25,7 @@
                                 :src="accessory.icon?'../img/item/' + accessory.icon + '.png':''"
                                 class
                                 :alt="accessory.name"
-                            >
+                            />
                         </div>
                         <p class="card-text" v-html="Ui.renderDesc(accessory.desc)"></p>
                     </div>
@@ -59,4 +65,15 @@ export default {
     }
 };
 </script>
+<style scoped>
+.card-header {
+    position: relative;
+}
+.accessory-nameplate {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+</style>
+
 

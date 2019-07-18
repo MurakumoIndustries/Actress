@@ -40,7 +40,7 @@
         "jquery": "^3.4.1",
         "konami": "^1.6.2",
         "localforage": "^1.7.3",
-        "lodash": "^4.17.11",
+        "lodash": "^4.17.14",
         "nprogress": "^0.2.0",
         "offline-plugin": "^5.0.6",
         "page": "^1.10.2",

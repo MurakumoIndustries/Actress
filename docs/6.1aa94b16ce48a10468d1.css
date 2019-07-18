@@ -96,6 +96,16 @@
 }
 
 
+.card-header[data-v-fdccb97e] {
+    position: relative;
+}
+.accessory-nameplate[data-v-fdccb97e] {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+
 .modal-content[data-v-a38ba3fe] {
     background: rgba(255, 255, 255, 0.75);
 }

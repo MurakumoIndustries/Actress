@@ -93,6 +93,12 @@ data["heightunit"] = {
     "en-US": "cm",
     "zh-CN": "cm",
 };
+data["modelheight"] = {
+    "ja-JP": "モデル身長",
+    "zh-TW": "模型身高",
+    "en-US": "Model Height",
+    "zh-CN": "模型身高",
+};
 data["blood"] = {
     "ja-JP": "血液型",
     "zh-TW": "血型",
