@@ -49,6 +49,15 @@
                                 <div class="tab-text-icon">{{Ui.getText('accessory')}}</div>
                             </div>
                         </li>
+                        <li class="nav-item" v-if="actress.combos&&actress.combos.length">
+                            <div
+                                v-bind:class="['py-1','px-2','nav-link',{'active':currentTabId=='combo'}]"
+                                @click="currentTabId='combo'"
+                                style="cursor: pointer;white-space: nowrap;"
+                            >
+                                <div class="tab-text-icon">{{Ui.getText('combo')}}</div>
+                            </div>
+                        </li>
                     </ul>
                     <div
                         class="tab-content p-3 position-relative"
@@ -87,6 +96,14 @@
                                 :actressId="actress.id"
                             />
                         </transition>
+                        <transition name="fade">
+                            <DetailCombo
+                                id="chara-tab-combo"
+                                v-show="currentTabId=='combo'"
+                                :class="['tab-pane', currentTabId=='combo'?'show active':'']"
+                                :actress="actress"
+                            />
+                        </transition>
                         <button
                             type="button"
                             class="close d-sm-none"
@@ -111,6 +128,7 @@ import DetailResume from "./DetailResume.vue";
 import DetailGear from "./DetailGear.vue";
 import DetailCostume from "./DetailCostume.vue";
 import DetailAccessory from "./DetailAccessory.vue";
+import DetailCombo from "./DetailCombo.vue";
 
 export default {
     data: function() {
@@ -131,6 +149,13 @@ export default {
                 }
                 return;
             }
+            $vm.actress.combos = [];
+            _.each(Data.getAll("combo"), function(o, i) {
+                if (o.actressIds.indexOf($vm.actress.id) >= 0) {
+                    $vm.actress.combos.push(o);
+                }
+            });
+
             $vm.charas = [];
             _.each(Data.getAll("chara"), function(o, i) {
                 if (o.actressId == $vm.actress.id) {
@@ -183,7 +208,8 @@ export default {
         DetailResume,
         DetailGear,
         DetailCostume,
-        DetailAccessory
+        DetailAccessory,
+        DetailCombo
     }
 };
 </script>

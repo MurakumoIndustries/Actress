@@ -65,6 +65,17 @@
                             <div class="col-3">{{Ui.getText("appeal")}}</div>
                             <div class="col" v-html="Ui.renderDesc(chara.exactress.appeal)"></div>
                         </div>
+                        <hr v-if="chara.aptitudes&&chara.aptitudes.length" />
+                        <div
+                            v-if="chara.aptitudes&&chara.aptitudes.length"
+                            class="row justify-content-center"
+                        >
+                            <div
+                                class="col-auto"
+                                v-for="aptitude in chara.aptitudes"
+                                :key="aptitude"
+                            >{{aptitude}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,6 +101,17 @@
                 <div class="row">
                     <div class="col-3">{{Ui.getText("appeal")}}</div>
                     <div class="col" v-html="Ui.renderDesc(chara.exactress.appeal)"></div>
+                </div>
+                <hr v-if="chara.aptitudes&&chara.aptitudes.length" />
+                <div
+                    v-if="chara.aptitudes&&chara.aptitudes.length"
+                    class="row justify-content-center"
+                >
+                    <div
+                        class="col-auto"
+                        v-for="aptitude in chara.aptitudes"
+                        :key="aptitude"
+                    >{{aptitude}}</div>
                 </div>
             </div>
         </div>

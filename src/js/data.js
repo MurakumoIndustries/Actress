@@ -50,6 +50,7 @@ var init = function (forceInit) {
             promises.push(loaddata('skillpassive'));
             promises.push(loaddata('costume'));
             promises.push(loaddata('accessory'));
+            promises.push(loaddata('combo'));
             return Promise.all(promises);
         }
         return store.clear().then(() => {
@@ -112,6 +113,12 @@ var init = function (forceInit) {
                     /* webpackChunkName: "jsondata" */
                     '../data/' + folder + '/accessory.json').then(jsondata => {
                     return savedata('accessory', folder, jsondata.default);
+                }));
+            promises.push(
+                import(
+                    /* webpackChunkName: "jsondata" */
+                    '../data/' + folder + '/combo.json').then(jsondata => {
+                    return savedata('combo', folder, jsondata.default);
                 }));
             return Promise.all(promises).then(() => {
                 return store.setItem(lastUpdateKey, lastUpdate)

@@ -106,6 +106,17 @@
 }
 
 
+.card-columns[data-v-52fecb3d] {
+    column-count: 1;
+    column-gap: 10px;
+}
+@media (min-width: 992px) {
+.card-columns[data-v-52fecb3d] {
+        column-count: 2;
+}
+}
+
+
 .modal-content[data-v-a38ba3fe] {
     background: rgba(255, 255, 255, 0.75);
 }
