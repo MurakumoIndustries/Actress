@@ -5,6 +5,7 @@
                 <div class="card pb-2">
                     <div class="card-header">
                         <span>{{combo.name}}</span>
+                        <span class="text-black-50 float-right">{{combo.handLowerLimit}}</span>
                     </div>
                     <div class="card-body py-2 px-2">
                         <p class="card-text" v-html="Ui.renderDesc(combo.flavorText)"></p>
