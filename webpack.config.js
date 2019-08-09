@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OfflinePlugin = require('offline-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -16,7 +16,9 @@ module.exports = env => {
         console.log("debug");
     }
     var plugins = [
-        new CleanWebpackPlugin(['docs'], { exclude: ['.nojekyll'] }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['**/*', '!.nojekyll']
+        }),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html'

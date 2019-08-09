@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Konami from 'Konami'
 
 import { Event } from "../js/event.js"
+import { Ui } from '../js/ui.js';
 
 import App from '../App.vue'
 
@@ -26,10 +27,12 @@ var clear = function () {
 var initControl = function () {
     if (inited) { return; }
 
+    document.getElementsByTagName('body')[0].setAttribute('lang', Ui.getLang());
+
     Vue.prototype.isExperimentalMode = function () {
         return getIsExperimentalMode();
     };
-    
+
     new Konami(function () {
         setIsExperimentalMode(!getIsExperimentalMode());
         location.reload();
