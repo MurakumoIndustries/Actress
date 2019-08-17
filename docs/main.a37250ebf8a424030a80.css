@@ -2601,15 +2601,22 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Yu Gothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
 body:lang(zh-TW) {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Microsoft JhengHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
 body:lang(zh-CN) {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .material-icons {
     vertical-align: top;
+}
+
+.background {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+DQogICAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjZjJmMmYyIi8+DQogICAgPGxpbmUgeDE9IjI1IiB5MT0iMCIgeDI9IjI1IiB5Mj0iNTAiIHN0cm9rZT0iI2U5ZTllOSIgc3Ryb2tlLXdpZHRoPSIxIi8+DQogICAgPGxpbmUgeDE9IjAiIHkxPSIyNSIgeDI9IjUwIiB5Mj0iMjUiIHN0cm9rZT0iI2U5ZTllOSIgc3Ryb2tlLXdpZHRoPSIxIi8+DQogICAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMjIiIHkyPSIyMiIgc3Ryb2tlPSIjZTllOWU5IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgICA8bGluZSB4MT0iMjgiIHkxPSIyOCIgeDI9IjUwIiB5Mj0iNTAiIHN0cm9rZT0iI2U5ZTllOSIgc3Ryb2tlLXdpZHRoPSIxIiAvPg0KPC9zdmc+);
+    background-size: 3rem 3rem;
 }
 
 hr {

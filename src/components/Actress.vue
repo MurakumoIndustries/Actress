@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container container-fluid">
+    <div class="main-container container-fluid background">
         <fieldset class="w-100" v-for="item in groups" v-bind:key="item.label">
             <legend class="text-black-50 m-0" style="font-size:1.25rem" v-html="item.label"></legend>
             <div style="margin:0 -0.5rem;">
