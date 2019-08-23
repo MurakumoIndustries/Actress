@@ -140,6 +140,12 @@ export default {
     },
     created: function() {
         var $vm = this;
+        $vm.$nextTick(function() {
+            $($vm.$el).on("hide.bs.modal", function(e) {
+                page.show("/");
+            });
+        });
+
         Event.$on("render", function(id) {
             var isModelShow = !!($vm.actress && $vm.actress.id);
             $vm.actress = Data.get("actress", id) || {};
@@ -191,9 +197,6 @@ export default {
 
             $vm.$nextTick(function() {
                 $($vm.$el).modal("show");
-                $($vm.$el).on("hide.bs.modal", function() {
-                    page.show("/");
-                });
             });
         });
     },
