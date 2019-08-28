@@ -285,7 +285,14 @@ export default {
                                 label: heightText,
                                 actresses: _.orderBy(
                                     group[1],
-                                    ["resumeHeight"],
+                                    [
+                                        function(o) {
+                                            return (
+                                                o.exactress.resumeHeight ||
+                                                o.resumeHeight
+                                            );
+                                        }
+                                    ],
                                     ["asc"]
                                 )
                             });
@@ -317,7 +324,14 @@ export default {
                                 label: heightText,
                                 actresses: _.orderBy(
                                     group[1],
-                                    ["modelHeight"],
+                                    [
+                                        function(o) {
+                                            return (
+                                                o.exactress.modelHeight ||
+                                                o.modelHeight
+                                            );
+                                        }
+                                    ],
                                     ["asc"]
                                 )
                             });
