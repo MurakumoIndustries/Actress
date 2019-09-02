@@ -40,7 +40,7 @@
 import { Data } from "../js/data.js";
 import { Event } from "../js/event.js";
 
-var splitRegex = /[・|\s]/g;
+var splitRegex = /[‧|・|\s]/g;
 
 export default {
     props: {
