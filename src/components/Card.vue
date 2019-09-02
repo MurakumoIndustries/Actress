@@ -17,7 +17,7 @@
                             <rt>{{SplitedRuby[0]}}</rt>
                             <rp>)</rp>
                         </ruby>
-                        <span v-if="isNeedSplit">{{SplitMark}}</span>
+                        <span v-if="isNeedSplit" :class="{'pr-1':!SplitMark}">{{SplitMark}}</span>
                         <ruby v-if="isNeedSplit">
                             {{SplitedName[1]}}
                             <rp>(</rp>
@@ -57,7 +57,7 @@ export default {
             return this.actress.ruby.split(splitRegex);
         },
         SplitMark: function() {
-            return this.actress.name.match(splitRegex)[0];
+            return this.actress.name.match(splitRegex)[0].trim();
         },
         isAccessDenied: function() {
             if (this.isExperimentalMode()) {
