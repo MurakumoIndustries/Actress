@@ -20,7 +20,7 @@ import Data from './js/data.js'
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
 NProgress.set(0.1);
-Ui.init();
+//Ui.init();
 Vue.prototype.Ui = Ui;
 NProgress.set(0.3);
 Data.init().then(function () {
