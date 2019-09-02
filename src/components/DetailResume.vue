@@ -13,16 +13,16 @@
             <div class="col">
                 <div class="actress-resume-singleline">
                     <div class="row">
-                        <div class="col-4">{{Ui.getText("roma")}}</div>
-                        <div class="col-8 text-right">{{actress.roma}}</div>
+                        <div class="col-auto">{{Ui.getText("roma")}}</div>
+                        <div class="col text-right">{{actress.roma}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-4">{{Ui.getText("ruby")}}</div>
-                        <div class="col-8 text-right">{{actress.ruby}}</div>
+                        <div class="col-auto">{{Ui.getText("ruby")}}</div>
+                        <div class="col text-right">{{actress.ruby}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-4">{{Ui.getText("name")}}</div>
-                        <div class="col-8 text-right">{{chara.exactress.fullName}}</div>
+                        <div class="col-auto">{{Ui.getText("name")}}</div>
+                        <div class="col text-right">{{chara.exactress.fullName}}</div>
                     </div>
                     <div class="row">
                         <div class="col-4 col-lg-2">{{Ui.getText("birthday")}}</div>
@@ -173,7 +173,13 @@
                     <div class="row">
                         <div class="col">
                             <fieldset>
-                                <legend>{{spSkill.name}}</legend>
+                                <legend>
+                                    <p class="m-0 float-left">{{spSkill.name}}</p>
+                                    <p class="m-0 float-right" style="font-size:1rem;">
+                                        <span>{{Ui.getText('attribute',spSkill.attribute1st)}}</span>
+                                        <span v-html="Ui.renderAttribute2nd(spSkill.attribute2nd)"></span>
+                                    </p>
+                                </legend>
                                 <div class="row mb-1">
                                     <div
                                         class="col-12 col-sm-6 col-lg-4 text-center"
@@ -254,6 +260,7 @@ export default {
 </script>
 <style scoped>
 .chara-img-container {
+    text-align: center;
     border: 2px solid rgb(144, 144, 144);
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5);

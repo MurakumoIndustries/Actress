@@ -27,7 +27,7 @@
                             <a target="_blank" v-bind:href="'../Gear/#!/weapon/'+longWeapon.id">
                                 <img
                                     v-bind:src="longWeapon.icon&&('../img/item/' + longWeapon.icon + '.png')"
-                                >
+                                />
                             </a>
                         </div>
                         <div class="media-body text-nowrap">
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <hr v-if="shortWeaponList.length<=1">
+        <hr v-if="shortWeaponList.length<=1" />
         <div>
             <ul class="nav nav-tabs" role="tablist" v-if="shortWeaponList.length>1">
                 <li
@@ -110,7 +110,7 @@
                             <a target="_blank" v-bind:href="'../Gear/#!/weapon/'+shortWeapon.id">
                                 <img
                                     v-bind:src="shortWeapon.icon&&('../img/item/' + shortWeapon.icon + '.png')"
-                                >
+                                />
                             </a>
                         </div>
                         <div class="media-body text-nowrap">
@@ -165,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <hr v-if="armList.length<=1">
+        <hr v-if="armList.length<=1" />
         <div>
             <ul class="nav nav-tabs" role="tablist" v-if="armList.length>1">
                 <li v-for="(arm,i) in armList" v-bind:key="arm.id" class="nav-item">
@@ -187,7 +187,7 @@
                     <div class="media">
                         <div class="mr-3">
                             <a target="_blank" v-bind:href="'../Gear/#!/equipment/'+arm.id">
-                                <img v-bind:src="arm.icon&&('../img/item/' + arm.icon + '.png')">
+                                <img v-bind:src="arm.icon&&('../img/item/' + arm.icon + '.png')" />
                             </a>
                         </div>
                         <div class="media-body text-nowrap">
@@ -213,12 +213,20 @@
                         <img
                             class="mr-3"
                             v-bind:src="arm.activeSkill.icon&&('../img/skill/' + arm.activeSkill.icon + '.png')"
-                        >
+                        />
                         <div class="media-body">
                             <div class="row">
                                 <div class="col">
                                     <fieldset>
-                                        <legend>{{arm.activeSkill.name}}</legend>
+                                        <legend>
+                                            <p class="m-0 float-left">{{arm.activeSkill.name}}</p>
+                                            <p class="m-0 float-right" style="font-size:1rem;">
+                                                <span>{{Ui.getText('attribute',arm.activeSkill.attribute1st)}}</span>
+                                                <span
+                                                    v-html="Ui.renderAttribute2nd(arm.activeSkill.attribute2nd)"
+                                                ></span>
+                                            </p>
+                                        </legend>
                                         <div
                                             class="mb-1"
                                             v-html="Ui.renderDesc(arm.activeSkill.desc)"
@@ -252,7 +260,7 @@
                 </div>
             </div>
         </div>
-        <hr v-if="legList.length<=1">
+        <hr v-if="legList.length<=1" />
         <div>
             <ul class="nav nav-tabs" role="tablist" v-if="legList.length>1">
                 <li v-for="(leg,i) in legList" v-bind:key="leg.id" class="nav-item">
@@ -274,7 +282,7 @@
                     <div class="media">
                         <div class="mr-3">
                             <a target="_blank" v-bind:href="'../Gear/#!/equipment/'+leg.id">
-                                <img v-bind:src="leg.icon&&('../img/item/' + leg.icon + '.png')">
+                                <img v-bind:src="leg.icon&&('../img/item/' + leg.icon + '.png')" />
                             </a>
                         </div>
                         <div class="media-body text-nowrap">
@@ -315,12 +323,20 @@
                         <img
                             class="mr-3"
                             v-bind:src="leg.activeSkill.icon&&('../img/skill/' + leg.activeSkill.icon + '.png')"
-                        >
+                        />
                         <div class="media-body">
                             <div class="row">
                                 <div class="col">
                                     <fieldset>
-                                        <legend>{{leg.activeSkill.name}}</legend>
+                                        <legend>
+                                            <p class="m-0 float-left">{{leg.activeSkill.name}}</p>
+                                            <p class="m-0 float-right" style="font-size:1rem;">
+                                                <span>{{Ui.getText('attribute',leg.activeSkill.attribute1st)}}</span>
+                                                <span
+                                                    v-html="Ui.renderAttribute2nd(leg.activeSkill.attribute2nd)"
+                                                ></span>
+                                            </p>
+                                        </legend>
                                         <div
                                             class="mb-1"
                                             v-html="Ui.renderDesc(leg.activeSkill.desc)"
