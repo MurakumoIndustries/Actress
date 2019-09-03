@@ -166,7 +166,7 @@
             <hr />
             <div class="media" v-for="spSkill in chara.spSkills" v-bind:key="spSkill.id">
                 <img
-                    class="mr-3"
+                    class="mr-4"
                     v-bind:src="spSkill.icon&&('../img/skill/' + spSkill.icon + '.png')"
                 />
                 <div class="media-body">
@@ -175,10 +175,19 @@
                             <fieldset>
                                 <legend>
                                     <p class="m-0 float-left">{{spSkill.name}}</p>
-                                    <p class="m-0 float-right" style="font-size:1rem;">
-                                        <span>{{Ui.getText('attribute',spSkill.attribute1st)}}</span>
-                                        <span v-html="Ui.renderAttribute2nd(spSkill.attribute2nd)"></span>
-                                    </p>
+                                    <div class="m-0 float-right text-right" style="font-size:1rem;">
+                                        <div>
+                                            <span>{{Ui.getText('attribute',spSkill.attribute1st)}}</span>
+                                            <span
+                                                v-html="Ui.renderAttribute2nd(spSkill.attribute2nd)"
+                                            ></span>
+                                        </div>
+                                        <div v-if="isExperimentalMode()">
+                                            <small
+                                                class="text-black-50"
+                                            >{{spSkill.detailCategoryName}}</small>
+                                        </div>
+                                    </div>
                                 </legend>
                                 <div class="row mb-1">
                                     <div
@@ -191,6 +200,26 @@
                                     >{{Ui.getText("needPoint")}}：{{spSkill.needPoint}}</div>
                                 </div>
                                 <div class="mb-1" v-html="Ui.renderDesc(spSkill.desc)"></div>
+                                <div v-if="isExperimentalMode()">
+                                    <div
+                                        class="mb-1"
+                                        v-for="pSkill in spSkill.passiveSkills"
+                                        v-bind:key="pSkill.id"
+                                    >
+                                        <h5>{{pSkill.skill.name}}</h5>
+                                        <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
+                                        <div v-if="isExperimentalMode()">
+                                            <div
+                                                v-for="id in pSkill.skill.detailList"
+                                                v-bind:key="id"
+                                            >
+                                                <small
+                                                    class="text-black-50"
+                                                >{{getSkillDetailDesc(id)}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
                         </div>
                     </div>
@@ -203,8 +232,8 @@
                     v-bind:key="pSkill.id+'-'+pSkill.openLevel"
                     class="row"
                 >
-                    <div class="col-auto">
-                        <span class="font-weight-light">
+                    <div class="col-auto" style="flex:0 0 5rem;">
+                        <span class="font-weight-light text-nowrap">
                             Lv.
                             {{pSkill.openLevel}}
                         </span>
@@ -213,8 +242,8 @@
                         <h5>{{pSkill.skill.name}}</h5>
                         <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
                         <div v-if="isExperimentalMode()">
-                            <div v-for="text in pSkill.skill.detailList" v-bind:key="text">
-                                <small class="text-black-50">{{text}}</small>
+                            <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
+                                <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
                             </div>
                         </div>
                     </div>
@@ -224,6 +253,8 @@
     </div>
 </template>
 <script>
+import { Data } from "../js/data.js";
+
 export default {
     props: {
         actress: Object,
@@ -254,6 +285,10 @@ export default {
                 o[0] = o[0].replace("時間", $vm.Ui.getText("duration"));
             });
             return list;
+        },
+        getSkillDetailDesc: function(id) {
+            var detail = Data.get("skilldetail", id) || {};
+            return detail.name + "|" + detail.desc || "";
         }
     }
 };

@@ -4,6 +4,7 @@ import serverList from "../data/serverList.json";
 const baseKey = "MI_Actress_";
 const lastUpdateKey = baseKey + "LastUpdate";
 const serverKey = baseKey + "Server";
+const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment', 'skillactive', 'skillpassive', 'skilldetail', 'costume', 'accessory', 'combo'];
 
 var data = {};
 
@@ -41,16 +42,9 @@ var init = function (forceInit) {
                     data[key] = JSON.parse(json);
                 });
             };
-            promises.push(loaddata('actress'));
-            promises.push(loaddata('exactress'));
-            promises.push(loaddata('chara'));
-            promises.push(loaddata('weapon'));
-            promises.push(loaddata('equipment'));
-            promises.push(loaddata('skillactive'));
-            promises.push(loaddata('skillpassive'));
-            promises.push(loaddata('costume'));
-            promises.push(loaddata('accessory'));
-            promises.push(loaddata('combo'));
+            _.each(filelist, function (o, i) {
+                promises.push(loaddata(o));
+            });
             return Promise.all(promises);
         }
         return store.clear().then(() => {
@@ -60,66 +54,14 @@ var init = function (forceInit) {
                     data[key] = jsondata;
                 });
             }
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/actress.json').then(jsondata => {
-                    return savedata('actress', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/exactress.json').then(jsondata => {
-                    return savedata('exactress', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/chara.json').then(jsondata => {
-                    return savedata('chara', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/weapon.json').then(jsondata => {
-                    return savedata('weapon', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/equipment.json').then(jsondata => {
-                    return savedata('equipment', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/skillactive.json').then(jsondata => {
-                    return savedata('skillactive', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/skillpassive.json').then(jsondata => {
-                    return savedata('skillpassive', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/costume.json').then(jsondata => {
-                    return savedata('costume', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/accessory.json').then(jsondata => {
-                    return savedata('accessory', folder, jsondata.default);
-                }));
-            promises.push(
-                import(
-                    /* webpackChunkName: "jsondata" */
-                    '../data/' + folder + '/combo.json').then(jsondata => {
-                    return savedata('combo', folder, jsondata.default);
-                }));
+            _.each(filelist, function (o, i) {
+                promises.push(
+                    import(
+                        /* webpackChunkName: "jsondata" */
+                        '../data/' + folder + '/' + o + '.json').then(jsondata => {
+                        return savedata(o, folder, jsondata.default);
+                    }));
+            });
             return Promise.all(promises).then(() => {
                 return store.setItem(lastUpdateKey, lastUpdate)
             });

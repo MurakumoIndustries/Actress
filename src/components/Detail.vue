@@ -171,13 +171,30 @@ export default {
                     chara.spSkills = [];
                     if (chara.spSkillIds) {
                         _.each(chara.spSkillIds, function(id) {
-                            chara.spSkills.push(Data.get("skillactive", id));
+                            var spSkill = Data.get("skillactive", id);
+                            spSkill.passiveSkills = [];
+                            _.each(spSkill.passiveList, function(o, i) {
+                                spSkill.passiveSkills[i] = {
+                                    id: o,
+                                    skill: Data.get("skillpassive", o)
+                                };
+                            });
+                            chara.spSkills.push(spSkill);
                         });
                     }
                     if (chara.defaultSpSkillId) {
-                        chara.spSkills.push(
-                            Data.get("skillactive", chara.defaultSpSkillId)
+                        var spSkill = Data.get(
+                            "skillactive",
+                            chara.defaultSpSkillId
                         );
+                        spSkill.passiveSkills = [];
+                        _.each(spSkill.passiveList, function(o, i) {
+                            spSkill.passiveSkills[i] = {
+                                id: o,
+                                skill: Data.get("skillpassive", o)
+                            };
+                        });
+                        chara.spSkills.push(spSkill);
                     }
 
                     _.each(chara.passiveSkills, function(o, i) {
