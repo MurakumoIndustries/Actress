@@ -177,6 +177,9 @@
                                     <p class="m-0 float-left">{{spSkill.name}}</p>
                                     <div class="m-0 float-right text-right" style="font-size:1rem;">
                                         <div>
+                                            <i
+                                                class="material-icons"
+                                            >{{spSkill.isNolockActivate==1?"gps_off":"gps_fixed"}}</i>
                                             <span>{{Ui.getText('attribute',spSkill.attribute1st)}}</span>
                                             <span
                                                 v-html="Ui.renderAttribute2nd(spSkill.attribute2nd)"

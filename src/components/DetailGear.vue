@@ -225,6 +225,9 @@
                                                 style="font-size:1rem;"
                                             >
                                                 <div>
+                                                    <i
+                                                        class="material-icons"
+                                                    >{{arm.activeSkill.isNolockActivate==1?"gps_off":"gps_fixed"}}</i>
                                                     <span>{{Ui.getText('attribute',arm.activeSkill.attribute1st)}}</span>
                                                     <span
                                                         v-html="Ui.renderAttribute2nd(arm.activeSkill.attribute2nd)"
@@ -368,6 +371,9 @@
                                                 style="font-size:1rem;"
                                             >
                                                 <div>
+                                                    <i
+                                                        class="material-icons"
+                                                    >{{leg.activeSkill.isNolockActivate==1?"gps_off":"gps_fixed"}}</i>
                                                     <span>{{Ui.getText('attribute',leg.activeSkill.attribute1st)}}</span>
                                                     <span
                                                         v-html="Ui.renderAttribute2nd(leg.activeSkill.attribute2nd)"
