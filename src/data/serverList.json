@@ -3,13 +3,13 @@
         "id": "pyramid",
         "name": "Pyramid",
         "folder": "pyramid",
-        "version": "23211",
+        "version": "23231",
         "isDefault": true
     },
     "sonet": {
         "id": "sonet",
         "name": "So-net",
         "folder": "sonet",
-        "version": "68"
+        "version": "71"
     }
 }
