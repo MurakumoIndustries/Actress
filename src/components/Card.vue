@@ -31,6 +31,9 @@
                             <rp>)</rp>
                         </ruby>
                     </h5>
+                    <div v-if="isExperimentalMode()" class="actress-no">
+                        <small class="text-black-50">{{actressNo}}</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,6 +86,10 @@ export default {
                 return "";
             }
             return "../img/chara/" + cardIcon + ".png";
+        },
+        actressNo: function() {
+            var idStr = this.actress.idStr || "__";
+            return idStr.split("_")[1];
         }
     },
     methods: {
@@ -134,6 +141,12 @@ export default {
     border-right: 1px solid rgba(0, 0, 0, 0.125);
     box-sizing: content-box;
     border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.actress-card .actress-no {
+    position: absolute;
+    right: 0.25rem;
+    bottom: 0;
 }
 </style>
 
