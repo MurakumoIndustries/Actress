@@ -15,7 +15,8 @@ NProgress.start();
 
 import Ui from './js/ui.js';
 import Router from './js/router.js';
-import Data from './js/data.js'
+import { Data } from './js/data.js'
+import { Event } from "./js/event.js";
 
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
@@ -27,7 +28,11 @@ Data.init().then(function () {
     NProgress.set(0.6);
     if (localStorage["MI_Actress_Disable_Cache"] !== "true") {
         OfflinePluginRuntime.install({
+            onUpdating: function () {
+                Event.$emit('new-version-updating');
+            },
             onUpdateReady: function () {
+                Event.$emit('new-version-update-ready');
                 OfflinePluginRuntime.applyUpdate();
             }
         });
