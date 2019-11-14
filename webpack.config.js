@@ -33,9 +33,14 @@ module.exports = env => {
             theme_color: "#FAFAFA",
             background_color: '#FAFAFA',
             icons: [{
-                src: path.resolve('./src/img/murakumo.png'),
-                sizes: [96, 128, 192, 256, 384, 512, 1024] // multiple sizes
-            }]
+                    src: path.resolve('./src/img/murakumo.svg'),
+                    sizes: [96, 128, 192, 256, 384, 512, 1024] // multiple sizes
+                },
+                {
+                    src: path.resolve('./src/img/murakumo.png'), //fallback for chrome
+                    sizes: [96, 128, 192, 256, 384, 512, 1024]
+                }
+            ]
         }),
         new OfflinePlugin({
             appShell: '/Actress/',

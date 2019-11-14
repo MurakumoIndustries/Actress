@@ -1,0 +1,81 @@
+{
+  "icons": [
+    {
+      "src": "icon_1024x1024.785cc6aa897e74e247410f1652411ed3.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_512x512.b71f1a3d0d7cf08fc331720e6064825d.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_384x384.8cd464dede7183045719da7f6ea6fe4c.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_256x256.c258b2057de3ddb76c94e2de7bfe890b.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_192x192.de6fea4e8c825ff05632d058f0366345.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_128x128.032c7c84736506ce65445d008d6a50b3.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_96x96.acbc4908b4238f779e82d672ed66ea76.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_1024x1024.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "1024x1024",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon_512x512.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon_384x384.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "384x384",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon_256x256.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "256x256",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon_192x192.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon_128x128.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "128x128",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon_96x96.86ed9bd1bfba994a3dca4bb2b655beeb.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml"
+    }
+  ],
+  "name": "MI|Actress",
+  "short_name": "MI|Actress",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "theme_color": "#FAFAFA",
+  "background_color": "#FAFAFA"
+}

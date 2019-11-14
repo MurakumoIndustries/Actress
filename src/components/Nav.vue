@@ -255,7 +255,7 @@ export default {
 .icon.icon-murakumo {
     width: 2.5rem;
     height: 2.5rem;
-    background-image: url(../img/murakumo.png);
+    background-image: url(../img/murakumo.svg);
 }
 
 .version-text {
