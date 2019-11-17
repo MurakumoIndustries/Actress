@@ -11,11 +11,7 @@
                 >
                     <h5 class="m-0 text-nowrap">
                         <img class="card-icon" v-bind:src="cardIconPath" />
-                        <div
-                            v-if="isEasterMode"
-                            class="card-icon-easter"
-                            :style="easterStyle"
-                        ></div>
+                        <div v-if="isEasterMode" class="card-icon-easter" :style="easterStyle"></div>
                         <ruby v-if="isNeedSplit">
                             {{SplitedName[0]}}
                             <rp>(</rp>
@@ -157,7 +153,7 @@ export default {
 
 .actress-card .card-icon-easter {
     position: absolute;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .actress-card .actress-no {
