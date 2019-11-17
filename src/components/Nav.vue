@@ -26,7 +26,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a
-                        class="nav-link dropdown-toggle"
+                        class="nav-link dropdown-toggle btn btn-light py-1"
                         data-toggle="dropdown"
                         href="#"
                         role="button"
@@ -44,8 +44,8 @@
                                 :key="item"
                                 v-else
                                 :class="['dropdown-item',{'active':actressOrder==item}]"
-                                href="javascript:;"
-                                @click="actressOrder=item"
+                                href="#"
+                                @click.prevent="actressOrder=item"
                             >{{Ui.getText(item)}}</a>
                         </template>
                     </div>
@@ -130,19 +130,19 @@
                         <a
                             class="dropdown-item"
                             href="#"
-                            @click="toggleCache()"
+                            @click.prevent="toggleCache()"
                         >{{Ui.getText(cacheDisabled?"enablecache":"disablecache")}}</a>
                         <a
                             v-if="isExperimentalMode"
                             class="dropdown-item"
                             href="#"
-                            @click="$store.commit('setExperimentalMode',false)"
+                            @click.prevent="$store.commit('setExperimentalMode',false)"
                         >Disable Experimental Mode</a>
                         <a
                             v-if="isEasterAvailable"
                             class="dropdown-item"
                             href="#"
-                            @click="toggleEaster()"
+                            @click.prevent="$store.commit('setEasterMode', !isEasterMode)"
                         >？？？</a>
                     </ul>
                 </li>
@@ -247,9 +247,6 @@ export default {
                             });
                     });
             }
-        },
-        toggleEaster: function() {
-            this.$store.commit("setEasterMode", !this.isEasterMode);
         }
     },
     computed: {
