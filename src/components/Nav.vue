@@ -285,8 +285,8 @@ export default {
 .icon.icon-version {
     width: 2.5rem;
     height: 2.5rem;
-    margin-top: -0.5rem;
-    margin-bottom: -0.5rem;
+    margin-top: -1rem;
+    margin-bottom: -1rem;
     opacity: 0.5;
     background-image: url(../img/version.png);
 }
