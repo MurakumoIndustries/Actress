@@ -54,7 +54,7 @@ export default {
     },
     methods: {
         isAccessDenied: function(accessory) {
-            if (this.isExperimentalMode()) {
+            if (this.$store.state.isExperimentalMode) {
                 return false;
             }
             return (

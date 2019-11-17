@@ -13,7 +13,7 @@
                                 :src="costume.icon?'../img/item/' + costume.icon + '.png':''"
                                 class
                                 :alt="costume.name"
-                            >
+                            />
                         </div>
                         <p class="card-text" v-html="Ui.renderDesc(costume.desc)"></p>
                     </div>
@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         isAccessDenied: function(costume) {
-            if (this.isExperimentalMode()) {
+            if (this.$store.state.isExperimentalMode) {
                 return false;
             }
             return (

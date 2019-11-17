@@ -24,24 +24,31 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <select class="selectpicker" v-model="actressOrder">
-                        <option value="default">{{Ui.getText("default")}}</option>
-                        <option value="gojyuon">{{Ui.getText("gojyuon")}}</option>
-                        <option data-divider="true"></option>
-                        <option value="birthday">{{Ui.getText("birthday")}}</option>
-                        <option value="age">{{Ui.getText("age")}}</option>
-                        <option value="height">{{Ui.getText("height")}}</option>
-                        <option value="blood">{{Ui.getText("blood")}}</option>
-                        <option value="job">{{Ui.getText("job")}}</option>
-                        <option data-divider="true"></option>
-                        <option value="weapon">{{Ui.getText("weapon")}}</option>
-                        <option value="attribute">{{Ui.getText("attribute")}}</option>
-                        <option value="spdtype">{{Ui.getText("spdtype")}}</option>
-                        <option data-divider="true"></option>
-                        <option value="modelheight">{{Ui.getText("modelheight")}}</option>
-                        <option value="cv">{{Ui.getText("cv")}}</option>
-                    </select>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        data-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >{{Ui.getText(actressOrder)}}</a>
+                    <div class="dropdown-menu">
+                        <template v-for="(item,index) in actressOrderList">
+                            <div
+                                :key="item+index"
+                                v-if="item=='_divider_'"
+                                class="dropdown-divider"
+                            ></div>
+                            <a
+                                :key="item"
+                                v-else
+                                :class="['dropdown-item',{'active':actressOrder==item}]"
+                                href="javascript:;"
+                                @click="actressOrder=item"
+                            >{{Ui.getText(item)}}</a>
+                        </template>
+                    </div>
                 </li>
             </ul>
 
@@ -125,6 +132,18 @@
                             href="#"
                             @click="toggleCache()"
                         >{{Ui.getText(cacheDisabled?"enablecache":"disablecache")}}</a>
+                        <a
+                            v-if="isExperimentalMode"
+                            class="dropdown-item"
+                            href="#"
+                            @click="$store.commit('setExperimentalMode',false)"
+                        >Disable Experimental Mode</a>
+                        <a
+                            v-if="isEasterAvailable"
+                            class="dropdown-item"
+                            href="#"
+                            @click="toggleEaster()"
+                        >？？？</a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -155,15 +174,34 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import { Data } from "../js/data.js";
 import { Ui } from "../js/ui.js";
 import { Event } from "../js/event.js";
-import $ from "jquery";
+
+const actressOrderList = [
+    "default",
+    "gojyuon",
+    "_divider_",
+    "birthday",
+    "age",
+    "height",
+    "blood",
+    "job",
+    "_divider_",
+    "weapon",
+    "attribute",
+    "spdtype",
+    "_divider_",
+    "modelheight",
+    "cv"
+];
 
 export default {
     data: function() {
         return {
-            actressOrder: "default",
+            actressOrder: actressOrderList[0],
             langText: Ui.getLangText(),
             isUpdating: false,
             isUpdateReady: false
@@ -180,16 +218,6 @@ export default {
             console.log("new-version-update-ready");
             $vm.isUpdating = false;
             $vm.isUpdateReady = true;
-        });
-    },
-    mounted: function() {
-        var $vm = this;
-        this.$nextTick(function() {
-            $($vm.$el)
-                .find(".selectpicker")
-                .selectpicker({
-                    width: "auto"
-                });
         });
     },
     watch: {
@@ -219,6 +247,9 @@ export default {
                             });
                     });
             }
+        },
+        toggleEaster: function() {
+            this.$store.commit("setEasterMode", !this.isEasterMode);
         }
     },
     computed: {
@@ -230,7 +261,18 @@ export default {
         },
         cacheDisabled: function() {
             return localStorage["MI_Actress_Disable_Cache"] === "true";
-        }
+        },
+        isEasterAvailable: function() {
+            if (this.isExperimentalMode) {
+                return true;
+            }
+            var date = new Date();
+            return date.getMonth() == 3 && date.getDate() == 1;
+        },
+        actressOrderList: function() {
+            return actressOrderList;
+        },
+        ...mapState(["isExperimentalMode", "isEasterMode"])
     }
 };
 </script>

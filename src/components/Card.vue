@@ -31,7 +31,7 @@
                             <rp>)</rp>
                         </ruby>
                     </h5>
-                    <div v-if="isExperimentalMode()" class="actress-no">
+                    <div v-if="isExperimentalMode" class="actress-no">
                         <small class="text-black-50">{{actressNo}}</small>
                     </div>
                 </div>
@@ -40,6 +40,8 @@
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 import { Data } from "../js/data.js";
 import { Event } from "../js/event.js";
 
@@ -63,7 +65,7 @@ export default {
             return this.actress.name.match(splitRegex)[0].trim();
         },
         isAccessDenied: function() {
-            if (this.isExperimentalMode()) {
+            if (this.isExperimentalMode) {
                 return false;
             }
             return (
@@ -90,7 +92,8 @@ export default {
         actressNo: function() {
             var idStr = this.actress.idStr || "__";
             return idStr.split("_")[1];
-        }
+        },
+        ...mapState(["isExperimentalMode", "isEasterMode"])
     },
     methods: {
         showResume: function(id) {

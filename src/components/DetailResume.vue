@@ -185,7 +185,7 @@
                                                 v-html="Ui.renderAttribute2nd(spSkill.attribute2nd)"
                                             ></span>
                                         </div>
-                                        <div v-if="isExperimentalMode()">
+                                        <div v-if="isExperimentalMode">
                                             <small
                                                 class="text-black-50"
                                             >{{spSkill.detailCategoryName}}</small>
@@ -203,7 +203,7 @@
                                     >{{Ui.getText("needPoint")}}：{{spSkill.needPoint}}</div>
                                 </div>
                                 <div class="mb-1" v-html="Ui.renderDesc(spSkill.desc)"></div>
-                                <div v-if="isExperimentalMode()">
+                                <div v-if="isExperimentalMode">
                                     <div
                                         class="mb-1"
                                         v-for="pSkill in spSkill.passiveSkills"
@@ -211,7 +211,7 @@
                                     >
                                         <h5>{{pSkill.skill.name}}</h5>
                                         <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
-                                        <div v-if="isExperimentalMode()">
+                                        <div v-if="isExperimentalMode">
                                             <div
                                                 v-for="id in pSkill.skill.detailList"
                                                 v-bind:key="id"
@@ -244,7 +244,7 @@
                     <div class="col">
                         <h5>{{pSkill.skill.name}}</h5>
                         <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
-                        <div v-if="isExperimentalMode()">
+                        <div v-if="isExperimentalMode">
                             <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
                                 <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
                             </div>
@@ -256,6 +256,8 @@
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 import { Data } from "../js/data.js";
 
 export default {
@@ -293,6 +295,9 @@ export default {
             var detail = Data.get("skilldetail", id) || {};
             return detail.name + "|" + detail.desc || "";
         }
+    },
+    computed: {
+        ...mapState(["isExperimentalMode", "isEasterMode"])
     }
 };
 </script>

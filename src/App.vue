@@ -1,15 +1,26 @@
 <template>
     <div>
-        <Nav/>
-        <Actress/>
+        <Nav />
+        <Actress />
     </div>
 </template>
 
 <script>
+import Konami from "Konami";
+
 import Nav from "./components/Nav.vue";
 import Actress from "./components/Actress.vue";
 
 export default {
+    created: function() {
+        var $this = this;
+        new Konami(function() {
+            $this.$store.commit(
+                "setExperimentalMode",
+                !$this.$store.state.isExperimentalMode
+            );
+        });
+    },
     components: {
         Nav,
         Actress

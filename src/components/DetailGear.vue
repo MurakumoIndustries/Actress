@@ -72,7 +72,7 @@
                         <div class="col">
                             <h5>{{pSkill.skill.name}}</h5>
                             <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
-                            <div v-if="isExperimentalMode()">
+                            <div v-if="isExperimentalMode">
                                 <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
                                     <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
                                 </div>
@@ -155,7 +155,7 @@
                         <div class="col">
                             <h5>{{pSkill.skill.name}}</h5>
                             <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
-                            <div v-if="isExperimentalMode()">
+                            <div v-if="isExperimentalMode">
                                 <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
                                     <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
                                 </div>
@@ -233,7 +233,7 @@
                                                         v-html="Ui.renderAttribute2nd(arm.activeSkill.attribute2nd)"
                                                     ></span>
                                                 </div>
-                                                <div v-if="isExperimentalMode()">
+                                                <div v-if="isExperimentalMode">
                                                     <small
                                                         class="text-black-50"
                                                     >{{arm.activeSkill.detailCategoryName}}</small>
@@ -244,7 +244,7 @@
                                             class="mb-1"
                                             v-html="Ui.renderDesc(arm.activeSkill.desc)"
                                         ></div>
-                                        <div v-if="isExperimentalMode()">
+                                        <div v-if="isExperimentalMode">
                                             <div
                                                 class="mb-1"
                                                 v-for="pSkill in arm.activeSkill.passiveSkills"
@@ -255,7 +255,7 @@
                                                     class="mb-1"
                                                     v-html="Ui.renderDesc(pSkill.skill.desc)"
                                                 ></div>
-                                                <div v-if="isExperimentalMode()">
+                                                <div v-if="isExperimentalMode">
                                                     <div
                                                         v-for="id in pSkill.skill.detailList"
                                                         v-bind:key="id"
@@ -286,7 +286,7 @@
                         <div class="col">
                             <h5>{{pSkill.skill.name}}</h5>
                             <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
-                            <div v-if="isExperimentalMode()">
+                            <div v-if="isExperimentalMode">
                                 <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
                                     <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
                                 </div>
@@ -379,7 +379,7 @@
                                                         v-html="Ui.renderAttribute2nd(leg.activeSkill.attribute2nd)"
                                                     ></span>
                                                 </div>
-                                                <div v-if="isExperimentalMode()">
+                                                <div v-if="isExperimentalMode">
                                                     <small
                                                         class="text-black-50"
                                                     >{{leg.activeSkill.detailCategoryName}}</small>
@@ -390,7 +390,7 @@
                                             class="mb-1"
                                             v-html="Ui.renderDesc(leg.activeSkill.desc)"
                                         ></div>
-                                        <div v-if="isExperimentalMode()">
+                                        <div v-if="isExperimentalMode">
                                             <div
                                                 class="mb-1"
                                                 v-for="pSkill in leg.activeSkill.passiveSkills"
@@ -401,7 +401,7 @@
                                                     class="mb-1"
                                                     v-html="Ui.renderDesc(pSkill.skill.desc)"
                                                 ></div>
-                                                <div v-if="isExperimentalMode()">
+                                                <div v-if="isExperimentalMode">
                                                     <div
                                                         v-for="id in pSkill.skill.detailList"
                                                         v-bind:key="id"
@@ -432,7 +432,7 @@
                         <div class="col">
                             <h5>{{pSkill.skill.name}}</h5>
                             <div class="mb-1" v-html="Ui.renderDesc(pSkill.skill.desc)"></div>
-                            <div v-if="isExperimentalMode()">
+                            <div v-if="isExperimentalMode">
                                 <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
                                     <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
                                 </div>
@@ -445,6 +445,8 @@
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 import { Data } from "../js/data.js";
 
 export default {
@@ -518,7 +520,8 @@ export default {
                 legList.push(leg);
             });
             return legList;
-        }
+        },
+        ...mapState(["isExperimentalMode"])
     },
     methods: {
         getSkillDetailDesc: function(id) {
