@@ -11,6 +11,11 @@
                 >
                     <h5 class="m-0 text-nowrap">
                         <img class="card-icon" v-bind:src="cardIconPath" />
+                        <div
+                            v-if="isEasterMode"
+                            class="card-icon-easter"
+                            :style="easterStyle"
+                        ></div>
                         <ruby v-if="isNeedSplit">
                             {{SplitedName[0]}}
                             <rp>(</rp>
@@ -44,6 +49,7 @@ import { mapState } from "vuex";
 
 import { Data } from "../js/data.js";
 import { Event } from "../js/event.js";
+import { Easter } from "../js/easter.js";
 
 var splitRegex = /[‧|・|\s]/g;
 
@@ -93,7 +99,10 @@ export default {
             var idStr = this.actress.idStr || "__";
             return idStr.split("_")[1];
         },
-        ...mapState(["isExperimentalMode", "isEasterMode"])
+        ...mapState(["isExperimentalMode", "isEasterMode"]),
+        easterStyle: function() {
+            return Easter.getCardStyle(this.actress.id);
+        }
     },
     methods: {
         showResume: function(id) {
@@ -144,6 +153,11 @@ export default {
     border-right: 1px solid rgba(0, 0, 0, 0.125);
     box-sizing: content-box;
     border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.actress-card .card-icon-easter {
+    position: absolute;
+    background-color: black;
 }
 
 .actress-card .actress-no {

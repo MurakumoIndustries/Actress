@@ -73,6 +73,10 @@ to {
     box-sizing: content-box;
     border-radius: 0.25rem 0 0 0.25rem;
 }
+.actress-card .card-icon-easter[data-v-54cdc180] {
+    position: absolute;
+    background-color: black;
+}
 .actress-card .actress-no[data-v-54cdc180] {
     position: absolute;
     right: 0.25rem;
