@@ -24,31 +24,31 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle btn btn-light py-1"
-                        data-toggle="dropdown"
-                        href="#"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >{{Ui.getText(actressOrder)}}</a>
-                    <div class="dropdown-menu">
-                        <template v-for="(item,index) in actressOrderList">
-                            <div
-                                :key="item+index"
-                                v-if="item=='_divider_'"
-                                class="dropdown-divider"
-                            ></div>
-                            <a
-                                :key="item"
-                                v-else
-                                :class="['dropdown-item',{'active':actressOrder==item}]"
-                                href="#"
-                                @click.prevent="actressOrder=item"
-                            >{{Ui.getText(item)}}</a>
-                        </template>
-                    </div>
+                <li class="nav-item">
+                    <select class="selectpicker" data-width="auto" v-model="actressOrder">
+                        <option value="default">{{Ui.getText("default")}}</option>
+                        <option value="gojyuon">{{Ui.getText("gojyuon")}}</option>
+                        <optgroup class="opt-group-header" :label="Ui.getText('resume')">
+                            <option value="birthday">{{Ui.getText("birthday")}}</option>
+                            <option value="age">{{Ui.getText("age")}}</option>
+                            <option value="height">{{Ui.getText("height")}}</option>
+                            <option value="blood">{{Ui.getText("blood")}}</option>
+                            <option value="job">{{Ui.getText("job")}}</option>
+                        </optgroup>
+                        <optgroup class="opt-group-header" :label="Ui.getText('chara')">
+                            <option value="goodweapon">{{Ui.getText("goodweapon")}}</option>
+                            <option value="goodweaponsub">{{Ui.getText("goodweaponsub")}}</option>
+                            <option value="damagetype">{{Ui.getText("damagetype")}}</option>
+                            <option value="damagetypesub">{{Ui.getText("damagetypesub")}}</option>
+                            <option value="passiveskill">{{Ui.getText("passiveskill")}}</option>
+                            <option value="attribute">{{Ui.getText("attribute")}}</option>
+                            <option value="spdtype">{{Ui.getText("spdtype")}}</option>
+                        </optgroup>
+                        <optgroup class="opt-group-header" :label="Ui.getText('others')">
+                            <option value="modelheight">{{Ui.getText("modelheight")}}</option>
+                            <option value="cv">{{Ui.getText("cv")}}</option>
+                        </optgroup>
+                    </select>
                 </li>
             </ul>
 
@@ -180,28 +180,10 @@ import { Data } from "../js/data.js";
 import { Ui } from "../js/ui.js";
 import { Event } from "../js/event.js";
 
-const actressOrderList = [
-    "default",
-    "gojyuon",
-    "_divider_",
-    "birthday",
-    "age",
-    "height",
-    "blood",
-    "job",
-    "_divider_",
-    "weapon",
-    "attribute",
-    "spdtype",
-    "_divider_",
-    "modelheight",
-    "cv"
-];
-
 export default {
     data: function() {
         return {
-            actressOrder: actressOrderList[0],
+            actressOrder: "default",
             langText: Ui.getLangText(),
             isUpdating: false,
             isUpdateReady: false
@@ -266,9 +248,6 @@ export default {
             var date = new Date();
             return date.getMonth() == 3 && date.getDate() == 1;
         },
-        actressOrderList: function() {
-            return actressOrderList;
-        },
         ...mapState(["isExperimentalMode", "isEasterMode"])
     }
 };
@@ -313,6 +292,16 @@ export default {
     to {
         transform: rotate(360deg);
     }
+}
+</style>
+<style>
+.dropdown-header.opt-group-header {
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    padding: 0 0 0.25rem 0.25rem;
+}
+.dropdown-header.opt-group-header-empty {
+    padding: 0;
 }
 </style>
 

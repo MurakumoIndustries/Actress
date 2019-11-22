@@ -23,11 +23,16 @@ var data = [];
 data["search"] = { "ja-JP": "検索", "zh-TW": "搜尋", "en-US": "Search", "zh-CN": "查询" };
 data["clear"] = { "ja-JP": "", "zh-TW": "清空", "en-US": "Clear", "zh-CN": "清空" };
 
-data["showall"] = { "ja-JP": "全アクトレス", "zh-TW": "所有角色", "en-US": "All Actress", "zh-CN": "所有角色" };
-data["onlynamed"] = { "ja-JP": "実装済み", "zh-TW": "已實裝角色", "en-US": "Only Implemented", "zh-CN": "已实装角色" };
-
 data["default"] = { "ja-JP": "デフォルト", "zh-TW": "默認", "en-US": "Default", "zh-CN": "默认" };
 data["gojyuon"] = { "ja-JP": "五十音順", "zh-TW": "五十音順", "en-US": "Gojūon", "zh-CN": "五十音顺" };
+data["others"] = { "ja-JP": "その他", "zh-TW": "其他", "en-US": "Others", "zh-CN": "其他" };
+
+data["chara"] = { "ja-JP": "キャラ", "zh-TW": "角色", "en-US": "Character", "zh-CN": "角色" };
+data["goodweapon"] = { "ja-JP": "得意ギア", "zh-TW": "擅長武裝", "en-US": "Main Weapon", "zh-CN": "擅长武装" };
+data["goodweaponsub"] = { "ja-JP": "準得意ギア", "zh-TW": "準擅長武裝", "en-US": "Sub Weapon", "zh-CN": "副武装" };
+data["damagetype"] = { "ja-JP": "攻撃種類", "zh-TW": "攻擊類型", "en-US": "Damage Type", "zh-CN": "攻击类型" };
+data["damagetypesub"] = { "ja-JP": "攻撃種類(準)", "zh-TW": "攻擊類型(準)", "en-US": "Damage Type(Sub)", "zh-CN": "攻击类型(副)" };
+data["passiveskill"] = { "ja-JP": "パッシブスキル", "zh-TW": "被動技能", "en-US": "Passive Skill", "zh-CN": "被动技能" };
 
 data["originalchara"] = { "ja-JP": "オリジナル", "zh-TW": "原創", "en-US": "Original", "zh-CN": "原创" };
 data["collabochara"] = { "ja-JP": "コラボ", "zh-TW": "聯動", "en-US": "Collaboration", "zh-CN": "联动" };
@@ -51,6 +56,12 @@ data["disablecachewarning"] = {
 };
 
 //resume
+data["resume"] = {
+    "ja-JP": "履歴書",
+    "zh-TW": "履歷表",
+    "en-US": "Resume",
+    "zh-CN": "履历表"
+};
 data["roma"] = {
     "ja-JP": "ローマ字",
     "zh-TW": "羅馬字",

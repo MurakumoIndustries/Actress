@@ -54,7 +54,7 @@ export default {
             var $vm = this;
             var groupList = [];
             switch ($vm.actressOrder) {
-                case "weapon": {
+                case "goodweapon": {
                     _.chain($vm.actressList)
                         .groupBy(function(actress) {
                             var goodLWeapon = 999;
@@ -94,39 +94,269 @@ export default {
                         .commit();
                     break;
                 }
-                case "attribute": {
+                case "goodweaponsub": {
                     _.chain($vm.actressList)
                         .groupBy(function(actress) {
-                            var goodAttr = 999;
+                            var goodLWeapon = 999;
+                            var goodSWeapon = 999;
                             _.each(Data.getAll("chara"), function(chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
                                     chara.rare >= 4 &&
                                     !chara.anotherIcon
                                 ) {
-                                    goodAttr = chara.goodAttr;
+                                    goodLWeapon = 0;
+                                    goodSWeapon = 0;
+                                    if (
+                                        !chara.goodLWeapon &&
+                                        actress.longWeaponId &&
+                                        actress.longWeaponId[0]
+                                    ) {
+                                        goodLWeapon = Data.get(
+                                            "weapon",
+                                            actress.longWeaponId[0]
+                                        ).type;
+                                    }
+                                    if (
+                                        !chara.goodSWeapon &&
+                                        actress.shortWeaponId &&
+                                        actress.shortWeaponId[0]
+                                    ) {
+                                        goodSWeapon = Data.get(
+                                            "weapon",
+                                            actress.shortWeaponId[0]
+                                        ).type;
+                                    }
                                     return false;
                                 }
                             });
-                            return goodAttr;
+                            return goodSWeapon * 1000 + goodLWeapon;
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
                         .each(function(group) {
-                            var attr = Number(group[0]);
-                            var attrText = "？？？";
-                            if (attr > 4 && attr < 255) {
-                                attrText = Ui.getText(
-                                    "attribute",
-                                    Number(attr)
+                            var weapon = Number(group[0]);
+                            var weaponText = "？？？";
+                            if (weapon == 999999) {
+                            } else if (weapon / 1000 >= 1) {
+                                weaponText = Ui.getText(
+                                    "weaponS",
+                                    Math.floor(weapon / 1000)
                                 );
+                            } else if (weapon > 0) {
+                                weaponText = Ui.getText("weaponL", weapon);
                             }
                             groupList.push({
-                                label: attrText,
+                                label: weaponText,
                                 actresses: group[1]
                             });
                         })
                         .commit();
+                    break;
+                }
+                case "damagetype": {
+                    _.chain($vm.actressList)
+                        .groupBy(function(actress) {
+                            var damageType = 999;
+                            _.each(Data.getAll("chara"), function(chara, i) {
+                                if (
+                                    chara.actressId == actress.id &&
+                                    chara.rare >= 4 &&
+                                    !chara.anotherIcon
+                                ) {
+                                    if (
+                                        chara.goodLWeapon &&
+                                        actress.longWeaponId &&
+                                        actress.longWeaponId[0]
+                                    ) {
+                                        damageType = Data.get(
+                                            "weapon",
+                                            actress.longWeaponId[0]
+                                        ).attribute1st;
+                                    }
+                                    if (
+                                        chara.goodSWeapon &&
+                                        actress.shortWeaponId &&
+                                        actress.shortWeaponId[0]
+                                    ) {
+                                        damageType = Data.get(
+                                            "weapon",
+                                            actress.shortWeaponId[0]
+                                        ).attribute1st;
+                                    }
+                                    return false;
+                                }
+                            });
+                            return damageType;
+                        })
+                        .toPairs()
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var damageType = Number(group[0]);
+                            var damageTypeText = "？？？";
+                            if (damageType == 999) {
+                            } else {
+                                damageTypeText = Ui.getText(
+                                    "attribute",
+                                    damageType
+                                );
+                            }
+                            groupList.push({
+                                label: damageTypeText,
+                                actresses: group[1]
+                            });
+                        })
+                        .commit();
+                    break;
+                }
+                case "damagetypesub": {
+                    _.chain($vm.actressList)
+                        .groupBy(function(actress) {
+                            var damageType = 999;
+                            _.each(Data.getAll("chara"), function(chara, i) {
+                                if (
+                                    chara.actressId == actress.id &&
+                                    chara.rare >= 4 &&
+                                    !chara.anotherIcon
+                                ) {
+                                    if (
+                                        !chara.goodLWeapon &&
+                                        actress.longWeaponId &&
+                                        actress.longWeaponId[0]
+                                    ) {
+                                        damageType = Data.get(
+                                            "weapon",
+                                            actress.longWeaponId[0]
+                                        ).attribute1st;
+                                    }
+                                    if (
+                                        !chara.goodSWeapon &&
+                                        actress.shortWeaponId &&
+                                        actress.shortWeaponId[0]
+                                    ) {
+                                        damageType = Data.get(
+                                            "weapon",
+                                            actress.shortWeaponId[0]
+                                        ).attribute1st;
+                                    }
+                                    return false;
+                                }
+                            });
+                            return damageType;
+                        })
+                        .toPairs()
+                        .orderBy(o => Number(o[0]))
+                        .each(function(group) {
+                            var damageType = Number(group[0]);
+                            var damageTypeText = "？？？";
+                            if (damageType == 999) {
+                            } else {
+                                damageTypeText = Ui.getText(
+                                    "attribute",
+                                    damageType
+                                );
+                            }
+                            groupList.push({
+                                label: damageTypeText,
+                                actresses: group[1]
+                            });
+                        })
+                        .commit();
+                    break;
+                }
+                case "passiveskill": {
+                    _.each($vm.actressList, function(actress) {
+                        _.each(Data.getAll("chara"), function(chara, i) {
+                            if (
+                                chara.actressId == actress.id &&
+                                chara.rare >= 4
+                            ) {
+                                var passiveId = _.get(
+                                    chara,
+                                    "passiveSkills.[0].id"
+                                );
+                                var passive = Data.get(
+                                    "skillpassive",
+                                    passiveId
+                                );
+                                var label = _.get(passive, "name", "").substr(
+                                    -4
+                                );
+                                var group = _.find(groupList, function(group) {
+                                    return group.label == label;
+                                });
+                                if (!group) {
+                                    groupList.push({
+                                        label: label,
+                                        actresses: [actress]
+                                    });
+                                } else if (
+                                    _.find(group.actresses, function(a) {
+                                        return a.id == actress.id;
+                                    })
+                                ) {
+                                } else {
+                                    group.actresses.push(actress);
+                                }
+                            }
+                        });
+                    });
+                    groupList = _.orderBy(groupList, function(group) {
+                        switch (group.label) {
+                            case "出力特性":
+                            case "威力特性":
+                                return 1;
+                            case "出力変性":
+                            case "威力變化":
+                                return 2;
+                            case "変質放出":
+                            case "變質放出":
+                                return 3;
+                            case "特質放出":
+                            case "特質放出":
+                                return 4;
+                            case "放出特化":
+                            case "放出特化":
+                                return 5;
+                            default:
+                                return 999;
+                        }
+                    });
+                    break;
+                }
+                case "attribute": {
+                    _.each($vm.actressList, function(actress) {
+                        _.each(Data.getAll("chara"), function(chara, i) {
+                            if (
+                                chara.actressId == actress.id &&
+                                chara.rare >= 4
+                            ) {
+                                var order = chara.goodAttr;
+                                var label = Ui.getText(
+                                    "attribute",
+                                    Number(chara.goodAttr)
+                                );
+                                var group = _.find(groupList, function(group) {
+                                    return group.label == label;
+                                });
+                                if (!group) {
+                                    groupList.push({
+                                        label: label,
+                                        order: order,
+                                        actresses: [actress]
+                                    });
+                                } else if (
+                                    _.find(group.actresses, function(a) {
+                                        return a.id == actress.id;
+                                    })
+                                ) {
+                                } else {
+                                    group.actresses.push(actress);
+                                }
+                            }
+                        });
+                    });
+                    groupList = _.orderBy(groupList, 'order');
                     break;
                 }
                 case "gojyuon": {
@@ -418,6 +648,16 @@ export default {
                                                 return 4;
                                             case 4062304324:
                                                 return 5;
+                                            case 1797818878:
+                                                return 6;
+                                            case 472889704:
+                                                return 7;
+                                            case 2358289657:
+                                                return 8;
+                                            case 4221015151:
+                                                return 9;
+                                            case 2605718922:
+                                                return 10;
                                             default:
                                                 return 999;
                                         }

@@ -37,6 +37,16 @@ to {
 }
 
 
+.dropdown-header.opt-group-header {
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    padding: 0 0 0.25rem 0.25rem;
+}
+.dropdown-header.opt-group-header-empty {
+    padding: 0;
+}
+
+
 .actress-card[data-v-54cdc180] {
     transition: all 0.5s ease-in-out;
     width: 100%;
