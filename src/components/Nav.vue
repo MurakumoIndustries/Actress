@@ -174,6 +174,7 @@
 </template>
 
 <script>
+import $ from "jquery";
 import { mapState } from "vuex";
 
 import { Data } from "../js/data.js";
@@ -200,6 +201,16 @@ export default {
             console.log("new-version-update-ready");
             $vm.isUpdating = false;
             $vm.isUpdateReady = true;
+        });
+    },
+    mounted: function() {
+        var $vm = this;
+        this.$nextTick(function() {
+            $($vm.$el)
+                .find(".selectpicker")
+                .selectpicker({
+                    width: "auto"
+                });
         });
     },
     watch: {

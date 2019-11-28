@@ -356,7 +356,7 @@ export default {
                             }
                         });
                     });
-                    groupList = _.orderBy(groupList, 'order');
+                    groupList = _.orderBy(groupList, "order");
                     break;
                 }
                 case "gojyuon": {
