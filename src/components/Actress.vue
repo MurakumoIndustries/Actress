@@ -381,7 +381,12 @@ export default {
                             return o.exactress.age || o.age || "？？？";
                         })
                         .toPairs()
-                        .orderBy(o => Number(o[0]))
+                        .orderBy(o => {
+                            if (o[0] === "-") {
+                                return 68; //spoiler alert!
+                            }
+                            return Number(o[0]);
+                        })
                         .each(function(group) {
                             var age = group[0];
                             var list = group[1];
