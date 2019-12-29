@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="48 42 204 66" preserveAspectRatio="xMidYMid meet">
+    <defs>
+        <pattern id="dotFill" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+            <circle cx="2.5" cy="2.5" r="0.5" fill="#fff" opacity="0.5"/>
+        </pattern>
+    </defs>
+    <g class="layer">
+        <rect x="50" y="50" width="200" height="50" stroke="none" stroke-width="2" fill="url(#dotFill)"/>
+        <polyline points="51,70 51,45 76,45" stroke="#ef6e3f" stroke-width="4" fill="none"/>
+        <polyline points="51,80 51,105 76,105" stroke="#ef6e3f" stroke-width="4" fill="none"/>
+        <polyline points="249,70 249,45 224,45" stroke="#ef6e3f" stroke-width="4" fill="none"/>
+        <polyline points="249,80 249,105 224,105" stroke="#ef6e3f" stroke-width="4" fill="none"/>
+    </g>
+    <g opacity="0.9" class="layer">
+        <rect x="50" y="50" width="200" height="50" stroke="#d33143" stroke-width="2" fill="#6e2324" fill-opacity="0.5"/>
+        <line x1="50" x2="250" y1="52" y2="52" stroke="#d33143" stroke-width="4" stroke-dasharray="2,2" stroke-dashoffset="1"/>
+        <line x1="50" x2="250" y1="98" y2="98" stroke="#d33143" stroke-width="4" stroke-dasharray="2,2" stroke-dashoffset="1"/>
+        <rect x="60" y="60" width="180" height="30" stroke="#d33143" opacity="0.75" stroke-width="2" fill="none"/>
+    </g>
+    <g id="AccessDenied12x16" opacity="1">
+        <g class="layer" id="a">
+            <polygon fill="#ffffe3" points="67,83 70,83 73.5,70 77,83 80,83 75.5,67 71.5,67 "/>
+            <line stroke="#ffffe3" stroke-width="3" x1="69" x2="77" y1="78" y2="78"/>
+        </g>
+        <g class="layer" id="c">
+            <polygon fill="#ffffe3" points="93,83 84,83 81,80 81,70 84,67 93,67 93,70 84,70 84,80 93,80 "/>
+        </g>
+        <g class="layer" id="e">
+            <polygon fill="#ffffe3" points="109,83 109,67 121,67 121,70 112,70 112,73.5 121,73.5 121,76.5 112,76.5 112,80 121,80 121,83 "/>
+        </g>
+        <g class="layer" id="s">
+            <polygon fill="#ffffe3" points="137,83 146,83 149,80 149,76.5 146,73.5 140,73.5 140,70 149,70 149,67 140,67 137,70 137,73.5 140,76.5 146,76.5 146,80 137,80 "/>
+        </g>
+        <g class="layer" id="d">
+            <polygon fill="#ffffe3" points="160,83 169,83 172,80 172,70 169,67 160,67 160,70 169,70 169,80 160,80 "/>
+            <line stroke="#ffffe3" stroke-width="3" x1="161.5" x2="161.5" y1="83" y2="67"/>
+        </g>
+        <g class="layer" id="n">
+            <polygon fill="#ffffe3" points="188,83 188,67 197,67 200,70 200,83 197,83 197,70 191,70 191,83 "/>
+        </g>
+        <g class="layer" id="i">
+            <line stroke="#ffffe3" stroke-width="3" x1="203.5" x2="203.5" y1="83" y2="67"/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="174,83 174,67 186,67 186,70 177,70 177,73.5 186,73.5 186,76.5 177,76.5 177,80 186,80 186,83 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="207,83 207,67 219,67 219,70 210,70 210,73.5 219,73.5 219,76.5 210,76.5 210,80 219,80 219,83 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="221,83 230,83 233,80 233,70 230,67 221,67 221,70 230,70 230,80 221,80 "/>
+            <line stroke="#ffffe3" stroke-width="3" x1="222.5" x2="222.5" y1="83" y2="67"/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="123,83 132,83 135,80 135,76.5 132,73.5 126,73.5 126,70 135,70 135,67 126,67 123,70 123,73.5 126,76.5 132,76.5 132,80 123,80 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="107,83 98,83 95,80 95,70 98,67 107,67 107,70 98,70 98,80 107,80 "/>
+        </g>
+    </g>
+    <g id="AccessDenied9x12" opacity="0">
+        <g class="layer">
+            <polygon points="77,81 79,81 82,72 85,81 87,81 83,69 81,69" fill="#ffffe3"/>
+            <line x1="80" x2="85" y1="77" y2="77" stroke="#ffffe3" stroke-width="2"/>
+        </g>
+        <g class="layer">
+            <polygon points="98,81 91,81 89,79 89,71 91,69 98,69 98,71 91,71 91,79 98,79 " fill="#ffffe3"/>
+        </g>
+        <g class="layer">
+            <polygon points="109,81 102,81 100,79 100,71 102,69 109,69 109,71 102,71 102,79 109,79 " fill="#ffffe3"/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="120,81 111,81 111,69 120,69 120,71 113,71 113,74 120,74 120,76 113,76 113,79 120,79 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="122,81 129,81 131,79 131,76 129,74 124,74 124,71 131,71 131,69 124,69 122,71 122,74 124,76 129,76 129,79 122,79 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="133,81 140,81 142,79 142,76 140,74 135,74 135,71 142,71 142,69 135,69 133,71 133,74 135,76 140,76 140,79 133,79 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="158,81 165,81 167,79 167,71 165,69 158,69 158,71 165,71 165,79 158,79 "/>
+            <line x1="159" x2="159" y1="81" y2="69" stroke="#ffffe3" stroke-width="2"/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="179,81 170,81 170,69 179,69 179,71 172,71 172,74 179,74 179,76 172,76 172,79 179,79 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="182,81 184,81 184,71 189,71 189,81 191,81 191,71 189,69 182,69 "/>
+        </g>
+        <g class="layer">
+            <line x1="195" x2="195" y1="81" y2="69" stroke="#ffffe3" stroke-width="2"/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="208,81 199,81 199,69 208,69 208,71 201,71 201,74 208,74 208,76 201,76 201,79 208,79 "/>
+        </g>
+        <g class="layer">
+            <polygon fill="#ffffe3" points="211,81 218,81 220,79 220,71 218,69 211,69 211,71 218,71 218,79 211,79 "/>
+            <line x1="212" x2="212" y1="81" y2="69" stroke="#ffffe3" stroke-width="2"/>
+        </g>
+    </g>
+</svg>
