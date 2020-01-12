@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-12 col-sm-auto">
+            <div class="col-12 col-sm-auto text-center">
                 <div class="chara-img-container">
                     <img v-bind:src="chara.image&&('../img/chara/' + chara.image + '.png')" />
                 </div>
                 <div class="row">
-                    <div class="col-4 col-sm-auto">{{Ui.getText("cv")}}</div>
+                    <div class="col-auto">{{Ui.getText("cv")}}</div>
                     <div class="col text-right">{{chara.exactress.cv}}</div>
                 </div>
             </div>
@@ -303,6 +303,7 @@ export default {
 </script>
 <style scoped>
 .chara-img-container {
+    display: inline-block;
     text-align: center;
     border: 2px solid rgb(144, 144, 144);
     border-radius: 10px;

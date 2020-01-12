@@ -95,6 +95,7 @@ to {
 
 
 .chara-img-container[data-v-2353fde4] {
+    display: inline-block;
     text-align: center;
     border: 2px solid rgb(144, 144, 144);
     border-radius: 10px;
