@@ -1,6 +1,16 @@
 <template>
     <div>
-        <div class="row">
+        <div class="row" style="position:relative;">
+            <div
+                class="text-black-50 px-2 d-sm-none"
+                style="position: absolute; left: 0px; top: -0.5rem;"
+                v-if="actress.collaborationId>0"
+            >{{Ui.getText('collabochara')}}</div>
+            <div
+                class="text-black-50 px-2 d-sm-block"
+                style="position: absolute; right: 0px; bottom: 0;"
+                v-if="actress.collaborationId>0"
+            >{{Ui.getText('collabochara')}}</div>
             <div class="col-12 col-sm-auto text-center">
                 <div class="chara-img-container">
                     <img v-bind:src="chara.image&&('../img/chara/' + chara.image + '.png')" />
