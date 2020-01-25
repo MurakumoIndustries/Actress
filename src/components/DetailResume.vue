@@ -43,7 +43,8 @@
                             class="col-4 col-lg-2"
                             :title="Ui.getText('modelheight')+':'+chara.exactress.modelHeight"
                         >{{Ui.getText("height")}}</div>
-                        <div class="col-8 col-lg-2 text-right">
+                        <div class="col-8 col-lg-2 text-right"
+                        :title="Ui.getText('modelheight')+':'+chara.exactress.modelHeight">
                             {{chara.exactress.resumeHeight}}
                             {{Ui.getText('heightunit')}}
                         </div>
