@@ -43,8 +43,10 @@
                             class="col-4 col-lg-2"
                             :title="Ui.getText('modelheight')+':'+chara.exactress.modelHeight"
                         >{{Ui.getText("height")}}</div>
-                        <div class="col-8 col-lg-2 text-right"
-                        :title="Ui.getText('modelheight')+':'+chara.exactress.modelHeight">
+                        <div
+                            class="col-8 col-lg-2 text-right"
+                            :title="Ui.getText('modelheight')+':'+chara.exactress.modelHeight"
+                        >
                             {{chara.exactress.resumeHeight}}
                             {{Ui.getText('heightunit')}}
                         </div>
@@ -126,7 +128,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-show="isShowNamePlate">
+            <img
+                v-show="false"
+                :src="chara.exactress.namePlate&&('../img/chara/' + chara.exactress.namePlate + '.png')"
+                @error="isShowNamePlate=false"
+            />
             <div class="name-plate-container">
                 <div
                     class="name-plate"
@@ -276,6 +283,11 @@ export default {
         actress: Object,
         chara: Object
     },
+    data: function() {
+        return {
+            isShowNamePlate: true
+        };
+    },
     methods: {
         activateLimit: function(o) {
             return o == -1 ? "∞" : o;
@@ -312,7 +324,9 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "~bootstrap/scss/bootstrap";
+
 .chara-img-container {
     display: inline-block;
     text-align: center;
@@ -337,7 +351,7 @@ export default {
         rgba(1, 1, 1, 0.75) 45%
     );
     width: 100%;
-    margin: 0.5rem 1rem;
+    margin: 0rem 1rem;
 }
 
 .name-plate {
@@ -348,9 +362,15 @@ export default {
     background-size: contain;
 }
 
-@media (min-width: 576px) {
+@include media-breakpoint-up(sm) {
     .name-plate {
         height: 7.5rem;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .name-plate {
+        height: 10rem;
     }
 }
 </style>
