@@ -1,11 +1,8 @@
 import 'popper.js'
 import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-select'
-import 'bootstrap-select/dist/css/bootstrap-select.min.css'
 
-import "material-design-icons-iconfont/dist/material-design-icons.css";
-import './style.css'
+import './style.scss'
 
 import Vue from 'vue'
 import Vuex from 'vuex'

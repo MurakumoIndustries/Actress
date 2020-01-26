@@ -1,3 +1,9 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-select/sass/bootstrap-select";
+
+$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/'; 
+@import '~material-design-icons-iconfont/src/material-design-icons';
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Yu Gothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
