@@ -198,7 +198,21 @@ export default {
                     }
 
                     _.each(chara.passiveSkills, function(o, i) {
-                        o.skill = Data.get("skillpassive", o.id);
+                        var ps = Data.get("skillpassive", o.id);
+                        if (
+                            ps.additionalPassiveId &&
+                            ps.additionalPassiveId.length
+                        ) {
+                            ps.additionalPassiveSkills = [];
+                            _.each(ps.additionalPassiveId, function(o, i) {
+                                var aps = Data.get("skillpassive", o);
+                                ps.additionalPassiveSkills[i] = {
+                                    id: o,
+                                    skill: aps
+                                };
+                            });
+                        }
+                        o.skill = ps;
                     });
                     $vm.charas.push(chara);
                     if (

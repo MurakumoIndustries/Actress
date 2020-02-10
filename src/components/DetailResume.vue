@@ -141,6 +141,42 @@
                 ></div>
             </div>
         </div>
+        <div>
+            <div class="row mt-2">
+                <div class="col-auto" style="line-height:1rem;">
+                    <i class="material-icons icon-trust">favorite</i>
+                </div>
+                <div class="col">
+                    <div class="progress">
+                        <div
+                            v-for="(targetValue,i) in actress.trustList"
+                            :key="targetValue+i"
+                            class="progress-bar"
+                            :class="['progress-bar-level-'+i]"
+                            :style="{'width':trustPercentList[i]}"
+                            :title="targetValue"
+                        >{{targetValue}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-auto" style="line-height:1rem;">
+                    <i class="material-icons icon-actress-point">volume_up</i>
+                </div>
+                <div class="col">
+                    <div class="progress">
+                        <div
+                            v-for="(targetValue,i) in actress.apList"
+                            :key="targetValue+i"
+                            class="progress-bar"
+                            :class="['progress-bar-level-'+i]"
+                            :style="{'width':apPercentList[i]}"
+                            :title="targetValue"
+                        >{{targetValue}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr />
         <div>
             <div class="media">
@@ -265,6 +301,16 @@
                         <div v-if="isExperimentalMode">
                             <div v-for="id in pSkill.skill.detailList" v-bind:key="id">
                                 <small class="text-black-50">{{getSkillDetailDesc(id)}}</small>
+                                <div
+                                    v-for="aps in pSkill.skill.additionalPassiveSkills"
+                                    v-bind:key="aps.id"
+                                >
+                                    <div v-for="apsdid in aps.skill.detailList" v-bind:key="apsdid">
+                                        <small
+                                            class="pl-4 text-black-50"
+                                        >{{getSkillDetailDesc(apsdid)}}</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -320,6 +366,34 @@ export default {
         }
     },
     computed: {
+        apPercentList: function() {
+            var result = [];
+            for (let i = 0; i < this.actress.apList.length; i++) {
+                var diffValue = this.actress.apList[i];
+                var maxValue = this.actress.apList[
+                    this.actress.apList.length - 1
+                ];
+                if (i > 0) {
+                    diffValue -= this.actress.apList[i - 1];
+                }
+                result.push((diffValue / maxValue) * 100 + "%");
+            }
+            return result;
+        },
+        trustPercentList: function() {
+            var result = [];
+            for (let i = 0; i < this.actress.trustList.length; i++) {
+                var diffValue = this.actress.trustList[i];
+                var maxValue = this.actress.trustList[
+                    this.actress.trustList.length - 1
+                ];
+                if (i > 0) {
+                    diffValue -= this.actress.trustList[i - 1];
+                }
+                result.push((diffValue / maxValue) * 100 + "%");
+            }
+            return result;
+        },
         ...mapState(["isExperimentalMode", "isEasterMode"])
     }
 };
@@ -374,5 +448,32 @@ export default {
     .name-plate {
         height: 10rem;
     }
+}
+
+.icon-trust {
+    font-size: 1rem;
+    color: #fd2867;
+}
+.icon-actress-point {
+    font-size: 1rem;
+    color: #fe8f00;
+}
+
+.progress-bar-level-0 {
+    background-color: #77dd66;
+    color: black;
+    min-width: 3rem;
+}
+.progress-bar-level-1 {
+    background-color: #1166dd;
+    min-width: 3.5rem;
+}
+.progress-bar-level-2 {
+    background-color: #ffee22;
+    color: black;
+    min-width: 3.5rem;
+}
+.progress-bar-level-3 {
+    background-color: #ff77aa;
 }
 </style>
