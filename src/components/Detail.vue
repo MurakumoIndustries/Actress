@@ -66,6 +66,7 @@
                         <transition name="fade" v-for="chara in charas" :key="chara.id">
                             <DetailResume
                                 :id="'chara-tab-'+chara.id"
+                                :key="'chara-tab-'+chara.id"
                                 v-show="currentTabId==chara.id"
                                 :class="['tab-pane', currentTabId==chara.id?'show active':'']"
                                 :actress="actress"
