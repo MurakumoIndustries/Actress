@@ -17,6 +17,7 @@
                                 />
                                 <img
                                     v-if="chara.anotherIcon"
+                                    :alt="chara.anotherName"
                                     class="another-icon"
                                     v-bind:src="'../img/another/' + chara.anotherIcon + '.png'"
                                 />
