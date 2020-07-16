@@ -47,7 +47,7 @@
         "jquery": "^3.5.1",
         "konami": "^1.6.2",
         "localforage": "^1.7.4",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "material-design-icons-iconfont": "^5.0.1",
         "nprogress": "^0.2.0",
         "offline-plugin": "^5.0.7",
