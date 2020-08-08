@@ -202,12 +202,16 @@
                     <div class="row">
                         <div class="col-3">L.ATK</div>
                         <div class="col-auto">{{chara.longAtkMax}}</div>
-                        <div class="col" v-html="Ui.renderAttrText(chara.longAttrMax)"></div>
+                        <div class="col">
+                            <AttrText :attrList="chara.longAttrMax" />
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-3">S.ATK</div>
                         <div class="col-auto">{{chara.shortAtkMax}}</div>
-                        <div class="col" v-html="Ui.renderAttrText(chara.shortAttrMax)"></div>
+                        <div class="col">
+                            <AttrText :attrList="chara.shortAttrMax" />
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-3">DEF</div>
@@ -235,9 +239,9 @@
                                                 class="material-icons"
                                             >{{spSkill.isNolockActivate==1?"gps_off":"gps_fixed"}}</i>
                                             <span>{{Ui.getText('attribute',spSkill.attribute1st)}}</span>
-                                            <span
-                                                v-html="Ui.renderAttribute2nd(spSkill.attribute2nd)"
-                                            ></span>
+                                            <span>
+                                                <AttrText :attribute2nd="spSkill.attribute2nd" />
+                                            </span>
                                         </div>
                                         <div v-if="isExperimentalMode">
                                             <small
@@ -324,29 +328,31 @@ import { mapState } from "vuex";
 
 import { Data } from "../js/data.js";
 
+import AttrText from "./AttrText/AttrText.vue";
+
 export default {
     props: {
         actress: Object,
-        chara: Object
+        chara: Object,
     },
-    data: function() {
+    data: function () {
         return {
-            isShowNamePlate: true
+            isShowNamePlate: true,
         };
     },
     methods: {
-        activateLimit: function(o) {
+        activateLimit: function (o) {
             return o == -1 ? "∞" : o;
         },
-        paramDescList: function(spSkill) {
+        paramDescList: function (spSkill) {
             var $vm = this;
             if (!spSkill.paramDesc) {
                 return [
                     [
                         $vm.Ui.getText("count"),
-                        $vm.activateLimit(spSkill.activateLimit)
+                        $vm.activateLimit(spSkill.activateLimit),
                     ],
-                    [$vm.Ui.getText("duration"), spSkill.effectTime + "秒間"]
+                    [$vm.Ui.getText("duration"), spSkill.effectTime + "秒間"],
                 ];
             }
             var list = JSON.parse(
@@ -354,19 +360,19 @@ export default {
                     .replace("{0}", spSkill.activateLimit)
                     .replace(/'/g, '"')
             );
-            _.each(list, function(o) {
+            _.each(list, function (o) {
                 o[0] = o[0].replace("回数", $vm.Ui.getText("count"));
                 o[0] = o[0].replace("時間", $vm.Ui.getText("duration"));
             });
             return list;
         },
-        getSkillDetailDesc: function(id) {
+        getSkillDetailDesc: function (id) {
             var detail = Data.get("skilldetail", id) || {};
             return detail.name + "|" + detail.desc || "";
-        }
+        },
     },
     computed: {
-        apPercentList: function() {
+        apPercentList: function () {
             var result = [];
             for (let i = 0; i < this.actress.apList.length; i++) {
                 var diffValue = this.actress.apList[i];
@@ -380,7 +386,7 @@ export default {
             }
             return result;
         },
-        trustPercentList: function() {
+        trustPercentList: function () {
             var result = [];
             for (let i = 0; i < this.actress.trustList.length; i++) {
                 var diffValue = this.actress.trustList[i];
@@ -394,8 +400,11 @@ export default {
             }
             return result;
         },
-        ...mapState(["isExperimentalMode", "isEasterMode"])
-    }
+        ...mapState(["isExperimentalMode", "isEasterMode"]),
+    },
+    components: {
+        AttrText: AttrText,
+    },
 };
 </script>
 <style lang="scss" scoped>

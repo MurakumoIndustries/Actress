@@ -47,10 +47,9 @@
                                         <div class="row">
                                             <div class="col-3">ATK</div>
                                             <div class="col-auto">{{longWeapon.longAtkMax}}</div>
-                                            <div
-                                                class="col"
-                                                v-html="Ui.renderAttrText(longWeapon.longAttrMax)"
-                                            ></div>
+                                            <div class="col">
+                                                <AttrText :attrList="longWeapon.longAttrMax" />
+                                            </div>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -130,10 +129,9 @@
                                         <div class="row">
                                             <div class="col-3">ATK</div>
                                             <div class="col-auto">{{shortWeapon.shortAtkMax}}</div>
-                                            <div
-                                                class="col"
-                                                v-html="Ui.renderAttrText(shortWeapon.shortAttrMax)"
-                                            ></div>
+                                            <div class="col">
+                                                <AttrText :attrList="shortWeapon.shortAttrMax" />
+                                            </div>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -229,9 +227,11 @@
                                                         class="material-icons"
                                                     >{{arm.activeSkill.isNolockActivate==1?"gps_off":"gps_fixed"}}</i>
                                                     <span>{{Ui.getText('attribute',arm.activeSkill.attribute1st)}}</span>
-                                                    <span
-                                                        v-html="Ui.renderAttribute2nd(arm.activeSkill.attribute2nd)"
-                                                    ></span>
+                                                    <span>
+                                                        <AttrText
+                                                            :attribute2nd="arm.activeSkill.attribute2nd"
+                                                        />
+                                                    </span>
                                                 </div>
                                                 <div v-if="isExperimentalMode">
                                                     <small
@@ -375,9 +375,11 @@
                                                         class="material-icons"
                                                     >{{leg.activeSkill.isNolockActivate==1?"gps_off":"gps_fixed"}}</i>
                                                     <span>{{Ui.getText('attribute',leg.activeSkill.attribute1st)}}</span>
-                                                    <span
-                                                        v-html="Ui.renderAttribute2nd(leg.activeSkill.attribute2nd)"
-                                                    ></span>
+                                                    <span>
+                                                        <AttrText
+                                                            :attribute2nd="leg.activeSkill.attribute2nd"
+                                                        />
+                                                    </span>
                                                 </div>
                                                 <div v-if="isExperimentalMode">
                                                     <small
@@ -449,86 +451,91 @@ import { mapState } from "vuex";
 
 import { Data } from "../js/data.js";
 
+import AttrText from "./AttrText/AttrText.vue";
+
 export default {
     props: {
-        actress: Object
+        actress: Object,
     },
-    data: function() {
+    data: function () {
         return {};
     },
     computed: {
-        longWeaponList: function() {
+        longWeaponList: function () {
             var longWeaponList = [];
-            _.each(this.actress.longWeaponId, function(o, i) {
+            _.each(this.actress.longWeaponId, function (o, i) {
                 var longWeapon = _.extend({}, Data.get("weapon", o));
-                _.each(longWeapon.passiveSkills, function(p) {
+                _.each(longWeapon.passiveSkills, function (p) {
                     p.skill = Data.get("skillpassive", p.id) || {};
                 });
                 longWeaponList.push(longWeapon);
             });
             return longWeaponList;
         },
-        shortWeaponList: function() {
+        shortWeaponList: function () {
             var shortWeaponList = [];
-            _.each(this.actress.shortWeaponId, function(o, i) {
+            _.each(this.actress.shortWeaponId, function (o, i) {
                 var shortWeapon = _.extend({}, Data.get("weapon", o));
-                _.each(shortWeapon.passiveSkills, function(p) {
+                _.each(shortWeapon.passiveSkills, function (p) {
                     p.skill = Data.get("skillpassive", p.id) || {};
                 });
                 shortWeaponList.push(_.extend({}, Data.get("weapon", o)));
             });
             return shortWeaponList;
         },
-        armList: function() {
+        armList: function () {
             var armList = [];
-            _.each(this.actress.armEquipmentId, function(o, i) {
+            _.each(this.actress.armEquipmentId, function (o, i) {
                 var arm = _.extend({}, Data.get("equipment", o));
                 arm.activeSkill = _.extend(
                     { passiveSkills: [] },
                     Data.get("skillactive", arm.activeSkill)
                 );
-                _.each(arm.activeSkill.passiveList, function(o, i) {
+                _.each(arm.activeSkill.passiveList, function (o, i) {
                     arm.activeSkill.passiveSkills[i] = {
                         id: o,
-                        skill: Data.get("skillpassive", o)
+                        skill: Data.get("skillpassive", o),
                     };
                 });
-                _.each(arm.passiveSkills, function(p) {
+                _.each(arm.passiveSkills, function (p) {
                     p.skill = Data.get("skillpassive", p.id) || {};
                 });
                 armList.push(arm);
             });
             return armList;
         },
-        legList: function() {
+        legList: function () {
             var legList = [];
-            _.each(this.actress.legEquipmentId, function(o, i) {
+            _.each(this.actress.legEquipmentId, function (o, i) {
                 var leg = _.extend({}, Data.get("equipment", o));
                 leg.activeSkill = _.extend(
                     { passiveSkills: [] },
                     Data.get("skillactive", leg.activeSkill)
                 );
-                _.each(leg.activeSkill.passiveList, function(o, i) {
+                _.each(leg.activeSkill.passiveList, function (o, i) {
                     leg.activeSkill.passiveSkills[i] = {
                         id: o,
-                        skill: Data.get("skillpassive", o)
+                        skill: Data.get("skillpassive", o),
                     };
                 });
-                _.each(leg.passiveSkills, function(p) {
+                _.each(leg.passiveSkills, function (p) {
                     p.skill = Data.get("skillpassive", p.id) || {};
                 });
                 legList.push(leg);
             });
             return legList;
         },
-        ...mapState(["isExperimentalMode"])
+        ...mapState(["isExperimentalMode"]),
     },
     methods: {
-        getSkillDetailDesc: function(id) {
+        getSkillDetailDesc: function (id) {
             var detail = Data.get("skilldetail", id) || {};
             return detail.name + "|" + detail.desc || "";
-        }
-    }
+        },
+    },
+    components: {
+        AttrText: AttrText,
+    },
 };
 </script>
 <style scoped>

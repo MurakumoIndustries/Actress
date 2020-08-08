@@ -323,24 +323,6 @@ var setLang = function (lang) {
     currentLang = lang;
     localStorage["uilang"] = lang;
 };
-var renderAttrText = function (textList) {
-    var text = "";
-    var attrList = ["normal", "thunder", "gravity", "fire", "ice",
-        "light", "collapse", "theory", "nothing"
-    ];
-    _.each(textList, function (o, i) {
-        if (o !== undefined && o !== 0) {
-            text += '<span class="attr-text attr-' + attrList[i] + '">' + o + '</span>';
-        }
-    });
-    return text;
-};
-var renderAttribute2nd = function (attribute2nd) {
-    var text = getText("attribute", attribute2nd);
-    var attrText = [];
-    attrText[attribute2nd - 4] = text;
-    return renderAttrText(attrText);
-};
 var renderDesc = function (text) {
     if (!text) {
         return text;
@@ -354,8 +336,6 @@ const Ui = {
     getLang,
     getLangText,
     setLang,
-    renderAttrText,
-    renderAttribute2nd,
     renderDesc,
 };
 
