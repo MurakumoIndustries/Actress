@@ -4,7 +4,7 @@ import serverList from "../data/serverList.json";
 const baseKey = "MI_Actress_";
 const lastUpdateKey = baseKey + "LastUpdate";
 const serverKey = baseKey + "Server";
-const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment', 'skillactive', 'skillpassive', 'skilldetail', 'costume', 'accessory', 'combo'];
+const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment', 'skillactive', 'skillpassive', 'skilldetail', 'costume', 'accessory', 'company', 'combo'];
 
 var data = {};
 
