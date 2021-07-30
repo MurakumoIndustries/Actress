@@ -63,7 +63,7 @@ import AttrText from "../AttrText/AttrText.vue";
 import PassiveSkill from "../Skill/PassiveSkill.vue";
 
 export default {
-    name:'active-skill',
+    name: "active-skill",
     components: {
         AttrText,
         PassiveSkill,
