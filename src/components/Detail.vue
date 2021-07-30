@@ -170,52 +170,13 @@ export default {
                     var chara = _.extend({}, o);
                     chara.exactress =
                         Data.get("exactress", chara.exActressId) || $vm.actress;
-                    chara.spSkills = [];
-                    if (chara.spSkillIds) {
-                        _.each(chara.spSkillIds, function(id) {
-                            var spSkill = Data.get("skillactive", id);
-                            spSkill.passiveSkills = [];
-                            _.each(spSkill.passiveList, function(o, i) {
-                                spSkill.passiveSkills[i] = {
-                                    id: o,
-                                    skill: Data.get("skillpassive", o)
-                                };
-                            });
-                            chara.spSkills.push(spSkill);
-                        });
+                    if (!chara.spSkillIds) {
+                        chara.spSkillIds = [];
                     }
                     if (chara.defaultSpSkillId) {
-                        var spSkill = Data.get(
-                            "skillactive",
-                            chara.defaultSpSkillId
-                        );
-                        spSkill.passiveSkills = [];
-                        _.each(spSkill.passiveList, function(o, i) {
-                            spSkill.passiveSkills[i] = {
-                                id: o,
-                                skill: Data.get("skillpassive", o)
-                            };
-                        });
-                        chara.spSkills.push(spSkill);
+                        chara.spSkillIds.push(chara.defaultSpSkillId);
                     }
-
-                    _.each(chara.passiveSkills, function(o, i) {
-                        var ps = Data.get("skillpassive", o.id);
-                        if (
-                            ps.additionalPassiveId &&
-                            ps.additionalPassiveId.length
-                        ) {
-                            ps.additionalPassiveSkills = [];
-                            _.each(ps.additionalPassiveId, function(o, i) {
-                                var aps = Data.get("skillpassive", o);
-                                ps.additionalPassiveSkills[i] = {
-                                    id: o,
-                                    skill: aps
-                                };
-                            });
-                        }
-                        o.skill = ps;
-                    });
+                    
                     $vm.charas.push(chara);
                     if (
                         chara.rare >= 4 &&
