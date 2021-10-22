@@ -43,7 +43,11 @@ export default {
             if (this.$store.state.isExperimentalMode) {
                 return false;
             }
-            return this.accessory.name.indexOf("アクセサリー") >= 0 || this.accessory.name.indexOf("飾品") >= 0;
+            return (
+                this.accessory.name.indexOf("アクセサリー") >= 0 ||
+                this.accessory.name.indexOf("飾品") >= 0 ||
+                this.accessory.name == "饰品" >= 0
+            );
         },
         company: function () {
             return Data.get("company", this.accessory.company) || {};

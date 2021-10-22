@@ -42,7 +42,11 @@ export default {
             if (this.$store.state.isExperimentalMode) {
                 return false;
             }
-            return this.costume.name.indexOf("コスチューム") >= 0 || this.costume.name.indexOf("衣裝") >= 0;
+            return (
+                this.costume.name.indexOf("コスチューム") >= 0 ||
+                this.costume.name.indexOf("衣裝_") >= 0 ||
+                this.costume.name.indexOf("服装_") >= 0
+            );
         },
         company: function (id) {
             return Data.get("company", this.costume.company) || {};
