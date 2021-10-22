@@ -11,5 +11,11 @@
         "name": "So-net",
         "folder": "sonet",
         "version": "134"
+    },
+    "bilibili": {
+        "id": "bilibili",
+        "name": "Bilibili",
+        "folder": "bilibili",
+        "version": "212"
     }
 }

@@ -4,7 +4,7 @@ import serverList from "../data/serverList.json";
 const baseKey = "MI_Actress_";
 const lastUpdateKey = baseKey + "LastUpdate";
 const serverKey = baseKey + "Server";
-const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment', 'skillactive', 'skillpassive', 'skilldetail', 'costume', 'accessory', 'company', 'combo'];
+const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment', 'skillactive', 'skillpassive', 'skilldetail', 'costume', 'accessory', 'company'];
 
 var data = {};
 
@@ -57,7 +57,7 @@ var init = function (forceInit) {
             _.each(filelist, function (o, i) {
                 promises.push(
                     import(
-                        /* webpackChunkName: "jsondata" */
+                        /* webpackChunkName: "jsondata_[request]" */
                         '../data/' + folder + '/' + o + '.json').then(jsondata => {
                         return savedata(o, folder, jsondata.default);
                     }));

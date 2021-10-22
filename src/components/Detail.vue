@@ -141,12 +141,6 @@ export default {
                 }
                 return;
             }
-            $vm.actress.combos = [];
-            _.each(Data.getAll("combo"), function (o, i) {
-                if (o.actressIds.indexOf($vm.actress.id) >= 0) {
-                    $vm.actress.combos.push(o);
-                }
-            });
 
             $vm.charas = [];
             _.each(Data.getAll("chara"), function (o, i) {

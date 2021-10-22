@@ -28,7 +28,7 @@ data["gojyuon"] = { "ja-JP": "五十音順", "zh-TW": "五十音順", "en-US": "
 data["others"] = { "ja-JP": "その他", "zh-TW": "其他", "en-US": "Others", "zh-CN": "其他" };
 
 data["chara"] = { "ja-JP": "キャラ", "zh-TW": "角色", "en-US": "Character", "zh-CN": "角色" };
-data["goodweapon"] = { "ja-JP": "得意ギア", "zh-TW": "擅長武裝", "en-US": "Main Weapon", "zh-CN": "擅长武装" };
+data["goodweapon"] = { "ja-JP": "得意ギア", "zh-TW": "擅長武裝", "en-US": "Main Weapon", "zh-CN": "精通武装" };
 data["goodweaponsub"] = { "ja-JP": "準得意ギア", "zh-TW": "準擅長武裝", "en-US": "Sub Weapon", "zh-CN": "副武装" };
 data["damagetype"] = { "ja-JP": "攻撃種類", "zh-TW": "攻擊類型", "en-US": "Damage Type", "zh-CN": "攻击类型" };
 data["damagetypesub"] = { "ja-JP": "攻撃種類(準)", "zh-TW": "攻擊類型(準)", "en-US": "Damage Type(Sub)", "zh-CN": "攻击类型(副)" };
@@ -174,7 +174,7 @@ data["geartype"] = {
     "ja-JP": "ギア種別",
     "zh-TW": "武裝種別",
     "en-US": "Gear Type",
-    "zh-CN": "武装类型",
+    "zh-CN": "武装种类",
 };
 
 data["month"] = {
@@ -193,17 +193,17 @@ data["month"] = {
 };
 
 data["weapon"] = { "ja-JP": "ウェポン", "zh-TW": "武器", "en-US": "Weapon", "zh-CN": "武器" };
-data["equipment"] = { "ja-JP": "ドレス", "zh-TW": "服裝", "en-US": "Equipment", "zh-CN": "装备" };
+data["equipment"] = { "ja-JP": "ドレス", "zh-TW": "服裝", "en-US": "Equipment", "zh-CN": "防具" };
 
 data["weaponL"] = {
     1: { "ja-JP": "ライフル", "zh-TW": "步槍", "en-US": "Rifle", "zh-CN": "步枪" },
-    2: { "ja-JP": "バズーカ", "zh-TW": "火箭筒", "en-US": "Bazooka", "zh-CN": "火箭筒" },
+    2: { "ja-JP": "バズーカ", "zh-TW": "火箭筒", "en-US": "Bazooka", "zh-CN": "火箭炮" },
     3: { "ja-JP": "デュアル", "zh-TW": "雙槍", "en-US": "Twin", "zh-CN": "双枪" },
     4: { "ja-JP": "スナイパー", "zh-TW": "狙擊槍", "en-US": "Sniper", "zh-CN": "狙击枪" },
 };
 data["weaponS"] = {
     1: { "ja-JP": "両手剣", "zh-TW": "雙手劍", "en-US": "Sword", "zh-CN": "双手剑" },
-    2: { "ja-JP": "ハンマー", "zh-TW": "大鎚", "en-US": "Hammer", "zh-CN": "锤子" },
+    2: { "ja-JP": "ハンマー", "zh-TW": "大鎚", "en-US": "Hammer", "zh-CN": "锤" },
     3: { "ja-JP": "ランス", "zh-TW": "長槍", "en-US": "Spear", "zh-CN": "长枪" },
     4: { "ja-JP": "片手剣", "zh-TW": "單手劍", "en-US": "Dagger", "zh-CN": "单手剑" },
     5: { "ja-JP": "拳銃", "zh-TW": "手槍", "en-US": "Handgun", "zh-CN": "手枪" },
@@ -221,12 +221,12 @@ data["attribute"] = {
     4: { "ja-JP": "無", "zh-TW": "無", "en-US": "Normal", "zh-CN": "无" },
     5: { "ja-JP": "電撃", "zh-TW": "電擊", "en-US": "Thunder", "zh-CN": "电击" },
     6: { "ja-JP": "重力", "zh-TW": "重力", "en-US": "Gravity", "zh-CN": "重力" },
-    7: { "ja-JP": "焼夷", "zh-TW": "燃燒", "en-US": "Fire", "zh-CN": "烧夷" },
-    8: { "ja-JP": "冷撃", "zh-TW": "冷凍", "en-US": "Ice", "zh-CN": "冷击" },
-    9: { "ja-JP": "撃光", "zh-TW": "擊光", "en-US": "Light", "zh-CN": "" },
-    10: { "ja-JP": "崩壊", "zh-TW": "崩壞", "en-US": "Collapse", "zh-CN": "" },
-    11: { "ja-JP": "理論", "zh-TW": "理論", "en-US": "Theory", "zh-CN": "" },
-    //255:{ "ja-JP": "なし", "zh-TW": "", "en-US": "Nothing", "zh-CN": "" },
+    7: { "ja-JP": "焼夷", "zh-TW": "燃燒", "en-US": "Fire", "zh-CN": "燃烧" },
+    8: { "ja-JP": "冷撃", "zh-TW": "冷凍", "en-US": "Ice", "zh-CN": "冷冻" },
+    9: { "ja-JP": "撃光", "zh-TW": "擊光", "en-US": "Light", "zh-CN": "击光" },
+    10: { "ja-JP": "崩壊", "zh-TW": "崩壞", "en-US": "Collapse", "zh-CN": "崩坏" },
+    11: { "ja-JP": "理論", "zh-TW": "理論", "en-US": "Theory", "zh-CN": "理论" },
+    //255:{ "ja-JP": "なし", "zh-TW": "無", "en-US": "Nothing", "zh-CN": "无" },
     255: { "ja-JP": "", "zh-TW": "", "en-US": "", "zh-CN": "" },
 };
 
@@ -262,7 +262,7 @@ data["gear"] = {
     "ja-JP": "ギア",
     "zh-TW": "武裝",
     "en-US": "Gear",
-    "zh-CN": "装备",
+    "zh-CN": "武装",
 };
 
 data["costume"] = {
