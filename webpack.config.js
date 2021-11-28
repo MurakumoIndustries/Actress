@@ -4,8 +4,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OfflinePlugin = require('offline-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = env => {
     console.log('NODE_ENV: ', env.NODE_ENV) // true
@@ -28,6 +28,8 @@ module.exports = env => {
             chunkFilename: "[id].[contenthash].css"
         }),
         new WebpackPwaManifest({
+            id: "MI_Actress",
+            publicPath: './',
             name: "MI|Actress",
             short_name: "MI|Actress",
             theme_color: "#FAFAFA",
@@ -42,15 +44,10 @@ module.exports = env => {
                 }
             ]
         }),
-        new OfflinePlugin({
-            appShell: '/Actress/',
-            autoUpdate: true,
-            ServiceWorker: {
-                cacheName: "MI_Actress",
-                events: true,
-                entry: path.join(__dirname, './src/js/sw-img.js')
-            },
-            AppCache: false,
+        new InjectManifest({
+            swSrc: './src/js/sw.js',
+            swDest: 'sw.js',
+            maximumFileSizeToCacheInBytes: 8192 * 1024 * 1024
         })
     ];
 
@@ -79,9 +76,9 @@ module.exports = env => {
         module: {
             rules: [{
                     test: /\.(ttf|eot|woff|woff2)$/,
-                    loader: 'file-loader',
-                    options: {
-                        name: 'fonts/[name].[ext]',
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'fonts/[name][ext][query]',
                     },
                 },
                 {
@@ -98,10 +95,10 @@ module.exports = env => {
                         {
                             loader: 'postcss-loader', // Run postcss actions
                             options: {
-                                plugins: function () { // postcss plugins, can be exported to postcss.config.js
-                                    return [
+                                postcssOptions: {
+                                    plugins: [
                                         require('autoprefixer')
-                                    ];
+                                    ]
                                 }
                             }
                         },
@@ -112,12 +109,7 @@ module.exports = env => {
                 },
                 {
                     test: /\.(png|svg|jpg|gif)$/,
-                    use: [{
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192
-                        }
-                    }]
+                    type: 'asset/inline'
                 },
                 {
                     test: /\.vue$/,
@@ -132,11 +124,16 @@ module.exports = env => {
                 },
                 {
                     test: /\.js?$/,
-                    loader: 'babel-loader',
                     exclude: file => (
                         /node_modules/.test(file) &&
                         !/\.vue\.js/.test(file)
-                    )
+                    ),
+                    use: {
+                        loader: "babel-loader",
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
                 }
             ]
         },

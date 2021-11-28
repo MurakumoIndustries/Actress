@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Konami from "Konami";
+import Konami from "konami";
 
 import Nav from "./components/Nav.vue";
 import Actress from "./components/Actress.vue";

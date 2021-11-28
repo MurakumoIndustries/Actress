@@ -5,8 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "watch": "webpack --env.NODE_ENV=development --progress --colors --watch",
-        "build": "webpack --env.NODE_ENV=production --progress --colors --display-error-details"
+        "watch": "webpack --env NODE_ENV=development --progress --color --watch",
+        "build-dev": "webpack --env NODE_ENV=development --progress --color --stats-children",
+        "build": "webpack --env NODE_ENV=production --progress --color --stats-children"
     },
     "repository": {
         "type": "git",
@@ -20,26 +21,26 @@
     },
     "homepage": "https://github.com/MurakumoIndustries/Actress#readme",
     "devDependencies": {
-        "@babel/core": "^7.10.5",
-        "@babel/preset-env": "^7.10.4",
-        "autoprefixer": "^9.8.5",
-        "babel-loader": "^8.1.0",
-        "clean-webpack-plugin": "^3.0.0",
-        "copy-webpack-plugin": "^6.0.3",
-        "css-loader": "^4.0.0",
-        "file-loader": "^6.0.0",
-        "html-webpack-plugin": "^4.3.0",
-        "mini-css-extract-plugin": "^0.9.0",
-        "postcss-loader": "^3.0.0",
-        "sass": "^1.26.10",
-        "sass-loader": "^9.0.2",
-        "style-loader": "^1.2.1",
-        "url-loader": "^4.1.0",
-        "vue-loader": "^15.9.3",
-        "vue-template-compiler": "^2.6.11",
-        "webpack": "^4.44.0",
-        "webpack-cli": "^3.3.12",
-        "webpack-pwa-manifest": "^4.2.0"
+        "@babel/core": "^7.16.0",
+        "@babel/preset-env": "^7.16.4",
+        "autoprefixer": "^10.4.0",
+        "babel-loader": "^8.2.3",
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^10.0.0",
+        "css-loader": "^6.5.1",
+        "html-webpack-plugin": "^5.5.0",
+        "mini-css-extract-plugin": "^2.4.5",
+        "postcss": "^8.4.4",
+        "postcss-loader": "^6.2.1",
+        "sass": "^1.43.5",
+        "sass-loader": "^12.3.0",
+        "style-loader": "^3.3.1",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.14",
+        "webpack": "^5.64.4",
+        "webpack-cli": "^4.9.1",
+        "webpack-pwa-manifest": "^4.3.0",
+        "workbox-webpack-plugin": "^6.4.1"
     },
     "dependencies": {
         "bootstrap": "^4.5.0",
@@ -50,12 +51,14 @@
         "lodash": "^4.17.19",
         "material-design-icons-iconfont": "^5.0.1",
         "nprogress": "^0.2.0",
-        "offline-plugin": "^5.0.7",
         "page": "^1.11.6",
         "popper.js": "^1.16.1",
-        "vue": "^2.6.11",
+        "vue": "^2.6.14",
         "vuex": "^3.5.1",
-        "workbox-routing": "^5.1.3",
-        "workbox-strategies": "^5.1.3"
-    }
+        "workbox-core": "^6.4.1",
+        "workbox-precaching": "^6.4.1",
+        "workbox-routing": "^6.4.1",
+        "workbox-strategies": "^6.4.1"
+    },
+    "packageManager": "yarn@3.1.1"
 }
