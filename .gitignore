@@ -64,3 +64,12 @@ typings/
 
 # next.js build output
 .next
+
+# yarn not using Zero-Installs:
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
