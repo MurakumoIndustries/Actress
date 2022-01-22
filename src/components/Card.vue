@@ -44,10 +44,9 @@
 import { mapState } from "vuex";
 
 import { Data } from "../js/data.js";
-import { Event } from "../js/event.js";
 import { Easter } from "../js/easter.js";
 
-var splitRegex = /[‧|・|\s]/g;
+var splitRegex = /[.|‧|・|\s]/g;
 
 export default {
     props: {
