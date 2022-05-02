@@ -231,7 +231,10 @@
                 </div>
                 <div class="tab-pane fade" :class="actress.hasEnigma ? 'show active' : ''"
                     :id="'enigmapassiveskill-' + chara.id">
-                    TODO
+                    <passive-skill-slot v-for="(psSlot, slotIndex) in chara.passiveSkillSlots"
+                        v-bind:key="chara.id + '-passive-slot-' + slotIndex" :skill-slot="psSlot"
+                        :skill-group-list="actress.skillGroupList"
+                        :container-id="'#enigmapassiveskill-' + chara.id" />
                 </div>
             </div>
         </div>
@@ -245,6 +248,7 @@ import { Data } from "../js/data.js";
 import AttrText from "./AttrText/AttrText.vue";
 import ActiveSkill from "./Skill/ActiveSkill.vue";
 import PassiveSkillWithLevel from "./Skill/PassiveSkillWithLevel.vue";
+import PassiveSkillSlot from "./Skill/PassiveSkillSlot.vue";
 
 export default {
     props: {
@@ -287,6 +291,7 @@ export default {
         AttrText,
         ActiveSkill,
         PassiveSkillWithLevel,
+        PassiveSkillSlot
     },
 };
 </script>

@@ -283,6 +283,7 @@ data["accessory"] = {
 data["sp"] = { "ja-JP": "SP", "zh-TW": "SP", "en-US": "SP", "zh-CN": "SP" };
 
 data["enigma"] = { "ja-JP": "エニグマ", "zh-TW": "Enigma", "en-US": "Enigma", "zh-CN": "Enigma" };
+data["emptyslot"] = { "ja-JP": "空きスロット", "zh-TW": "空插槽", "en-US": "Empty Slot", "zh-CN": "空插槽" };
 
 
 data[""] = {
