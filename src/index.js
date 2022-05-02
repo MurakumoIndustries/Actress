@@ -1,6 +1,5 @@
-import 'popper.js'
+import '@popperjs/core'
 import 'bootstrap';
-import 'bootstrap-select'
 
 import './style.scss'
 

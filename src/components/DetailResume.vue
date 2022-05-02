@@ -1,18 +1,12 @@
 <template>
     <div>
         <div class="row" style="position: relative">
-            <div
-                class="text-black-50 px-2 d-sm-none"
-                style="position: absolute; left: 0px; top: -0.5rem"
-                v-if="actress.collaborationId > 0"
-            >
+            <div class="text-black-50 px-2 d-sm-none" style="position: absolute; left: 0px; top: -0.5rem"
+                v-if="actress.collaborationId > 0">
                 {{ Ui.getText("collabochara") }}
             </div>
-            <div
-                class="text-black-50 px-2 d-sm-block"
-                style="position: absolute; right: 0px; bottom: 0"
-                v-if="actress.collaborationId > 0"
-            >
+            <div class="text-black-50 px-2 d-sm-block text-end" style="position: absolute; right: 0px; bottom: 0"
+                v-if="actress.collaborationId > 0">
                 {{ Ui.getText("collabochara") }}
             </div>
             <div class="col-12 col-sm-auto text-center">
@@ -21,45 +15,41 @@
                 </div>
                 <div class="row">
                     <div class="col-auto">{{ Ui.getText("cv") }}</div>
-                    <div class="col text-right">{{ chara.exactress.cv }}</div>
+                    <div class="col text-end">{{ chara.exactress.cv }}</div>
                 </div>
             </div>
             <div class="col">
                 <div class="actress-resume-singleline">
                     <div class="row">
                         <div class="col-auto">{{ Ui.getText("roma") }}</div>
-                        <div class="col text-right">{{ actress.roma }}</div>
+                        <div class="col text-end">{{ actress.roma }}</div>
                     </div>
                     <div class="row">
                         <div class="col-auto">{{ Ui.getText("ruby") }}</div>
-                        <div class="col text-right">{{ actress.ruby }}</div>
+                        <div class="col text-end">{{ actress.ruby }}</div>
                     </div>
                     <div class="row">
                         <div class="col-auto">{{ Ui.getText("name") }}</div>
-                        <div class="col text-right">{{ chara.exactress.fullName }}</div>
+                        <div class="col text-end">{{ chara.exactress.fullName }}</div>
                     </div>
                     <div class="row">
                         <div class="col-4 col-lg-2">{{ Ui.getText("birthday") }}</div>
-                        <div class="col-8 col-lg-2 text-right">{{ chara.exactress.birthday }}</div>
+                        <div class="col-8 col-lg-2 text-end">{{ chara.exactress.birthday }}</div>
                         <div class="col-4 col-lg-2">{{ Ui.getText("age") }}</div>
-                        <div class="col-8 col-lg-2 text-right">{{ chara.exactress.age }}</div>
-                        <div
-                            class="col-4 col-lg-2"
-                            :title="Ui.getText('modelheight') + ':' + chara.exactress.modelHeight"
-                        >
+                        <div class="col-8 col-lg-2 text-end">{{ chara.exactress.age }}</div>
+                        <div class="col-4 col-lg-2"
+                            :title="Ui.getText('modelheight') + ':' + chara.exactress.modelHeight">
                             {{ Ui.getText("height") }}
                         </div>
-                        <div
-                            class="col-8 col-lg-2 text-right"
-                            :title="Ui.getText('modelheight') + ':' + chara.exactress.modelHeight"
-                        >
+                        <div class="col-8 col-lg-2 text-end"
+                            :title="Ui.getText('modelheight') + ':' + chara.exactress.modelHeight">
                             {{ chara.exactress.resumeHeight }}
                             {{ Ui.getText("heightunit") }}
                         </div>
                         <div class="col-4 col-lg-2">{{ Ui.getText("blood") }}</div>
-                        <div class="col-8 col-lg-2 text-right">{{ chara.exactress.blood }}</div>
+                        <div class="col-8 col-lg-2 text-end">{{ chara.exactress.blood }}</div>
                         <div class="col-4 col-lg-2">{{ Ui.getText("job") }}</div>
-                        <div class="col-8 col-lg-6 text-right">{{ chara.exactress.job }}</div>
+                        <div class="col-8 col-lg-6 text-end">{{ chara.exactress.job }}</div>
                     </div>
                 </div>
                 <div class="d-none d-lg-block">
@@ -123,21 +113,15 @@
             </div>
         </div>
         <div class="row" v-show="isShowNamePlate">
-            <img
-                v-show="false"
-                :src="chara.exactress.namePlate && '../img/chara/' + chara.exactress.namePlate + '.png'"
-                @error="isShowNamePlate = false"
-            />
+            <img v-show="false" :src="chara.exactress.namePlate && '../img/chara/' + chara.exactress.namePlate + '.png'"
+                @error="isShowNamePlate = false" />
             <div class="name-plate-container">
-                <div
-                    class="name-plate"
-                    v-bind:style="{
-                        'background-image':
-                            'url(' +
-                            (chara.exactress.namePlate && '../img/chara/' + chara.exactress.namePlate + '.png') +
-                            ')',
-                    }"
-                ></div>
+                <div class="name-plate" v-bind:style="{
+                    'background-image':
+                        'url(' +
+                        (chara.exactress.namePlate && '../img/chara/' + chara.exactress.namePlate + '.png') +
+                        ')',
+                }"></div>
             </div>
         </div>
         <div>
@@ -147,14 +131,9 @@
                 </div>
                 <div class="col">
                     <div class="progress">
-                        <div
-                            v-for="(targetValue, i) in actress.trustList"
-                            :key="targetValue + i"
-                            class="progress-bar"
-                            :class="['progress-bar-level-' + i]"
-                            :style="{ width: trustPercentList[i] }"
-                            :title="targetValue"
-                        >
+                        <div v-for="(targetValue, i) in actress.trustList" :key="targetValue + i" class="progress-bar"
+                            :class="['progress-bar-level-' + i]" :style="{ width: trustPercentList[i] }"
+                            :title="targetValue">
                             {{ targetValue }}
                         </div>
                     </div>
@@ -166,14 +145,9 @@
                 </div>
                 <div class="col">
                     <div class="progress">
-                        <div
-                            v-for="(targetValue, i) in actress.apList"
-                            :key="targetValue + i"
-                            class="progress-bar"
-                            :class="['progress-bar-level-' + i]"
-                            :style="{ width: apPercentList[i] }"
-                            :title="targetValue"
-                        >
+                        <div v-for="(targetValue, i) in actress.apList" :key="targetValue + i" class="progress-bar"
+                            :class="['progress-bar-level-' + i]" :style="{ width: apPercentList[i] }"
+                            :title="targetValue">
                             {{ targetValue }}
                         </div>
                     </div>
@@ -182,9 +156,11 @@
         </div>
         <hr />
         <div>
-            <div class="media">
-                <img class="mr-3" v-bind:src="chara.icon && '../img/chara/' + chara.icon + '.png'" />
-                <div class="media-body">
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img v-bind:src="chara.icon && '../img/chara/' + chara.icon + '.png'" />
+                </div>
+                <div class="flex-grow-1 ms-3">
                     <div class="row">
                         <div class="col-3">Lv.</div>
                         <div class="col">
@@ -226,13 +202,38 @@
             </div>
             <hr />
             <active-skill v-for="spSkillId in chara.spSkillIds" :key="spSkillId" :skillId="spSkillId" />
-            <hr />
-            <passive-skill-with-level
-                v-for="pSkill in chara.passiveSkills"
-                v-bind:key="pSkill.id + '-' + pSkill.openLevel"
-                :skill-id="pSkill.id"
-                :openLevel="pSkill.openLevel"
-            />
+            <hr v-if="!(actress.hasEnigma || isExperimentalMode)" />
+            <ul class="nav nav-tabs mb-2" v-if="actress.hasEnigma || isExperimentalMode">
+                <li class="nav-item">
+                    <button class="nav-link disabled">{{
+                            Ui.getText("passiveskill")
+                    }}</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" :class="!actress.hasEnigma ? 'active' : ''" data-bs-toggle="tab"
+                        :data-bs-target="'#defaultpassiveskill-' + chara.id">{{
+                                Ui.getText("default")
+                        }}</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" :class="actress.hasEnigma ? 'active' : ''" data-bs-toggle="tab"
+                        :data-bs-target="'#enigmapassiveskill-' + chara.id">{{
+                                Ui.getText("enigma")
+                        }}</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade" :class="!actress.hasEnigma ? 'show active' : ''"
+                    :id="'defaultpassiveskill-' + chara.id">
+                    <passive-skill-with-level v-for="pSkill in chara.passiveSkills"
+                        v-bind:key="pSkill.id + '-' + pSkill.openLevel" :skill-id="pSkill.id"
+                        :openLevel="pSkill.openLevel" />
+                </div>
+                <div class="tab-pane fade" :class="actress.hasEnigma ? 'show active' : ''"
+                    :id="'enigmapassiveskill-' + chara.id">
+                    TODO
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -305,14 +306,14 @@ export default {
     min-height: 360px;
     box-sizing: content-box;
 }
-.chara-img-container > img {
+
+.chara-img-container>img {
     border-radius: 10px;
 }
 
 .name-plate-container {
     background: linear-gradient(to bottom, transparent 27.5%, black 27.5%, black 45%, rgba(1, 1, 1, 0.75) 45%);
     width: 100%;
-    margin: 0rem 1rem;
 }
 
 .name-plate {
@@ -339,6 +340,7 @@ export default {
     font-size: 1rem;
     color: #fd2867;
 }
+
 .icon-actress-point {
     font-size: 1rem;
     color: #fe8f00;
@@ -349,15 +351,18 @@ export default {
     color: black;
     min-width: 3rem;
 }
+
 .progress-bar-level-1 {
     background-color: #1166dd;
     min-width: 3.5rem;
 }
+
 .progress-bar-level-2 {
     background-color: #ffee22;
     color: black;
     min-width: 3.5rem;
 }
+
 .progress-bar-level-3 {
     background-color: #ff77aa;
 }

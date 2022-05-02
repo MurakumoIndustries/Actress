@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="form-row">
-            <div v-for="costume in costumeList" :key="costume.id" class="col-lg-6 col-12 pb-2">
+        <div class="row">
+            <div v-for="costume in costumeList" :key="costume.id" class="col-lg-6 col-12 pb-2 px-1">
                 <DetailCostumeCard :costume="costume" />
             </div>
         </div>

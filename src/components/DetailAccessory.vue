@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="form-row">
-            <div v-for="accessory in accessoryList" :key="accessory.id" class="col-lg-6 col-12 pb-2">
+        <div class="row">
+            <div v-for="accessory in accessoryList" :key="accessory.id" class="col-lg-6 col-12 pb-2 px-1">
                 <DetailAccessoryCard :accessory="accessory" />
             </div>
         </div>

@@ -5,8 +5,8 @@
                 <li v-for="(longWeapon, i) in longWeaponList" v-bind:key="longWeapon.id" class="nav-item">
                     <a
                         v-bind:class="['nav-link', { active: i == 0 }]"
-                        data-toggle="tab"
-                        v-bind:data-target="'#longWeapon-tab-' + longWeapon.id"
+                        data-bs-toggle="tab"
+                        v-bind:data-bs-target="'#longWeapon-tab-' + longWeapon.id"
                         style="cursor: pointer"
                         >{{ longWeapon.name }}</a
                     >
@@ -19,13 +19,13 @@
                     v-bind:id="'longWeapon-tab-' + longWeapon.id"
                     v-bind:class="['tab-pane', 'fade', { 'show active': i == 0 }]"
                 >
-                    <div class="media">
-                        <div class="mr-3">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
                             <a target="_blank" v-bind:href="'../Gear/#!/weapon/' + longWeapon.id">
                                 <img v-bind:src="longWeapon.icon && '../img/item/' + longWeapon.icon + '.png'" />
                             </a>
                         </div>
-                        <div class="media-body text-nowrap">
+                        <div class="flex-grow-1 ms-3 text-nowrap">
                             <div class="row">
                                 <div class="col">
                                     <fieldset>
@@ -65,8 +65,8 @@
                 <li v-for="(shortWeapon, i) in shortWeaponList" v-bind:key="shortWeapon.id" class="nav-item">
                     <a
                         v-bind:class="['nav-link', { active: i == 0 }]"
-                        data-toggle="tab"
-                        v-bind:data-target="'#shortWeapon-tab-' + shortWeapon.id"
+                        data-bs-toggle="tab"
+                        v-bind:data-bs-target="'#shortWeapon-tab-' + shortWeapon.id"
                         style="cursor: pointer"
                         >{{ shortWeapon.name }}</a
                     >
@@ -79,13 +79,13 @@
                     v-bind:id="'shortWeapon-tab-' + shortWeapon.id"
                     v-bind:class="['tab-pane', 'fade', { 'show active': i == 0 }]"
                 >
-                    <div class="media">
-                        <div class="mr-3">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
                             <a target="_blank" v-bind:href="'../Gear/#!/weapon/' + shortWeapon.id">
                                 <img v-bind:src="shortWeapon.icon && '../img/item/' + shortWeapon.icon + '.png'" />
                             </a>
                         </div>
-                        <div class="media-body text-nowrap">
+                        <div class="flex-grow-1 ms-3 text-nowrap">
                             <div class="row">
                                 <div class="col">
                                     <fieldset>
@@ -125,8 +125,8 @@
                 <li v-for="(arm, i) in armList" v-bind:key="arm.id" class="nav-item">
                     <a
                         v-bind:class="['nav-link', { active: i == 0 }]"
-                        data-toggle="tab"
-                        v-bind:data-target="'#arm-tab-' + arm.id"
+                        data-bs-toggle="tab"
+                        v-bind:data-bs-target="'#arm-tab-' + arm.id"
                         style="cursor: pointer"
                         >{{ arm.name }}</a
                     >
@@ -139,13 +139,13 @@
                     v-bind:id="'arm-tab-' + arm.id"
                     v-bind:class="['tab-pane', 'fade', { 'show active': i == 0 }]"
                 >
-                    <div class="media">
-                        <div class="mr-3">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
                             <a target="_blank" v-bind:href="'../Gear/#!/equipment/' + arm.id">
                                 <img v-bind:src="arm.icon && '../img/item/' + arm.icon + '.png'" />
                             </a>
                         </div>
-                        <div class="media-body text-nowrap">
+                        <div class="flex-grow-1 ms-3 text-nowrap">
                             <div class="row">
                                 <div class="col">
                                     <fieldset>
@@ -180,8 +180,8 @@
                 <li v-for="(leg, i) in legList" v-bind:key="leg.id" class="nav-item">
                     <a
                         v-bind:class="['nav-link', { active: i == 0 }]"
-                        data-toggle="tab"
-                        v-bind:data-target="'#leg-tab-' + leg.id"
+                        data-bs-toggle="tab"
+                        v-bind:data-bs-target="'#leg-tab-' + leg.id"
                         style="cursor: pointer"
                         >{{ leg.name }}</a
                     >
@@ -194,13 +194,13 @@
                     v-bind:id="'leg-tab-' + leg.id"
                     v-bind:class="['tab-pane', 'fade', { 'show active': i == 0 }]"
                 >
-                    <div class="media">
-                        <div class="mr-3">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
                             <a target="_blank" v-bind:href="'../Gear/#!/equipment/' + leg.id">
                                 <img v-bind:src="leg.icon && '../img/item/' + leg.icon + '.png'" />
                             </a>
                         </div>
-                        <div class="media-body text-nowrap">
+                        <div class="flex-grow-1 ms-3 text-nowrap">
                             <div class="row">
                                 <div class="col">
                                     <fieldset>

@@ -3,11 +3,7 @@
         <fieldset class="w-100" v-for="item in groups" v-bind:key="item.label">
             <legend class="text-black-50 m-0" style="font-size:1.25rem" v-html="item.label"></legend>
             <div style="margin:0 -0.5rem;">
-                <Card
-                    v-for="actress in item.actresses"
-                    v-bind:key="actress.id"
-                    v-bind:actress="actress"
-                />
+                <Card v-for="actress in item.actresses" v-bind:key="actress.id" v-bind:actress="actress" />
             </div>
         </fieldset>
         <Detail />
@@ -23,22 +19,22 @@ import Card from "./Card.vue";
 import Detail from "./Detail.vue";
 
 export default {
-    data: function() {
+    data: function () {
         return {
             actressOrder: "default",
             actressList: []
         };
     },
-    created: function() {
+    created: function () {
         var $vm = this;
-        Event.$on("change-actress-order", function(e) {
+        Event.$on("change-actress-order", function (e) {
             $vm.actressOrder = e;
         });
 
         $vm.actressList = Data.getAll("actress");
-        _.each($vm.actressList, function(actress, i) {
+        _.each($vm.actressList, function (actress, i) {
             actress.exactress = {};
-            _.each(Data.getAll("chara"), function(chara, i) {
+            _.each(Data.getAll("chara"), function (chara, i) {
                 if (chara.actressId == actress.id && chara.exActressId) {
                     actress.exactress = Data.get(
                         "exactress",
@@ -50,16 +46,16 @@ export default {
         });
     },
     computed: {
-        groups: function() {
+        groups: function () {
             var $vm = this;
             var groupList = [];
             switch ($vm.actressOrder) {
                 case "goodweapon": {
                     _.chain($vm.actressList)
-                        .groupBy(function(actress) {
+                        .groupBy(function (actress) {
                             var goodLWeapon = 999;
                             var goodSWeapon = 999;
-                            _.each(Data.getAll("chara"), function(chara, i) {
+                            _.each(Data.getAll("chara"), function (chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
                                     chara.rare >= 4 &&
@@ -74,7 +70,7 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var weapon = Number(group[0]);
                             var weaponText = "？？？";
                             if (weapon == 999999) {
@@ -96,10 +92,10 @@ export default {
                 }
                 case "goodweaponsub": {
                     _.chain($vm.actressList)
-                        .groupBy(function(actress) {
+                        .groupBy(function (actress) {
                             var goodLWeapon = 999;
                             var goodSWeapon = 999;
-                            _.each(Data.getAll("chara"), function(chara, i) {
+                            _.each(Data.getAll("chara"), function (chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
                                     chara.rare >= 4 &&
@@ -134,7 +130,7 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var weapon = Number(group[0]);
                             var weaponText = "？？？";
                             if (weapon == 999999) {
@@ -156,9 +152,9 @@ export default {
                 }
                 case "damagetype": {
                     _.chain($vm.actressList)
-                        .groupBy(function(actress) {
+                        .groupBy(function (actress) {
                             var damageType = 999;
-                            _.each(Data.getAll("chara"), function(chara, i) {
+                            _.each(Data.getAll("chara"), function (chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
                                     chara.rare >= 4 &&
@@ -191,7 +187,7 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var damageType = Number(group[0]);
                             var damageTypeText = "？？？";
                             if (damageType == 999) {
@@ -211,9 +207,9 @@ export default {
                 }
                 case "damagetypesub": {
                     _.chain($vm.actressList)
-                        .groupBy(function(actress) {
+                        .groupBy(function (actress) {
                             var damageType = 999;
-                            _.each(Data.getAll("chara"), function(chara, i) {
+                            _.each(Data.getAll("chara"), function (chara, i) {
                                 if (
                                     chara.actressId == actress.id &&
                                     chara.rare >= 4 &&
@@ -246,7 +242,7 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var damageType = Number(group[0]);
                             var damageTypeText = "？？？";
                             if (damageType == 999) {
@@ -265,8 +261,8 @@ export default {
                     break;
                 }
                 case "passiveskill": {
-                    _.each($vm.actressList, function(actress) {
-                        _.each(Data.getAll("chara"), function(chara, i) {
+                    _.each($vm.actressList, function (actress) {
+                        _.each(Data.getAll("chara"), function (chara, i) {
                             if (
                                 chara.actressId == actress.id &&
                                 chara.rare >= 4
@@ -282,7 +278,7 @@ export default {
                                 var label = _.get(passive, "name", "").substr(
                                     -4
                                 );
-                                var group = _.find(groupList, function(group) {
+                                var group = _.find(groupList, function (group) {
                                     return group.label == label;
                                 });
                                 if (!group) {
@@ -291,7 +287,7 @@ export default {
                                         actresses: [actress]
                                     });
                                 } else if (
-                                    _.find(group.actresses, function(a) {
+                                    _.find(group.actresses, function (a) {
                                         return a.id == actress.id;
                                     })
                                 ) {
@@ -301,7 +297,7 @@ export default {
                             }
                         });
                     });
-                    groupList = _.orderBy(groupList, function(group) {
+                    groupList = _.orderBy(groupList, function (group) {
                         switch (group.label) {
                             case "出力特性":
                             case "威力特性":
@@ -325,8 +321,8 @@ export default {
                     break;
                 }
                 case "attribute": {
-                    _.each($vm.actressList, function(actress) {
-                        _.each(Data.getAll("chara"), function(chara, i) {
+                    _.each($vm.actressList, function (actress) {
+                        _.each(Data.getAll("chara"), function (chara, i) {
                             if (
                                 chara.actressId == actress.id &&
                                 chara.rare >= 4
@@ -336,7 +332,7 @@ export default {
                                     "attribute",
                                     Number(chara.goodAttr)
                                 );
-                                var group = _.find(groupList, function(group) {
+                                var group = _.find(groupList, function (group) {
                                     return group.label == label;
                                 });
                                 if (!group) {
@@ -346,7 +342,7 @@ export default {
                                         actresses: [actress]
                                     });
                                 } else if (
-                                    _.find(group.actresses, function(a) {
+                                    _.find(group.actresses, function (a) {
                                         return a.id == actress.id;
                                     })
                                 ) {
@@ -361,12 +357,12 @@ export default {
                 }
                 case "gojyuon": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             return o.reading[0];
                         })
                         .toPairs()
                         .orderBy(o => o[0])
-                        .each(function(group) {
+                        .each(function (group) {
                             groupList.push({
                                 label: group[0],
                                 actresses: group[1]
@@ -377,7 +373,7 @@ export default {
                 }
                 case "age": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             return o.exactress.age || o.age || "？？？";
                         })
                         .toPairs()
@@ -387,17 +383,17 @@ export default {
                             }
                             return Number(o[0]);
                         })
-                        .each(function(group) {
+                        .each(function (group) {
                             var age = group[0];
                             var list = group[1];
                             if (isNaN(Number(age)) == false) {
                                 list = _.orderBy(
                                     list,
                                     [
-                                        function(o) {
+                                        function (o) {
                                             return new Date(
                                                 o.exactress.birthday ||
-                                                    o.birthday
+                                                o.birthday
                                             );
                                         }
                                     ],
@@ -420,11 +416,11 @@ export default {
                 }
                 case "blood": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             return o.exactress.blood || o.blood || "？";
                         })
                         .toPairs()
-                        .orderBy(function(o) {
+                        .orderBy(function (o) {
                             var order = {
                                 A: 1,
                                 B: 2,
@@ -433,7 +429,7 @@ export default {
                             };
                             return order[(o[0] + "").toUpperCase()] || 99;
                         })
-                        .each(function(group) {
+                        .each(function (group) {
                             groupList.push({
                                 label: group[0],
                                 actresses: group[1]
@@ -444,12 +440,12 @@ export default {
                 }
                 case "job": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             return o.exactress.job || o.job || "？？？";
                         })
                         .toPairs()
                         .orderBy(o => o[0])
-                        .each(function(group) {
+                        .each(function (group) {
                             groupList.push({
                                 label: group[0],
                                 actresses: group[1]
@@ -460,7 +456,7 @@ export default {
                 }
                 case "birthday": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             if (
                                 isNaN(o.exactress.age || o.age) &&
                                 (o.exactress.birthday || o.birthday) == "1/1"
@@ -475,11 +471,11 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var list = _.orderBy(
                                 group[1],
                                 [
-                                    function(o) {
+                                    function (o) {
                                         return new Date(
                                             o.exactress.birthday || o.birthday
                                         );
@@ -500,19 +496,19 @@ export default {
                 }
                 case "height": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             return isNaN(
                                 o.exactress.resumeHeight || o.resumeHeight
                             )
                                 ? "？？？"
                                 : Math.floor(
-                                      (o.exactress.resumeHeight ||
-                                          o.resumeHeight) / 5
-                                  );
+                                    (o.exactress.resumeHeight ||
+                                        o.resumeHeight) / 5
+                                );
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var heightText = isNaN(group[0])
                                 ? group[0]
                                 : group[0] * 5 + "+";
@@ -521,7 +517,7 @@ export default {
                                 actresses: _.orderBy(
                                     group[1],
                                     [
-                                        function(o) {
+                                        function (o) {
                                             return (
                                                 o.exactress.resumeHeight ||
                                                 o.resumeHeight
@@ -537,21 +533,21 @@ export default {
                 }
                 case "modelheight": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             return isNaN(
                                 o.exactress.modelHeight || o.modelHeight
                             )
                                 ? "？？？"
                                 : Math.floor(
-                                      ((o.exactress.modelHeight ||
-                                          o.modelHeight) *
-                                          100) /
-                                          5
-                                  );
+                                    ((o.exactress.modelHeight ||
+                                        o.modelHeight) *
+                                        100) /
+                                    5
+                                );
                         })
                         .toPairs()
                         .orderBy(o => Number(o[0]))
-                        .each(function(group) {
+                        .each(function (group) {
                             var heightText = isNaN(group[0])
                                 ? group[0]
                                 : group[0] * 5 + "+";
@@ -560,7 +556,7 @@ export default {
                                 actresses: _.orderBy(
                                     group[1],
                                     [
-                                        function(o) {
+                                        function (o) {
                                             return (
                                                 o.exactress.modelHeight ||
                                                 o.modelHeight
@@ -576,7 +572,7 @@ export default {
                 }
                 case "cv": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             var cv = o.exactress.cv || o.cv || "？？？";
                             if (cv == "CHARA VOICE") {
                                 cv = "？？？";
@@ -585,7 +581,7 @@ export default {
                         })
                         .toPairs()
                         .orderBy(o => o[0])
-                        .each(function(group) {
+                        .each(function (group) {
                             groupList.push({
                                 label: group[0],
                                 actresses: group[1]
@@ -596,7 +592,7 @@ export default {
                 }
                 case "spdtype": {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .groupBy(function (o) {
                             if (!(o.legEquipmentId && o.legEquipmentId[0])) {
                                 return 0;
                             }
@@ -608,7 +604,7 @@ export default {
                         })
                         .toPairs()
                         .orderBy([o => Number(o[0])], ["desc"])
-                        .each(function(group) {
+                        .each(function (group) {
                             var spd = group[0];
                             switch (Number(spd)) {
                                 case 280:
@@ -632,44 +628,37 @@ export default {
                         .commit();
                     break;
                 }
+                case "idorder": {
+                    _.chain($vm.actressList)
+                        .orderBy(o => o.idStr)
+                        .groupBy(o => o.collaborationIdStr || o.collaborationId)
+                        .orderBy(o => {
+                            if (o[0] == 0) {
+                                return "";
+                            }
+                            return o[0];
+                        })
+                        .each(function (group) {
+                            groupList.push({
+                                label: Ui.getText(
+                                    group[0].collaborationId == 0
+                                        ? "originalchara"
+                                        : "collabochara"
+                                ),
+                                actresses: group
+                            });
+                        })
+                        .commit();
+                    break;
+                }
                 default: {
                     _.chain($vm.actressList)
-                        .groupBy(function(o) {
+                        .orderBy(o => o.sortPriority)
+                        .groupBy(function (o) {
                             return o.collaborationId > 0 ? 1 : 0;
                         })
-                        .each(function(group, isCollabo) {
-                            group = _.orderBy(
-                                group,
-                                [
-                                    function(o) {
-                                        switch (o.collaborationId) {
-                                            case 4115405917:
-                                                return 1;
-                                            case 1816481255:
-                                                return 2;
-                                            case 457342321:
-                                                return 3;
-                                            case 2233919698:
-                                                return 4;
-                                            case 4062304324:
-                                                return 5;
-                                            case 1797818878:
-                                                return 6;
-                                            case 472889704:
-                                                return 7;
-                                            case 2358289657:
-                                                return 8;
-                                            case 4221015151:
-                                                return 9;
-                                            case 2605718922:
-                                                return 10;
-                                            default:
-                                                return 999;
-                                        }
-                                    }
-                                ],
-                                ["asc"]
-                            );
+                        .orderBy(o => o[0])
+                        .each(function (group, isCollabo) {
                             groupList.push({
                                 label: Ui.getText(
                                     isCollabo == 0

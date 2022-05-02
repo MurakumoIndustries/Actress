@@ -18,7 +18,7 @@
                             <rt>{{SplitedRuby[0]}}</rt>
                             <rp>)</rp>
                         </ruby>
-                        <span v-if="isNeedSplit" :class="{'pr-1':!SplitMark}">{{SplitMark}}</span>
+                        <span v-if="isNeedSplit" :class="{'pe-1':!SplitMark}">{{SplitMark}}</span>
                         <ruby v-if="isNeedSplit">
                             {{SplitedName[1]}}
                             <rp>(</rp>

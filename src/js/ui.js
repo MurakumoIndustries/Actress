@@ -24,6 +24,7 @@ data["search"] = { "ja-JP": "検索", "zh-TW": "搜尋", "en-US": "Search", "zh-
 data["clear"] = { "ja-JP": "", "zh-TW": "清空", "en-US": "Clear", "zh-CN": "清空" };
 
 data["default"] = { "ja-JP": "デフォルト", "zh-TW": "默認", "en-US": "Default", "zh-CN": "默认" };
+data["idorder"] = { "ja-JP": "ID順", "zh-TW": "ID順", "en-US": "ID Order", "zh-CN": "ID顺" };
 data["gojyuon"] = { "ja-JP": "五十音順", "zh-TW": "五十音順", "en-US": "Gojūon", "zh-CN": "五十音顺" };
 data["others"] = { "ja-JP": "その他", "zh-TW": "其他", "en-US": "Others", "zh-CN": "其他" };
 
@@ -278,6 +279,10 @@ data["accessory"] = {
     "en-US": "Accessory",
     "zh-CN": "饰品",
 };
+
+data["sp"] = { "ja-JP": "SP", "zh-TW": "SP", "en-US": "SP", "zh-CN": "SP" };
+
+data["enigma"] = { "ja-JP": "エニグマ", "zh-TW": "Enigma", "en-US": "Enigma", "zh-CN": "Enigma" };
 
 
 data[""] = {

@@ -2,12 +2,12 @@
     <div>
         <h5>{{ passiveSkill.name }}</h5>
         <div class="mb-1" v-html="Ui.renderDesc(passiveSkill.desc)"></div>
-        <div v-if="isExperimentalMode">
+        <div class="mb-1" v-if="isExperimentalMode">
             <div v-for="id in passiveSkill.detailList" v-bind:key="skillId + '_' + id">
                 <small class="text-black-50">{{ getSkillDetailDesc(id) }}</small>
                 <div v-for="aps in passiveSkill.additionalPassiveSkills" v-bind:key="aps.id">
                     <div v-for="apsdid in aps.skill.detailList" v-bind:key="apsdid">
-                        <small class="pl-4 text-black-50">{{ getSkillDetailDesc(apsdid) }}</small>
+                        <small class="ps-4 text-black-50">{{ getSkillDetailDesc(apsdid) }}</small>
                     </div>
                 </div>
             </div>

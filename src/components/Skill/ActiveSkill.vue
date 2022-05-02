@@ -1,16 +1,18 @@
 <template>
-    <div class="media">
-        <img class="mr-4" v-bind:src="activeSkill.icon && '../img/skill/' + activeSkill.icon + '.png'" />
-        <div class="media-body">
+    <div class="d-flex">
+        <div class="flex-shrink-0">
+            <img v-bind:src="activeSkill.icon && '../img/skill/' + activeSkill.icon + '.png'" />
+        </div>
+        <div class="flex-grow-1 ms-4">
             <div class="row">
                 <div class="col">
                     <fieldset>
                         <legend>
-                            <p class="m-0 float-left">{{ activeSkill.name }}</p>
-                            <div class="m-0 float-right text-right" style="font-size: 1rem">
+                            <p class="m-0 float-start">{{ activeSkill.name }}</p>
+                            <div class="m-0 float-end text-end" style="font-size: 1rem">
                                 <div>
                                     <i class="material-icons">{{
-                                        activeSkill.isNolockActivate == 1 ? "gps_off" : "gps_fixed"
+                                            activeSkill.isNolockActivate == 1 ? "gps_off" : "gps_fixed"
                                     }}</i>
                                     <span>{{ Ui.getText("attribute", activeSkill.attribute1st) }}</span>
                                     <span>
@@ -23,11 +25,8 @@
                             </div>
                         </legend>
                         <div class="row mb-1" v-if="activeSkill.needPoint > 0">
-                            <div
-                                class="col-12 col-sm-6 col-lg-4 text-center"
-                                v-for="param in paramDescList(activeSkill)"
-                                :key="JSON.stringify(param)"
-                            >
+                            <div class="col-12 col-sm-6 col-lg-4 text-center"
+                                v-for="param in paramDescList(activeSkill)" :key="JSON.stringify(param)">
                                 {{ param[0] }}：{{ param[1] }}
                             </div>
                             <div class="col-12 col-sm-6 col-lg-4 text-center">
@@ -36,21 +35,14 @@
                         </div>
                         <div class="mb-1" v-html="Ui.renderDesc(activeSkill.desc)"></div>
                         <div v-if="isExperimentalMode">
-                            <passive-skill
-                                class="mb-1"
-                                v-for="ps in activeSkill.passiveSkills"
-                                v-bind:key="activeSkill.id + '-' + ps.id"
-                                :skillId="ps.id"
-                            />
+                            <passive-skill class="mb-1" v-for="ps in activeSkill.passiveSkills"
+                                v-bind:key="activeSkill.id + '-' + ps.id" :skillId="ps.id" />
                         </div>
                     </fieldset>
                 </div>
             </div>
-            <active-skill
-                v-for="changeActSklId in activeSkill.changeActSkl"
-                :key="skillId + '-' + changeActSklId"
-                :skillId="changeActSklId"
-            />
+            <active-skill v-for="changeActSklId in activeSkill.changeActSkl" :key="skillId + '-' + changeActSklId"
+                :skillId="changeActSklId" />
         </div>
     </div>
 </template>
