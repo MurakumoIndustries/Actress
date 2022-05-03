@@ -9,7 +9,7 @@
                     <rt>{{ accessory.nameplateNameRuby }}</rt>
                 </ruby>
             </span>
-            <span class="text-black-50 float-right">{{ company.name }}</span>
+            <span class="text-black-50 float-end">{{ company.name }}</span>
         </div>
         <div class="icon-company-container">
             <img

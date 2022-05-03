@@ -3,7 +3,7 @@
         <div class="access-denied" v-if="isAccessDenied"></div>
         <div :class="['card-header', { 'access-denied-mask': isAccessDenied }]">
             <span>{{ costume.name }}</span>
-            <span class="text-black-50 float-right">{{ company.name }}</span>
+            <span class="text-black-50 float-end">{{ company.name }}</span>
         </div>
         <div class="icon-company-container">
             <img
