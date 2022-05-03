@@ -5,7 +5,7 @@
             <div class="mb-1">-</div>
         </div>
         <div v-else>
-            <div v-if="skillGroup.growthList.length > 1" :id="'skillGroup-carousel-' + skillGroup.id + '-' + randomKey"
+            <div v-if="false" :id="'skillGroup-carousel-' + skillGroup.id + '-' + randomKey"
                 class="carousel carousel-dark slide" data-bs-ride="false" data-bs-wrap="false" data-bs-interval="false">
                 <div class="carousel-indicators mb-0">
                     <button v-for="(growth, index) in skillGroup.growthList" :class='[{ "active": (index == 0) }]'
@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         tagImage: function (tagId) {
-            return Data.get('skilltag', tagId).image.toLower();
+            return Data.get('skilltag', tagId).image.toLowerCase();
         }
     },
 };
