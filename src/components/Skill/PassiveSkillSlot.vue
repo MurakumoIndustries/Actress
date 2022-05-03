@@ -3,7 +3,7 @@
         <div class="row" v-if="skillSlot.variableMasterLevel > 0">
             <div class="col-auto" style="flex: 0 0 5rem; text-align: center">
                 <div>{{ skillSlot.slot }}</div>
-                <img class="tag-image" :src="'../img/skill/' + tag.image + '.png'" />
+                <img class="tag-image" :src="'../img/skill/' + tag.image.toLower() + '.png'" />
                 <skill-grade :grade="slotGrade" :openGradeMasterLevel="skillSlot.openGradeMasterLevel" />
             </div>
             <div class="col">

@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         tagImage: function (tagId) {
-            return Data.get('skilltag', tagId).image;
+            return Data.get('skilltag', tagId).image.toLower();
         }
     },
 };
