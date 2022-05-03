@@ -20,7 +20,7 @@
                     </div>
                 </button>
                 <div class="collapse" :id="'variableSkills-' + skillSlot.slot" :data-bs-parent="containerId">
-                    <div class="card card-body px-2 mb-1" style="margin-top: -0.25rem;border-top: none;">
+                    <div class="card card-body pb-0 mb-1" style="margin-top: -0.25rem;border-top: none;">
                         <passive-skill-group v-for="vGroup in variableSkillGroupList" :skill-group="vGroup" />
                     </div>
                 </div>

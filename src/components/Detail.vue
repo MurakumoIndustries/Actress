@@ -48,6 +48,13 @@
                             actress.imageColor +
                             ' 5rem, white 15rem, white)',
                     }">
+
+                        <transition name="fade" mode="out-in" v-if="currentTabId != 0">
+                            <component :id="'chara-tab-' + currentTabId" :key="'chara-tab-' + currentTabId"
+                                class='tab-pane show active' :is="currentTabComponent" v-bind="currentTabProps">
+                            </component>
+                        </transition>
+                        <!--
                         <transition name="fade" v-for="chara in charas" :key="chara.id">
                             <DetailResume :id="'chara-tab-' + chara.id" :key="'chara-tab-' + chara.id"
                                 v-show="currentTabId == chara.id"
@@ -73,6 +80,7 @@
                                 :class="['tab-pane', currentTabId == 'accessory' ? 'show active' : '']"
                                 :actressId="actress.id" />
                         </transition>
+                        -->
                         <button type="button" class="btn-close d-sm-none" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -96,7 +104,7 @@ import DetailAccessory from "./DetailAccessory.vue";
 export default {
     data: function () {
         return {
-            currentTabId: "",
+            currentTabId: 0,
             actress: {},
             charas: [],
         };
@@ -144,6 +152,35 @@ export default {
                 modal && modal.show();
             });
         });
+    },
+    computed: {
+        currentTabComponent: function () {
+            if (Number.isInteger(this.currentTabId)) {
+                return "DetailResume";
+            }
+            else if (this.currentTabId == "sp") {
+                return "DetailSP"
+            }
+            return "Detail" + _.capitalize(this.currentTabId);
+        },
+        currentTabProps: function () {
+            switch (this.currentTabId) {
+                case "sp": return {
+                    skillIds: this.actress.spList
+                };
+                case "gear": return {
+                    actress: this.actress,
+                };
+                case "costume":
+                case "accessory": return {
+                    actressId: this.actress.id,
+                };
+                default: return {
+                    actress: this.actress,
+                    chara: _.find(this.charas, ['id', this.currentTabId])
+                };
+            }
+        }
     },
     methods: {
         miniIconAlt: function (event) {
@@ -218,7 +255,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.15s linear;
+    transition: opacity 0.1s linear;
 }
 
 .fade-enter,
