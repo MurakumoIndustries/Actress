@@ -44,7 +44,10 @@ export default {
     },
     props: {
         skillSlot: Object,
-        skillGroupList: Array,
+        skillGroupList: {
+            type: Array,
+            default: []
+        },
         containerId: String
     },
     created: function () {
