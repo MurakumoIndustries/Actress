@@ -4300,16 +4300,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ssri@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "ssri@npm:8.0.0"
-  dependencies:
-    minipass: ^3.1.1
-  checksum: 50085886f4f476f14ef40c063abca59b9855f773cb3962da4e873f2a010b4fc73b36b4b15f6439b816ee6bee36da30d1b6046cf5412a294fa316828de3ec8d9f
-  languageName: node
-  linkType: hard
-
-"ssri@npm:^8.0.1":
+"ssri@npm:^8.0.0, ssri@npm:^8.0.1":
   version: 8.0.1
   resolution: "ssri@npm:8.0.1"
   dependencies:
