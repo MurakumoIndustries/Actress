@@ -18,7 +18,7 @@
                         <li class="nav-item" v-if="actress.spList">
                             <div v-bind:class="['py-1', 'px-2', 'nav-link', { active: currentTabId == 'sp' }]"
                                 @click="currentTabId = 'sp'" style="cursor: pointer; white-space: nowrap">
-                                <div class="tab-text-icon">{{ Ui.getText("sp") }}</div>
+                                <div class="tab-text-icon">{{ Ui.getText("spskill") }}</div>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -39,6 +39,12 @@
                                 <div class="tab-text-icon">{{ Ui.getText("accessory") }}</div>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <div v-bind:class="['py-1', 'px-2', 'nav-link', { active: currentTabId == 'voice' }]"
+                                @click="currentTabId = 'voice'" style="cursor: pointer; white-space: nowrap">
+                                <div class="tab-text-icon">{{ Ui.getText("voice") }}</div>
+                            </div>
+                        </li>
                     </ul>
                     <div class="tab-content p-3 position-relative" v-bind:style="{
                         background:
@@ -54,33 +60,6 @@
                                 class='tab-pane show active' :is="currentTabComponent" v-bind="currentTabProps">
                             </component>
                         </transition>
-                        <!--
-                        <transition name="fade" v-for="chara in charas" :key="chara.id">
-                            <DetailResume :id="'chara-tab-' + chara.id" :key="'chara-tab-' + chara.id"
-                                v-show="currentTabId == chara.id"
-                                :class="['tab-pane', currentTabId == chara.id ? 'show active' : '']" :actress="actress"
-                                :chara="chara" />
-                        </transition>
-                        <transition name="fade">
-                            <DetailSP id="chara-tab-sp" v-show="currentTabId == 'sp'"
-                                :class="['tab-pane', currentTabId == 'sp' ? 'show active' : '']"
-                                :skillIds="actress.spList" />
-                        </transition>
-                        <transition name="fade">
-                            <DetailGear id="chara-tab-gear" v-show="currentTabId == 'gear'"
-                                :class="['tab-pane', currentTabId == 'gear' ? 'show active' : '']" :actress="actress" />
-                        </transition>
-                        <transition name="fade">
-                            <DetailCostume id="chara-tab-costume" v-show="currentTabId == 'costume'"
-                                :class="['tab-pane', currentTabId == 'costume' ? 'show active' : '']"
-                                :actressId="actress.id" />
-                        </transition>
-                        <transition name="fade">
-                            <DetailAccessory id="chara-tab-accessory" v-show="currentTabId == 'accessory'"
-                                :class="['tab-pane', currentTabId == 'accessory' ? 'show active' : '']"
-                                :actressId="actress.id" />
-                        </transition>
-                        -->
                         <button type="button" class="btn-close d-sm-none" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -90,8 +69,8 @@
     </div>
 </template>
 <script>
+import _ from 'lodash';
 import { Data } from "../js/data.js";
-import { Event } from "../js/event.js";
 import page from "page";
 import { Modal } from "bootstrap";
 
@@ -100,13 +79,15 @@ import DetailSP from "./DetailSP.vue";
 import DetailGear from "./DetailGear.vue";
 import DetailCostume from "./DetailCostume.vue";
 import DetailAccessory from "./DetailAccessory.vue";
+import DetailVoice from "./DetailVoice.vue";
 
 export default {
+    props: {
+        actressId: undefined
+    },
     data: function () {
         return {
             currentTabId: 0,
-            actress: {},
-            charas: [],
         };
     },
     created: function () {
@@ -116,18 +97,35 @@ export default {
                 page.show("/");
             });
         });
-
-        Event.$on("render", function (id) {
-            var isModelShow = !!($vm.actress && $vm.actress.id);
-            $vm.actress = Data.get("actress", id) || {};
-            if (!$vm.actress || !$vm.actress.id) {
-                if (isModelShow) {
-                    Modal.getInstance($vm.$el).hide();
-                }
+    },
+    mounted: function () {
+        if (!(this.actressId)) {
+            const modal = Modal.getInstance(this.$el);
+            modal && modal.hide();
+            return;
+        }
+    },
+    watch: {
+        actressId: function (newId, oldId) {
+            if (!newId) {
+                const modal = Modal.getInstance(this.$el);
+                modal && modal.hide();
                 return;
             }
-
-            $vm.charas = [];
+            this.currentTabId = _.find(this.charas, (o) => o.variation == 5).id;
+            this.$nextTick(function () {
+                const modal = Modal.getOrCreateInstance(this.$el);
+                modal && modal.show();
+            });
+        }
+    },
+    computed: {
+        actress: function () {
+            return Data.get("actress", this.actressId) || {};
+        },
+        charas: function () {
+            let charas = [];
+            const $vm = this;
             _.each(Data.getAll("chara"), function (o, i) {
                 if (o.actressId == $vm.actress.id) {
                     var chara = _.extend({}, o);
@@ -139,21 +137,11 @@ export default {
                         chara.spSkillIds.push(chara.defaultSpSkillId);
                     }
 
-                    $vm.charas.push(chara);
-                    if (chara.rare >= 4 && !chara.anotherIcon && !$vm.actress.firstRare4CharaId) {
-                        $vm.actress.firstRare4CharaId = chara.id;
-                    }
+                    charas.push(chara);
                 }
             });
-            $vm.currentTabId = $vm.actress.firstRare4CharaId;
-
-            $vm.$nextTick(function () {
-                const modal = Modal.getOrCreateInstance($vm.$el);
-                modal && modal.show();
-            });
-        });
-    },
-    computed: {
+            return charas;
+        },
         currentTabComponent: function () {
             if (Number.isInteger(this.currentTabId)) {
                 return "DetailResume";
@@ -172,7 +160,8 @@ export default {
                     actress: this.actress,
                 };
                 case "costume":
-                case "accessory": return {
+                case "accessory":
+                case "voice": return {
                     actressId: this.actress.id,
                 };
                 default: return {
@@ -195,6 +184,7 @@ export default {
         DetailGear,
         DetailCostume,
         DetailAccessory,
+        DetailVoice,
     },
 };
 </script>
@@ -241,6 +231,7 @@ export default {
     width: 100%;
     margin: 0;
     height: 0;
+    border: none;
 }
 
 .tab-text-icon {

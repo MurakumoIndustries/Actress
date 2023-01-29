@@ -15,7 +15,8 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState } from "pinia";
+import { useStore } from '../../js/store';
 
 import { Data } from "../../js/data.js";
 export default {
@@ -30,7 +31,7 @@ export default {
             var ps = Data.get("skillpassive", this.skillId) || {};
             if (ps.additionalPassiveId && ps.additionalPassiveId.length) {
                 ps.additionalPassiveSkills = [];
-                _.each(ps.additionalPassiveId, function (o, i) {
+                ps.additionalPassiveId.forEach(function (o, i) {
                     var aps = Data.get("skillpassive", o);
                     ps.additionalPassiveSkills[i] = {
                         id: o,
@@ -40,7 +41,7 @@ export default {
             }
             return ps;
         },
-        ...mapState(["isExperimentalMode"]),
+        ...mapState(useStore, ["isExperimentalMode"]),
     },
     methods: {
         getSkillDetailDesc: function (id) {

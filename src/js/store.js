@@ -1,21 +1,39 @@
-import Vuex from 'vuex'
+import { defineStore } from 'pinia'
+import { Ui } from './ui'
 
-const Store = new Vuex.Store({
-    state: {
+const UpdateStatus = {
+    NoUpdate: 0,
+    Updating: 1,
+    UpdateReady: 2
+};
+
+const useStore = defineStore('main', {
+    state: () => ({
+        updateStatus: UpdateStatus.NoUpdate,
+        language: Ui.initLanguage(),
         isExperimentalMode: false,
         isEasterMode: false,
-    },
-    mutations: {
-        setExperimentalMode(state, mode) {
-            state.isExperimentalMode = mode;
-        },
-        setEasterMode(state, mode) {
-            state.isEasterMode = mode;
+        currentActressId: 0,
+        actressOrder: "default",
+    }),
+    getters: {
+        isCurrentActress: (state) => (id) => {
+            return state.currentActressId == id;
         }
     },
-    strict: process.env.NODE_ENV !== 'production'
+    actions: {
+        updating() {
+            console.log("new-version-updating");
+            this.updateStatus = UpdateStatus.Updating;
+        },
+        updateReady() {
+            console.log("new-version-update-ready");
+            this.updateStatus = UpdateStatus.UpdateReady;
+        },
+        initLanguage(lang) {
+            this.language = Ui.initLanguage(lang);
+        }
+    }
 })
 
-
-export { Store };
-export default Store;
+export { useStore, UpdateStatus };

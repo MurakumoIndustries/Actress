@@ -7,7 +7,7 @@
         </div>
         <div class="icon-company-container">
             <img class="icon-company" :src="company.icon ? '../img/com/' + company.icon + '.png' : ''"
-                :title="company.name" :alt="company.name" />
+                :title="company.name" />
         </div>
         <div :class="['card-body py-2', { 'access-denied-mask': isAccessDenied }]">
             <div class="text-center">
@@ -21,6 +21,9 @@
     </div>
 </template>
 <script>
+import { mapState } from "pinia";
+import { useStore } from '../js/store';
+
 import { Data } from "../js/data.js";
 
 export default {
@@ -38,7 +41,7 @@ export default {
                 .value();
         },
         isAccessDenied: function () {
-            if (this.$store.state.isExperimentalMode) {
+            if (this.isExperimentalMode) {
                 return false;
             }
             return (
@@ -50,6 +53,7 @@ export default {
         company: function (id) {
             return Data.get("company", this.costume.company) || {};
         },
+        ...mapState(useStore, ["isExperimentalMode"]),
     },
 };
 </script>

@@ -1,6 +1,5 @@
-import _ from 'lodash';
-
-var supportedLang = [{
+const supportedLang = [
+    {
         key: 'ja-JP',
         text: '日本語'
     },
@@ -280,10 +279,16 @@ data["accessory"] = {
     "zh-CN": "饰品",
 };
 
-data["sp"] = { "ja-JP": "SP", "zh-TW": "SP", "en-US": "SP", "zh-CN": "SP" };
+data["spskill"] = { "ja-JP": "SPスキル", "zh-TW": "SP技能", "en-US": "SP Skills", "zh-CN": "SP技能" };
 
 data["enigma"] = { "ja-JP": "エニグマ", "zh-TW": "Enigma", "en-US": "Enigma", "zh-CN": "Enigma" };
 data["emptyslot"] = { "ja-JP": "空きスロット", "zh-TW": "空插槽", "en-US": "Empty Slot", "zh-CN": "空插槽" };
+
+data["voice"] = { "ja-JP": "ボイス", "zh-TW": "語音", "en-US": "Voice", "zh-CN": "语音" };
+data["novoice"] = { "ja-JP": "ボイスなし", "zh-TW": "無語音", "en-US": "No Voice", "zh-CN": "无语音" };
+data["normal"] = { "ja-JP": "ノーマル", "zh-TW": "Normal", "en-US": "Normal", "zh-CN": "Normal" };
+data["another"] = { "ja-JP": "アナザー", "zh-TW": "Another", "en-US": "Another", "zh-CN": "Another" };
+data["factor"] = { "ja-JP": "ファクター", "zh-TW": "Factor", "en-US": "Factor", "zh-CN": "Factor" };
 
 
 data[""] = {
@@ -307,27 +312,26 @@ var getText = function (key, key2) {
     }
     return data[key][key2][getLang()] || data[key][key2]['en-US'];
 };
+var getLangText = function (key) {
+    var lang = supportedLang.find(function (o) {
+        return o.key == key;
+    });
+    return (lang || {}).text;
+};
 var getLang = function () {
     if (!currentLang) {
-        setLang();
+        initLanguage();
     }
     return currentLang;
 };
-var getLangText = function () {
-    if (!currentLang) {
-        setLang();
-    }
-    return _.find(supportedLang, function (o) {
-        return o.key == currentLang;
-    }).text;
-};
-var setLang = function (lang) {
-    lang = lang || localStorage["uilang"] || navigator.language || navigator.browserLanguage;
-    if (_.some(supportedLang, function (o) { return o.key == lang }) == false) {
+var initLanguage = function (lang) {
+    lang = lang || localStorage["language"] || navigator.language || navigator.browserLanguage;
+    if (supportedLang.some(function (o) { return o.key == lang }) == false) {
         lang = 'ja-JP';
     }
     currentLang = lang;
-    localStorage["uilang"] = lang;
+    localStorage["language"] = lang;
+    return lang;
 };
 var renderDesc = function (text) {
     if (!text) {
@@ -339,10 +343,9 @@ var renderDesc = function (text) {
 const Ui = {
     supportedLang,
     getText,
-    getLang,
     getLangText,
-    setLang,
-    renderDesc,
+    initLanguage,
+    renderDesc
 };
 
 export { Ui };

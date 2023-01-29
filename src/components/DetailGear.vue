@@ -244,7 +244,9 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import _ from 'lodash';
+import { mapState } from "pinia";
+import { useStore } from '../js/store';
 
 import { Data } from "../js/data.js";
 
@@ -292,7 +294,7 @@ export default {
             });
             return legList;
         },
-        ...mapState(["isExperimentalMode"]),
+        ...mapState(useStore, ["isExperimentalMode"]),
     },
     components: {
         ActiveSkill,

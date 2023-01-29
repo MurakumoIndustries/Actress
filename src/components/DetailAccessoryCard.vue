@@ -5,33 +5,28 @@
             <span>{{ accessory.name }}</span>
             <span class="accessory-nameplate text-black-50">
                 <ruby>
-                    <rb>{{ accessory.nameplateName }}</rb>
-                    <rt>{{ accessory.nameplateNameRuby }}</rt>
+                    {{ accessory.nameplateName }} <rt>{{ accessory.nameplateNameRuby }}</rt>
                 </ruby>
             </span>
             <span class="text-black-50 float-end">{{ company.name }}</span>
         </div>
         <div class="icon-company-container">
-            <img
-                class="icon-company"
-                :src="company.icon ? '../img/com/' + company.icon + '.png' : ''"
-                :title="company.name"
-                :alt="company.name"
-            />
+            <img class="icon-company" :src="company.icon ? '../img/com/' + company.icon + '.png' : ''"
+                :title="company.name" />
         </div>
         <div :class="['card-body py-2', { 'access-denied-mask': isAccessDenied }]">
             <div class="text-center">
-                <img
-                    :src="accessory.icon ? '../img/item/' + accessory.icon + '.png' : ''"
-                    class
-                    :alt="accessory.name"
-                />
+                <img :src="accessory.icon ? '../img/item/' + accessory.icon + '.png' : ''" class
+                    :alt="accessory.name" />
             </div>
             <p class="card-text" v-html="Ui.renderDesc(accessory.desc)"></p>
         </div>
     </div>
 </template>
 <script>
+import { mapState } from "pinia";
+import { useStore } from '../js/store';
+
 import { Data } from "../js/data.js";
 
 export default {
@@ -40,7 +35,7 @@ export default {
     },
     computed: {
         isAccessDenied: function () {
-            if (this.$store.state.isExperimentalMode) {
+            if (this.isExperimentalMode) {
                 return false;
             }
             return (
@@ -52,6 +47,7 @@ export default {
         company: function () {
             return Data.get("company", this.accessory.company) || {};
         },
+        ...mapState(useStore, ["isExperimentalMode"]),
     },
 };
 </script>
@@ -59,14 +55,17 @@ export default {
 .card-header {
     position: relative;
 }
+
 .accessory-nameplate {
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
 }
+
 .icon-company {
     width: 75%;
 }
+
 .icon-company-container {
     position: absolute;
     right: 0rem;

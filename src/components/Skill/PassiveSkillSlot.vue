@@ -16,7 +16,7 @@
                         {{ "MLv." + skillSlot.variableMasterLevel }}
                     </div>
                     <div>
-                        <i class="material-icons">{{ isVariableSkillsOpen ? "expand_less" : "expand_more" }}</i>
+                        <i class="material-icons">{{ isVariableSkillsOpen? "expand_less": "expand_more" }}</i>
                     </div>
                 </button>
                 <div class="collapse" :id="'variableSkills-' + skillSlot.slot" :data-bs-parent="containerId">
@@ -31,6 +31,7 @@
     </div>
 </template>
 <script>
+import _ from 'lodash';
 import { Data } from "../../js/data.js";
 
 import PassiveSkillGroup from "./PassiveSkillGroup.vue";

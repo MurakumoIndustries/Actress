@@ -200,25 +200,39 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <active-skill v-for="spSkillId in chara.spSkillIds" :key="spSkillId" :skillId="spSkillId" />
-            <hr v-if="!(actress.hasEnigma || isExperimentalMode)" />
-            <ul class="nav nav-tabs mb-2" v-if="actress.hasEnigma || isExperimentalMode">
+            <ul class="nav nav-tabs mb-2">
                 <li class="nav-item">
                     <button class="nav-link disabled">{{
-                            Ui.getText("passiveskill")
+                        Ui.getText("spskill")
+                    }}</button>
+                </li>
+                <li class="nav-item" v-for="(spSkillId, i) in chara.spSkillIds" :key="spSkillId">
+                    <button class="nav-link" :class="i == 0 ? 'active' : ''" data-bs-toggle="tab"
+                        :data-bs-target="'#activeskill-' + spSkillId">{{ spSkillName(spSkillId) }}</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div v-for="(spSkillId, i) in chara.spSkillIds" class="tab-pane fade"
+                    :class="i == 0 ? 'show active' : ''" :id="'activeskill-' + spSkillId">
+                    <active-skill :key="spSkillId" :skillId="spSkillId" />
+                </div>
+            </div>
+            <ul class="nav nav-tabs mb-2">
+                <li class="nav-item">
+                    <button class="nav-link disabled">{{
+                        Ui.getText("passiveskill")
                     }}</button>
                 </li>
                 <li class="nav-item">
                     <button class="nav-link" :class="!actress.hasEnigma ? 'active' : ''" data-bs-toggle="tab"
                         :data-bs-target="'#defaultpassiveskill-' + chara.id">{{
-                                Ui.getText("default")
+                            Ui.getText("default")
                         }}</button>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="actress.hasEnigma || isExperimentalMode">
                     <button class="nav-link" :class="actress.hasEnigma ? 'active' : ''" data-bs-toggle="tab"
                         :data-bs-target="'#enigmapassiveskill-' + chara.id">{{
-                                Ui.getText("enigma")
+                            Ui.getText("enigma")
                         }}</button>
                 </li>
             </ul>
@@ -233,15 +247,15 @@
                     :id="'enigmapassiveskill-' + chara.id">
                     <passive-skill-slot v-for="(psSlot, slotIndex) in chara.passiveSkillSlots"
                         v-bind:key="chara.id + '-passive-slot-' + slotIndex" :skill-slot="psSlot"
-                        :skill-group-list="actress.skillGroupList"
-                        :container-id="'#enigmapassiveskill-' + chara.id" />
+                        :skill-group-list="actress.skillGroupList" :container-id="'#enigmapassiveskill-' + chara.id" />
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState } from "pinia";
+import { useStore } from '../js/store';
 
 import { Data } from "../js/data.js";
 
@@ -252,8 +266,18 @@ import PassiveSkillSlot from "./Skill/PassiveSkillSlot.vue";
 
 export default {
     props: {
-        actress: Object,
-        chara: Object,
+        actress: {
+            type: Object,
+            default(rawProps) {
+                return {};
+            }
+        },
+        chara: {
+            type: Object,
+            default(rawProps) {
+                return { exactress: {} };
+            }
+        },
     },
     data: function () {
         return {
@@ -285,7 +309,12 @@ export default {
             }
             return result;
         },
-        ...mapState(["isExperimentalMode", "isEasterMode"]),
+        ...mapState(useStore, ["isExperimentalMode", "isEasterMode"]),
+    },
+    methods: {
+        spSkillName: function (id) {
+            return Data.get('skillactive', id).name;
+        }
     },
     components: {
         AttrText,
@@ -296,9 +325,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
 .chara-img-container {
     display: inline-block;

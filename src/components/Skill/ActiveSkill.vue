@@ -12,7 +12,7 @@
                             <div class="m-0 float-end text-end" style="font-size: 1rem">
                                 <div>
                                     <i class="material-icons">{{
-                                            activeSkill.isNolockActivate == 1 ? "gps_off" : "gps_fixed"
+                                        activeSkill.isNolockActivate == 1 ? "gps_off" : "gps_fixed"
                                     }}</i>
                                     <span>{{ Ui.getText("attribute", activeSkill.attribute1st) }}</span>
                                     <span>
@@ -47,7 +47,9 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import _ from 'lodash';
+import { mapState } from "pinia";
+import { useStore } from '../../js/store';
 
 import { Data } from "../../js/data.js";
 
@@ -69,7 +71,7 @@ export default {
     computed: {
         activeSkill: function () {
             var skill = _.extend({ passiveSkills: [] }, Data.get("skillactive", this.skillId));
-            _.each(skill.passiveList, function (o, i) {
+            skill.passiveList.forEach(function (o, i) {
                 skill.passiveSkills[i] = {
                     id: o,
                     skill: Data.get("skillpassive", o),
@@ -77,7 +79,7 @@ export default {
             });
             return skill;
         },
-        ...mapState(["isExperimentalMode"]),
+        ...mapState(useStore, ["isExperimentalMode"]),
     },
     methods: {
         activateLimit: function (o) {
@@ -92,7 +94,7 @@ export default {
                 ];
             }
             var list = JSON.parse(spSkill.paramDesc.replace("{0}", spSkill.activateLimit).replace(/'/g, '"'));
-            _.each(list, function (o) {
+            list.forEach(function (o) {
                 o[0] = o[0].replace("回数", $vm.Ui.getText("count"));
                 o[0] = o[0].replace("時間", $vm.Ui.getText("duration"));
             });

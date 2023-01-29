@@ -18,7 +18,8 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState } from "pinia";
+import { useStore } from '../../js/store';
 
 import PassiveSkillWithTag from "./PassiveSkillWithTag.vue";
 
@@ -41,7 +42,7 @@ export default {
             }
             return this.skillGroup.growthList.length;
         },
-        ...mapState(["isExperimentalMode"]),
+        ...mapState(useStore, ["isExperimentalMode"]),
     },
 };
 </script>

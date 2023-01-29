@@ -8,6 +8,7 @@
     </div>
 </template>
 <script>
+import _ from 'lodash';
 import { Data } from "../js/data.js";
 import DetailCostumeCard from "./DetailCostumeCard.vue";
 

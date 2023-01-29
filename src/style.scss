@@ -1,7 +1,7 @@
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 
-$material-design-icons-font-directory-path: '~material-design-icons-iconfont/dist/fonts/'; 
-@import '~material-design-icons-iconfont/src/material-design-icons';
+$material-design-icons-font-directory-path: 'material-design-icons-iconfont/dist/fonts/';
+@import 'material-design-icons-iconfont/src/material-design-icons';
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Yu Gothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -20,7 +20,7 @@ body:lang(zh-CN) {
 }
 
 .background {
-    background-image: url("./img/background.svg");
+    background-image: url("./assets/img/background.svg");
     background-size: 3rem 3rem;
 }
 
@@ -40,7 +40,7 @@ hr {
     background-repeat: no-repeat;
     position: absolute;
     z-index: 999;
-    background-image: url(./img/accessDenied.svg);
+    background-image: url(./assets/img/accessDenied.svg);
     background-size: contain;
     background-color: rgba(255, 255, 255, 0.5);
     cursor: not-allowed;

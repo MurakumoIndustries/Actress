@@ -6,14 +6,16 @@
                 <Card v-for="actress in item.actresses" v-bind:key="actress.id" v-bind:actress="actress" />
             </div>
         </fieldset>
-        <Detail />
+        <Detail :actressId="actressId" />
     </div>
 </template>
 
 <script>
+import _ from 'lodash';
 import { Data } from "../js/data.js";
-import { Event } from "../js/event.js";
 import { Ui } from "../js/ui.js";
+import { mapState } from "pinia";
+import { useStore } from '../js/store';
 
 import Card from "./Card.vue";
 import Detail from "./Detail.vue";
@@ -21,15 +23,11 @@ import Detail from "./Detail.vue";
 export default {
     data: function () {
         return {
-            actressOrder: "default",
             actressList: []
         };
     },
     created: function () {
         var $vm = this;
-        Event.$on("change-actress-order", function (e) {
-            $vm.actressOrder = e;
-        });
 
         $vm.actressList = Data.getAll("actress");
         _.each($vm.actressList, function (actress, i) {
@@ -673,7 +671,11 @@ export default {
                 }
             }
             return groupList;
-        }
+        },
+        ...mapState(useStore, {
+            actressOrder: store => store.actressOrder,
+            actressId: store => store.currentActressId,
+        }),
     },
     components: {
         Card,

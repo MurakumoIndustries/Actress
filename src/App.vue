@@ -1,29 +1,23 @@
-<template>
-    <div>
-        <Nav />
-        <Actress />
-    </div>
-</template>
-
-<script>
+<script setup>
+import { ref, watchEffect } from 'vue';
+import { useStore } from './js/store'
 import Konami from "konami";
 
-import Nav from "./components/Nav.vue";
-import Actress from "./components/Actress.vue";
+import Nav from './components/Nav.vue'
+import Actress from './components/Actress.vue';
 
-export default {
-    created: function() {
-        var $this = this;
-        new Konami(function() {
-            $this.$store.commit(
-                "setExperimentalMode",
-                !$this.$store.state.isExperimentalMode
-            );
-        });
-    },
-    components: {
-        Nav,
-        Actress
-    }
-};
+const store = useStore();
+
+new Konami(function () {
+  store.isExperimentalMode = !store.isExperimentalMode;
+});
+
+watchEffect(() => document.getElementsByTagName('body')[0].setAttribute('lang', store.language));
 </script>
+
+<template>
+  <div class="h-100">
+    <Nav />
+    <Actress />
+  </div>
+</template>

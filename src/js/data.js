@@ -1,12 +1,15 @@
+import _ from 'lodash';
 import localForage from "localforage";
 import serverList from "../data/serverList.json";
 
 const baseKey = "MI_Actress_";
 const lastUpdateKey = baseKey + "LastUpdate";
 const serverKey = baseKey + "Server";
+const cacheDisableKey = baseKey + "Disable_Cache";
 const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment',
     'skillactive', 'skillpassive', 'skilldetail', 'skillgroup', 'skilltag',
-    'costume', 'accessory', 'company'
+    'costume', 'accessory', 'company',
+    'voice', 'voicecategory'
 ];
 
 var data = {};
@@ -62,8 +65,8 @@ var init = function (forceInit) {
                     import(
                         /* webpackChunkName: "jsondata_[request]" */
                         '../data/' + folder + '/' + o + '.json').then(jsondata => {
-                        return savedata(o, folder, jsondata.default);
-                    }));
+                            return savedata(o, folder, jsondata.default);
+                        }));
             });
             return Promise.all(promises).then(() => {
                 return store.setItem(lastUpdateKey, lastUpdate)
@@ -111,7 +114,10 @@ const Data = {
     setCurrentServer,
     init,
     getAll,
-    get
+    get,
+    const: {
+        cacheDisableKey
+    }
 };
 
 export { Data };

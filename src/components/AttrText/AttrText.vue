@@ -1,5 +1,5 @@
 <template>
-    <span v-if="show" :class="['attr-text',attrClass]">{{internalText}}</span>
+    <span v-if="show" :class="['attr-text', attrClass]">{{ internalText }}</span>
 </template>
 <script>
 var attrTypeList = [
@@ -19,7 +19,12 @@ export default {
         text: [String, Number],
         attribute: Number,
         attribute2nd: Number,
-        attrList: Array,
+        attrList: {
+            type: Array,
+            default(rawProps) {
+                return [];
+            }
+        }
     },
     computed: {
         internalText: function () {
@@ -30,7 +35,7 @@ export default {
             } else if (this.attribute2nd) {
                 return this.Ui.getText("attribute", this.attribute2nd);
             }
-            return _.find(this.attrList, function (o, i) {
+            return this.attrList.find(function (o, i) {
                 return o !== undefined && o !== 0;
             });
         },
@@ -41,7 +46,7 @@ export default {
             } else if (this.attribute2nd) {
                 index = this.attribute2nd - 4;
             } else if (this.attrList.length) {
-                index = _.findIndex(this.attrList, function (o, i) {
+                index = this.attrList.findIndex(function (o, i) {
                     return o !== undefined && o !== 0;
                 });
             }
@@ -51,7 +56,7 @@ export default {
             return "attr-" + attrTypeList[this.attrTypeIndex];
         },
         show: function () {
-            return this.attrTypeIndex>=0&&this.attrTypeIndex<attrTypeList.length;
+            return this.attrTypeIndex >= 0 && this.attrTypeIndex < attrTypeList.length;
         },
     },
 };
@@ -73,8 +78,10 @@ export default {
     &.attr-normal {
         color: inherit;
     }
+
     &.attr-thunder {
         color: #fad558;
+
         &::before {
             background-image: url("./thunder.png");
         }
@@ -82,6 +89,7 @@ export default {
 
     &.attr-gravity {
         color: #c485fd;
+
         &::before {
             background-image: url("./gravity.png");
         }
@@ -89,6 +97,7 @@ export default {
 
     &.attr-fire {
         color: #fe8691;
+
         &::before {
             background-image: url("./fire.png");
         }
@@ -96,6 +105,7 @@ export default {
 
     &.attr-ice {
         color: #92e8fe;
+
         &::before {
             background-image: url("./ice.png");
         }

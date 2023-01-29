@@ -2,38 +2,35 @@
     <div class="actress-card" v-bind:data-id="actress.id" v-bind:data-name="actress.name">
         <div class="card">
             <div
-                v-bind:style="{background:'linear-gradient(135deg, '+actress.imageColor+', '+actress.imageColor+' 2rem, transparent 4rem, transparent)'}"
-            >
+                v-bind:style="{ background: 'linear-gradient(135deg, ' + actress.imageColor + ', ' + actress.imageColor + ' 2rem, transparent 4rem, transparent)' }">
                 <div class="access-denied" v-if="isAccessDenied"></div>
-                <div
-                    :class="['card-body p-0',{'access-denied-mask':isAccessDenied}]"
-                    @click="showResume(actress.id)"
-                >
+                <div :class="['card-body p-0', { 'access-denied-mask': isAccessDenied }]"
+                    @click="showResume(actress.id)">
                     <h5 class="m-0 text-nowrap">
                         <img class="card-icon" v-bind:src="cardIconPath" />
                         <div v-if="isEasterMode" class="card-icon-easter" :style="easterStyle"></div>
                         <ruby v-if="isNeedSplit">
-                            {{SplitedName[0]}}
+                            {{ SplitedName[0]}}
                             <rp>(</rp>
-                            <rt>{{SplitedRuby[0]}}</rt>
+                            <rt>{{ SplitedRuby[0]}}</rt>
                             <rp>)</rp>
                         </ruby>
-                        <span v-if="isNeedSplit" :class="{'pe-1':!SplitMark}">{{SplitMark}}</span>
+                        <span v-if="isNeedSplit" :class="{ 'pe-1': !SplitMark }">{{ SplitMark }}</span>
                         <ruby v-if="isNeedSplit">
-                            {{SplitedName[1]}}
+                            {{ SplitedName[1]}}
                             <rp>(</rp>
-                            <rt>{{SplitedRuby[1]}}</rt>
+                            <rt>{{ SplitedRuby[1]}}</rt>
                             <rp>)</rp>
                         </ruby>
                         <ruby v-else>
-                            {{actress.name}}
+                            {{ actress.name }}
                             <rp>(</rp>
-                            <rt>{{actress.ruby}}</rt>
+                            <rt>{{ actress.ruby }}</rt>
                             <rp>)</rp>
                         </ruby>
                     </h5>
                     <div v-if="isExperimentalMode" class="actress-no">
-                        <small class="text-black-50">{{actressNo}}</small>
+                        <small class="text-black-50">{{ actressNo }}</small>
                     </div>
                 </div>
             </div>
@@ -41,7 +38,9 @@
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import _ from 'lodash';
+import { mapState } from "pinia";
+import { useStore } from '../js/store';
 
 import { Data } from "../js/data.js";
 import { Easter } from "../js/easter.js";
@@ -53,19 +52,19 @@ export default {
         actress: Object
     },
     computed: {
-        isNeedSplit: function() {
+        isNeedSplit: function () {
             return splitRegex.test(this.actress.name);
         },
-        SplitedName: function() {
+        SplitedName: function () {
             return this.actress.name.split(splitRegex);
         },
-        SplitedRuby: function() {
+        SplitedRuby: function () {
             return this.actress.ruby.split(splitRegex);
         },
-        SplitMark: function() {
+        SplitMark: function () {
             return this.actress.name.match(splitRegex)[0].trim();
         },
-        isAccessDenied: function() {
+        isAccessDenied: function () {
             if (this.isExperimentalMode) {
                 return false;
             }
@@ -74,10 +73,10 @@ export default {
                 this.actress.name.indexOf("Actress") >= 0
             );
         },
-        cardIconPath: function() {
+        cardIconPath: function () {
             var $vm = this;
             var cardIcon = (
-                _.find(Data.getAll("chara"), function(chara) {
+                _.find(Data.getAll("chara"), function (chara) {
                     return (
                         chara.actressId == $vm.actress.id &&
                         chara.rare >= 4 &&
@@ -90,18 +89,17 @@ export default {
             }
             return "../img/chara/" + cardIcon + ".png";
         },
-        actressNo: function() {
+        actressNo: function () {
             var idStr = this.actress.idStr || "__";
             return idStr.split("_")[1];
         },
-        ...mapState(["isExperimentalMode", "isEasterMode"]),
-        easterStyle: function() {
+        ...mapState(useStore, ["isExperimentalMode", "isEasterMode"]),
+        easterStyle: function () {
             return Easter.getCardStyle(this.actress.id);
         }
     },
     methods: {
-        showResume: function(id) {
-            //Event.$emit("render", id);
+        showResume: function (id) {
             location.href = "#!/actress/" + id;
         }
     }
