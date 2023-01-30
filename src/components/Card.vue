@@ -9,25 +9,27 @@
                     <h5 class="m-0 text-nowrap">
                         <img class="card-icon" v-bind:src="cardIconPath" />
                         <div v-if="isEasterMode" class="card-icon-easter" :style="easterStyle"></div>
-                        <ruby v-if="isNeedSplit">
-                            {{ SplitedName[0]}}
-                            <rp>(</rp>
-                            <rt>{{ SplitedRuby[0]}}</rt>
-                            <rp>)</rp>
-                        </ruby>
-                        <span v-if="isNeedSplit" :class="{ 'pe-1': !SplitMark }">{{ SplitMark }}</span>
-                        <ruby v-if="isNeedSplit">
-                            {{ SplitedName[1]}}
-                            <rp>(</rp>
-                            <rt>{{ SplitedRuby[1]}}</rt>
-                            <rp>)</rp>
-                        </ruby>
-                        <ruby v-else>
-                            {{ actress.name }}
-                            <rp>(</rp>
-                            <rt>{{ actress.ruby }}</rt>
-                            <rp>)</rp>
-                        </ruby>
+                        <span class="ps-1">
+                            <ruby v-if="isNeedSplit">
+                                {{ SplitedName[0]}}
+                                <rp>(</rp>
+                                <rt>{{ SplitedRuby[0]}}</rt>
+                                <rp>)</rp>
+                            </ruby>
+                            <span v-if="isNeedSplit" :class="{ 'pe-1': !SplitMark }">{{ SplitMark }}</span>
+                            <ruby v-if="isNeedSplit">
+                                {{ SplitedName[1]}}
+                                <rp>(</rp>
+                                <rt>{{ SplitedRuby[1]}}</rt>
+                                <rp>)</rp>
+                            </ruby>
+                            <ruby v-else>
+                                {{ actress.name }}
+                                <rp>(</rp>
+                                <rt>{{ actress.ruby }}</rt>
+                                <rp>)</rp>
+                            </ruby>
+                        </span>
                     </h5>
                     <div v-if="isExperimentalMode" class="actress-no">
                         <small class="text-black-50">{{ actressNo }}</small>
