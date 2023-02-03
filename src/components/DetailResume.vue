@@ -156,7 +156,7 @@
         </div>
         <hr />
         <div>
-            <div class="d-flex">
+            <div class="d-flex mb-2">
                 <div class="flex-shrink-0">
                     <img v-bind:src="chara.icon && '../img/chara/' + chara.icon + '.png'" />
                 </div>

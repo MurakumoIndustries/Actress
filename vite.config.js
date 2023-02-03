@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import dynamicImport from 'vite-plugin-dynamic-import'
+import inlineSvg from 'rollup-plugin-inline-svg';
 
 import { VitePWA } from 'vite-plugin-pwa'
 
@@ -18,6 +19,7 @@ export default defineConfig({
     plugins: [
         vue(),
         dynamicImport(),
+        inlineSvg(),
         VitePWA({
             injectRegister: null,
             strategies: 'injectManifest',

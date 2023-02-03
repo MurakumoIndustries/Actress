@@ -1634,6 +1634,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/pluginutils@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "@rollup/pluginutils@npm:4.2.1"
+  dependencies:
+    estree-walker: ^2.0.1
+    picomatch: ^2.2.2
+  checksum: 6bc41f22b1a0f1efec3043899e4d3b6b1497b3dea4d94292d8f83b4cf07a1073ecbaedd562a22d11913ff7659f459677b01b09e9598a98936e746780ecc93a12
+  languageName: node
+  linkType: hard
+
 "@rollup/pluginutils@npm:^5.0.1":
   version: 5.0.2
   resolution: "@rollup/pluginutils@npm:5.0.2"
@@ -1851,6 +1861,7 @@ __metadata:
     page: ^1.11.6
     pinia: ^2.0.29
     rollup: ^3.12.0
+    rollup-plugin-inline-svg: ^3.0.3
     sass: ^1.57.1
     vite: ^4.0.4
     vite-plugin-dynamic-import: ^1.2.7
@@ -2579,7 +2590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"estree-walker@npm:^2.0.2":
+"estree-walker@npm:^2.0.1, estree-walker@npm:^2.0.2":
   version: 2.0.2
   resolution: "estree-walker@npm:2.0.2"
   checksum: 6151e6f9828abe2259e57f5fd3761335bb0d2ebd76dc1a01048ccee22fabcfef3c0859300f6d83ff0d1927849368775ec5a6d265dde2f6de5a1be1721cd94efc
@@ -2923,6 +2934,13 @@ __metadata:
   dependencies:
     function-bind: ^1.1.1
   checksum: b9ad53d53be4af90ce5d1c38331e712522417d017d5ef1ebd0507e07c2fbad8686fffb8e12ddecd4c39ca9b9b47431afbb975b8abf7f3c3b82c98e9aad052792
+  languageName: node
+  linkType: hard
+
+"html-to-ast@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "html-to-ast@npm:0.0.6"
+  checksum: ce3e56b5771bb3fd2dc734497c72c130554759e709dd1d007e281e5128122379375d538b3b01b01724d816f209b5dbea7ae811040df71ab672c1662ce843606b
   languageName: node
   linkType: hard
 
@@ -4072,6 +4090,18 @@ __metadata:
   bin:
     rimraf: bin.js
   checksum: 87f4164e396f0171b0a3386cc1877a817f572148ee13a7e113b238e48e8a9f2f31d009a92ec38a591ff1567d9662c6b67fd8818a2dbbaed74bc26a87a2a4a9a0
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-inline-svg@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "rollup-plugin-inline-svg@npm:3.0.3"
+  dependencies:
+    "@rollup/pluginutils": ^4.2.1
+    html-to-ast: ^0.0.6
+  peerDependencies:
+    rollup: "*"
+  checksum: a1878b0ea1b06a46255e13eb9079647a73399ddd993d0aadd35f985dcb9664a3f116fb4872627620a9d35ccf92f3a9073fc8cc314c3d292886acd706bc4219b5
   languageName: node
   linkType: hard
 

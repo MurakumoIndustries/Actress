@@ -23,6 +23,7 @@
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.0.0",
         "rollup": "^3.12.0",
+        "rollup-plugin-inline-svg": "^3.0.3",
         "sass": "^1.57.1",
         "vite": "^4.0.4",
         "vite-plugin-dynamic-import": "^1.2.7",
