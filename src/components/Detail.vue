@@ -112,7 +112,11 @@ export default {
                 modal && modal.hide();
                 return;
             }
-            this.currentTabId = _.find(this.charas, (o) => o.variation == 5).id;
+            let first4Chara = this.charas.find(o => o.variation == 5);
+            if (!first4Chara) {
+                first4Chara = this.charas.find(o => o.maxLv == 80); //fallback
+            }
+            this.currentTabId = first4Chara.id;
             this.$nextTick(function () {
                 const modal = Modal.getOrCreateInstance(this.$el);
                 modal && modal.show();
