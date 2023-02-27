@@ -116,6 +116,9 @@ export default {
             if (!first4Chara) {
                 first4Chara = this.charas.find(o => o.maxLv == 80); //fallback
             }
+            if (!first4Chara) {
+                first4Chara = {};
+            }
             this.currentTabId = first4Chara.id;
             this.$nextTick(function () {
                 const modal = Modal.getOrCreateInstance(this.$el);
