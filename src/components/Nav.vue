@@ -10,9 +10,9 @@ const store = useStore();
 const currentServer = ref(Data.getCurrentServer());
 const allServers = Data.getAllServers();
 
-const cacheDisabled = localStorage["MI_Enigma_Disable_Cache"] === "true";
+const cacheDisabled = ref(localStorage[Data.const.cacheDisableKey] === "true");
 function toggleCache() {
-    if (this.cacheDisabled) {
+    if (cacheDisabled.value) {
         localStorage[Data.const.cacheDisableKey] = false;
         location.reload();
         return;
@@ -21,14 +21,11 @@ function toggleCache() {
         return;
     }
     if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-            .getRegistration()
-            .then(function (registration) {
-                registration &&
-                    registration.unregister().then(function (r) {
-                        localStorage[Data.const.cacheDisableKey] = true;
-                        location.reload();
-                    });
+        navigator.serviceWorker.getRegistration()
+            .then(async (registration) => {
+                await registration && registration.unregister();
+                localStorage[Data.const.cacheDisableKey] = true;
+                location.reload();
             });
     }
 };
@@ -73,9 +70,8 @@ const isEasterAvailable = computed(() => {
                 <span class="d-inline-block d-sm-none">MI | Actress</span>
                 <span class="d-none d-sm-inline-block d-md-none">Murakumo Industries | Actress</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -131,7 +127,7 @@ const isEasterAvailable = computed(() => {
                         <ul class="dropdown-menu dropdown-menu-end">
                             <h6 class="dropdown-header">{{ Ui.getText("server") }}</h6>
                             <a v-for="o in allServers" :key="o.id" :class="['dropdown-item', o.id == currentServer.id ? 'active' : '',
-                            o.disabled ? 'disabled' : '']" :href="'#!/server/' + o.id">
+                                o.disabled ? 'disabled' : '']" :href="'#!/server/' + o.id">
                                 {{ o.name }}
                                 <p class="m-0" style="font-size:0.75rem;line-height:0.75rem;">{{ o.version }}</p>
                             </a>

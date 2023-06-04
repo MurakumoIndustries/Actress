@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import dynamicImport from 'vite-plugin-dynamic-import'
-import inlineSvg from 'rollup-plugin-inline-svg';
 
 import { VitePWA } from 'vite-plugin-pwa'
 
@@ -19,7 +18,6 @@ export default defineConfig({
     plugins: [
         vue(),
         dynamicImport(),
-        inlineSvg(),
         VitePWA({
             injectRegister: null,
             strategies: 'injectManifest',
@@ -28,6 +26,10 @@ export default defineConfig({
             },
             srcDir: 'src/js',
             filename: 'sw.js',
+            devOptions: {
+                enabled: true,
+                type: 'module',
+            },
             manifest: {
                 id: "MI_Actress",
                 publicPath: './',
@@ -56,12 +58,5 @@ export default defineConfig({
                 ]
             }
         })
-        // injectManifest({
-        //     swSrc: './src/js/sw.js',
-        //     swDest: path.resolve(buildOutDir, 'sw.js'),
-        //     globDirectory: buildOutDir,
-        //     maximumFileSizeToCacheInBytes: 8192 * 1024 * 1024,
-        //     mode: process.env.NODE_ENV,
-        // }),
     ]
 })

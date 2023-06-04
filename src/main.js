@@ -30,7 +30,10 @@ Data.init().then(function () {
     if ('serviceWorker' in navigator) {
         if (localStorage[Data.const.cacheDisableKey] !== "true") {
             //register sw
-            navigator.serviceWorker.register('./sw.js').then(reg => {
+            navigator.serviceWorker.register(
+                import.meta.env.MODE === 'production' ? '/sw.js' : '/dev-sw.js?dev-sw',
+                { type: import.meta.env.MODE === 'production' ? 'classic' : 'module' }
+            ).then(reg => {
                 reg.addEventListener('updatefound', () => {
                     const newWorker = reg.installing;
                     console.log("installing", newWorker);
