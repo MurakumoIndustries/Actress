@@ -30,7 +30,6 @@ function toggleCache() {
     }
 };
 
-const currentLang = ref(store.language);
 const currentLangText = computed(() => {
     return Ui.getLangText(store.language);
 });
