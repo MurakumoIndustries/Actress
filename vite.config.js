@@ -11,7 +11,7 @@ const buildOutDir = path.resolve('./docs');
 console.log("process.env.NODE_ENV:", process.env.NODE_ENV);
 
 export default defineConfig({
-    base: './',
+    base: '/Actress/',
     build: {
         outDir: buildOutDir
     },
@@ -32,7 +32,6 @@ export default defineConfig({
             },
             manifest: {
                 id: "MI_Actress",
-                publicPath: './',
                 name: "MI|Actress",
                 short_name: "MI|Actress",
                 description: 'Murakumo Industries|Actress Resume',
