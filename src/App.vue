@@ -1,14 +1,14 @@
 <script setup>
 import { ref, watchEffect } from 'vue';
 import { useStore } from './js/store'
-import Konami from "konami";
+import { Konami } from "./js/konami";
 
 import Nav from './components/Nav.vue'
 import Actress from './components/Actress.vue';
 
 const store = useStore();
 
-new Konami(function () {
+const easterEgg = new Konami(function () {
   store.isExperimentalMode = !store.isExperimentalMode;
 });
 
