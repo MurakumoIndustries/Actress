@@ -2,7 +2,8 @@
     "name": "Actress",
     "version": "1.0.0",
     "description": "Murakumo Industries|Actress List",
-    "main": "index.js",
+    "type": "module",
+    "main": "main.js",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
